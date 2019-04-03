@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98f44336-7bce-483d-a52d-82f3e48947bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Grafo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-    </list>
+    <list default="true" id="98f44336-7bce-483d-a52d-82f3e48947bb" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,12 +245,12 @@
       <updated>1554293989562</updated>
       <workItem from="1554293999255" duration="1938000" />
       <workItem from="1554296361942" duration="455000" />
-      <workItem from="1554296845270" duration="3687000" />
+      <workItem from="1554296845270" duration="4021000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6080000" />
+    <option name="totallyTimeSpent" value="6414000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
