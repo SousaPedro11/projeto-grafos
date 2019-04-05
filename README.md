@@ -18,6 +18,7 @@ OBS: Entrega até dia 03/07/2019
 
 ## Grupo
 * Edmilton Pinto Peixeira
+* George Alan Kardec Monteiro de Jesus
 * Hana Gabrielle dos Santos Barata
 * Pedro Paulo Lisboa de Sousa
 * Victor Hugo Azevedo Ferreira
