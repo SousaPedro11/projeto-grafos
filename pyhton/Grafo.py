@@ -31,6 +31,7 @@ class Graph(object):
         """
         if vertex not in self.__graph_dict:
             self.__graph_dict[vertex] = []
+            print(vertex)
 
     def add_edge(self, edge):
         """ assumes that edge is of type set, tuple or list;
@@ -42,6 +43,7 @@ class Graph(object):
             self.__graph_dict[vertex1].append(vertex2)
         else:
             self.__graph_dict[vertex1] = [vertex2]
+        print(edge)
 
     def __generate_edges(self):
         """ A static method generating the edges of the
