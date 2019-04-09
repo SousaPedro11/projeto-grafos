@@ -84,8 +84,8 @@ class Grafo(object):
         return grau
 
     def __str__(self):
-        result = "Vertices: "
-        result += ', '.join(self.vertices())
+        result = "Vertices: ["
+        result += ', '.join(self.vertices()) + "]"
         # for k in self.__grafo_dicionario:
         #     result += str(k) + " "
         result += "\nArestas: "
