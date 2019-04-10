@@ -182,10 +182,35 @@ class Grafo(object):
             return False
 
         if any(visit(v) for v in self.__grafo_dicionario):
-            result += "É Cíclico"
+            result += "É cíclico"
         else:
             result += "Não é ciclico"
         print(result)
+
+    def diameter(self):
+        """ calculates the diameter of the graph """
+        v = self.vertices()
+        pairs = [(v[i], v[j]) for i in range(len(v) - 1) for j in range(i + 1, len(v))]
+        smallest_paths = []
+        for (s, e) in pairs:
+            # paths = self.find_all_paths(s, e)
+            paths = self.encontrar_todos_caminhos(s, e)
+            smallest = sorted(paths, key=len)[0]
+            smallest_paths.append(smallest)
+
+        smallest_paths.sort(key=len)
+
+        # longest path is at the end of list,
+        # i.e. diameter corresponds to the length of this path
+        # diameter = len(smallest_paths[-1])
+        # return diameter
+        return smallest_paths[-1]
+
+    def caminho_curto(self):
+        if self.is_connected():
+            result = "O caminho mais curto é: "
+            result += str(self.diameter())
+            print(result)
 
     def cyclic(self):
         """Return True if the directed graph has a cycle.

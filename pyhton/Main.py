@@ -71,6 +71,7 @@ if graph1.is_connected():
     print('O Grafo é conexo')
 else:
     print('O Grafo não é conexo')
+graph1.caminho_curto()
 print()
 print("GRAFO 2")
 graph2 = Grafo(grafo2)
@@ -88,6 +89,7 @@ if graph2.is_connected():
     print('O Grafo é conexo')
 else:
     print('O Grafo não é conexo')
+graph2.caminho_curto()
 print()
 print("GRAFO 3")
 graph3 = Grafo(grafo3)
@@ -101,11 +103,12 @@ graph3.verificar_aresta({"c", "b"})
 graph3.grau_vertice("b")
 graph3.verificar_adjacencia("b")
 graph3.verificar_ciclico()
-
-if graph3.is_connected():
-    print('O Grafo é conexo')
-else:
-    print('O Grafo não é conexo')
+print(graph3.is_connected())
+graph3.caminho_curto()
+# if graph3.is_connected():
+#     print('O Grafo é conexo')
+# else:
+#     print('O Grafo não é conexo')
 
 G1 = nx.DiGraph(grafo1)
 # print(G1.neighbors("b"))
@@ -124,11 +127,11 @@ fig = plt.figure()
 fig.suptitle('Grafo 2 ', fontsize=20)
 nx.draw(G2, with_labels=True, )
 plt.show()
-
-G3 = nx.DiGraph(grafo3)
-# print(G3.neighbors("b"))
-# print(G3.is_directed())
-fig = plt.figure()
-fig.suptitle('Grafo 3 ', fontsize=20)
-nx.draw(G3, with_labels=True, )
-plt.show()
+#
+# G3 = nx.DiGraph(grafo3)
+# # print(G3.neighbors("b"))
+# # print(G3.is_directed())
+# fig = plt.figure()
+# fig.suptitle('Grafo 3 ', fontsize=20)
+# nx.draw(G3, with_labels=True, )
+# plt.show()
