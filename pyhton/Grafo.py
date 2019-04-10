@@ -148,66 +148,65 @@ class Grafo(object):
                     caminhos.append(p)
         return caminhos
 
-
-if __name__ is "__main__":
-    g = {"a": ["d", "f"],
-         "b": ["c"],
-         "c": ["b", "c", "d", "e"],
-         "d": ["a", "c"],
-         "e": ["c"],
-         "f": ["d"]
-         }
-
-    graph = Grafo(g)
-
-    print("Vertices of graph:")
-    print(graph.vertices())
-
-    print("arestas of graph:")
-    print(graph.arestas())
-
-    print("Add vertice:")
-    graph.adicionar_vertice("z")
-
-    print("Vertices of graph:")
-    print(graph.vertices())
-
-    print("Add an aresta:")
-    graph.adicionar_aresta({"a", "z"})
-
-    print("Vertices of graph:")
-    print(graph.vertices())
-
-    print("arestas of graph:")
-    print(graph.arestas())
-
-    print('Adding an aresta {"x","y"} with new vertices:')
-    graph.adicionar_aresta({"x", "y"})
-    print("Vertices of graph:")
-    print(graph.vertices())
-    print("arestas of graph:")
-    print(graph.arestas())
-
-    print('The path from vertice "a" to vertice "b":')
-    path = graph.encontrar_caminho("a", "b")
-    print(path)
-
-    print('The path from vertice "a" to vertice "f":')
-    path = graph.encontrar_caminho("a", "f")
-    print(path)
-
-    print('The path from vertice "c" to vertice "c":')
-    path = graph.encontrar_caminho("c", "c")
-    print(path)
-
-    print('All paths from vertice "a" to vertice "b":')
-    path = graph.encontrar_todos_caminhos("a", "b")
-    print(path)
-
-    print('All paths from vertice "a" to vertice "f":')
-    path = graph.encontrar_todos_caminhos("a", "f")
-    print(path)
-
-    print('All paths from vertice "c" to vertice "c":')
-    path = graph.encontrar_todos_caminhos("c", "c")
-    print(path)
+# if __name__ is "__main__":
+#     g = {"a": ["d", "f"],
+#          "b": ["c"],
+#          "c": ["b", "c", "d", "e"],
+#          "d": ["a", "c"],
+#          "e": ["c"],
+#          "f": ["d"]
+#          }
+#
+#     graph = Grafo(g)
+#
+#     print("Vertices of graph:")
+#     print(graph.vertices())
+#
+#     print("arestas of graph:")
+#     print(graph.arestas())
+#
+#     print("Add vertice:")
+#     graph.adicionar_vertice("z")
+#
+#     print("Vertices of graph:")
+#     print(graph.vertices())
+#
+#     print("Add an aresta:")
+#     graph.adicionar_aresta({"a", "z"})
+#
+#     print("Vertices of graph:")
+#     print(graph.vertices())
+#
+#     print("arestas of graph:")
+#     print(graph.arestas())
+#
+#     print('Adding an aresta {"x","y"} with new vertices:')
+#     graph.adicionar_aresta({"x", "y"})
+#     print("Vertices of graph:")
+#     print(graph.vertices())
+#     print("arestas of graph:")
+#     print(graph.arestas())
+#
+#     print('The path from vertice "a" to vertice "b":')
+#     path = graph.encontrar_caminho("a", "b")
+#     print(path)
+#
+#     print('The path from vertice "a" to vertice "f":')
+#     path = graph.encontrar_caminho("a", "f")
+#     print(path)
+#
+#     print('The path from vertice "c" to vertice "c":')
+#     path = graph.encontrar_caminho("c", "c")
+#     print(path)
+#
+#     print('All paths from vertice "a" to vertice "b":')
+#     path = graph.encontrar_todos_caminhos("a", "b")
+#     print(path)
+#
+#     print('All paths from vertice "a" to vertice "f":')
+#     path = graph.encontrar_todos_caminhos("a", "f")
+#     print(path)
+#
+#     print('All paths from vertice "c" to vertice "c":')
+#     path = graph.encontrar_todos_caminhos("c", "c")
+#     print(path)
