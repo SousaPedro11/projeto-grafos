@@ -16,13 +16,9 @@ class Grafo(object):
         self.__grafo_dicionario = grafo_dicionario
 
     def vertices(self):
-        """ returns the vertices of a graph """
-        # print("Vertices:")
-        return self.__grafo_dicionario.keys()
+        return list(self.__grafo_dicionario.keys())
 
     def arestas(self):
-        """ returns the arestas of a graph """
-        # print("Arestas:")
         return self.__gerar_arestas()
 
     def adicionar_vertice(self, vertice):
@@ -61,38 +57,45 @@ class Grafo(object):
         return list(arestas)
 
     def verificar_aresta(self, aresta):
-        """ Método para verificar se a aresta existe"""
+        """Método para verificar se a aresta existe"""
         (vertice1, vertice2) = tuple(aresta)
-        print("Verificar existencia da aresta %s: " % aresta)
+        result = "Verificar existencia da aresta %s: " % aresta
         if {vertice1, vertice2} in self.arestas():
-            return "A aresta existe"
-        return "A aresta não existe"
+            result += "A aresta existe"
+        else:
+            result += "A aresta não existe"
+        print(result)
 
     def verificar_adjacencia(self, vertice):
+        result = "Adjacencia do vértice '%s': " % vertice
         adjacencia = []
         for vizinhanca in self.__grafo_dicionario[vertice]:
             adjacencia.append(vizinhanca)
-        return adjacencia
+        result += str(adjacencia)
+        print(result)
 
     def grau_vertice(self, vertice):
         """ The grau of a vertice is the number of arestas connecting
             it, i.e. the number of adjacencia vertices. Loops are counted
             double, i.e. every occurence of vertice in the list
             of adjacencia vertices. """
+        result = "Grau do vértice '%s': " % vertice
         vertices_adjacentes = self.__grafo_dicionario[vertice]
         grau = len(vertices_adjacentes) + vertices_adjacentes.count(vertice)
-        return grau
+        result += str(grau)
+        print(result)
 
     def __str__(self):
-        result = "Vertices: ["
-        result += ', '.join(self.vertices()) + "]"
+        result = "Vertices: "
+        # result += ', '.join(self.vertices()) + "]"
+        result += str(self.vertices())
         # for k in self.__grafo_dicionario:
         #     result += str(k) + " "
         result += "\nArestas: "
         result += ''.join(str(self.arestas()))
         # for aresta in self.arestas():
         #     result += str(aresta) + " "
-        return result
+        print(result)
 
     def encontrar_caminho(self, vertice_inicio, vertice_fim, caminho=None):
         """ find a path from start_vertice to end_vertice
@@ -113,6 +116,16 @@ class Grafo(object):
                 if caminho_extendido:
                     return caminho_extendido
         return None
+
+    def imprime_caminho(self, vertice_inicio, vertice_fim):
+        result = "Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)
+        caminho = str(self.encontrar_caminho(vertice_inicio, vertice_fim))
+        if 'None' in caminho:
+            result += "Caminho não existe"
+        else:
+            result += caminho
+        print(result)
+        # return None
 
     def encontrar_todos_caminhos(self, vertice_inicio, vertice_fim, caminho=None):
         """ find all paths from start_vertice to

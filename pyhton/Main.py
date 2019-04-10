@@ -1,28 +1,7 @@
+import matplotlib.pyplot as plt
+import networkx as nx
+
 from Grafo import Grafo
-
-
-def questoes(grafo):
-    print(grafo)
-    # print("Vertices:")
-    # print(grafo.vertices())
-    # print("\nArestas:")
-    # print(grafo.arestas())
-    print('The path from vertex "a" to vertex "b":')
-    path = grafo.encontrar_caminho("a", "b")
-    print(path)
-    print('The path from vertex "c" to vertex "b":')
-    path = grafo.encontrar_caminho("c", "b")
-    print(path)
-    print('The path from vertex "b" to vertex "f":')
-    path = grafo.encontrar_caminho("b", "f")
-    print(path)
-    print('Check if an edge exists')
-    print(grafo.verificar_aresta({"c", "e"}))
-    print('The degree of a vertex')
-    print(grafo.grau_vertice("d"))
-    print('Check adjacents')
-    print(grafo.verificar_adjacencia("a"))
-
 
 # def generate_edges(graph):
 #     edges = []
@@ -41,7 +20,7 @@ def questoes(grafo):
 #     # return isolated
 #     print("vertices isolados:", isolated)
 
-'''
+"""
     1. Verificar a existência de uma determinada aresta.
     2. Informar o grau de um dado vértice.
     3. Informar a adjacência de um dado vértice.
@@ -49,9 +28,10 @@ def questoes(grafo):
     5. Verificar se o grafo é conexo.
     6. Informar quantos e quais são os componentes fortemente conexos do grafo.
     7. Verificar se o grafo é euleriano.
-    8. Encontrar o caminho mais curto entre dois vértices. Se o grafo for valorado, o problema deve ser resolvido com o algoritmo de Dijkstra.
+    8. Encontrar o caminho mais curto entre dois vértices. Se o grafo for valorado, o problema deve ser resolvido com o
+    algoritmo de Dijkstra.
     9. Encontrar a árvore geradora mínima (AGM) do grafo.
-'''
+"""
 
 grafo1 = {"a": ["c"],
           "b": ["c", "e"],
@@ -75,13 +55,42 @@ grafo3 = {"a": ["c"],
           "f": []
           }
 
-grafos = []
-grafos.append(Grafo(grafo1))
-grafos.append(Grafo(grafo2))
-grafos.append(Grafo(grafo3))
-i = 0
-for grafo in grafos:
-    i += 1
-    print("Grafo %s" % str(i))
-    questoes(grafo)
-    print()
+print("GRAFO 1")
+graph1 = Grafo(grafo1)
+graph1.__str__()
+graph1.imprime_caminho("a", "b")
+graph1.imprime_caminho("c", "b")
+graph1.imprime_caminho("b", "f")
+graph1.imprime_caminho("c", "f")
+graph1.verificar_aresta({"c", "e"})
+graph1.verificar_aresta({"c", "f"})
+graph1.grau_vertice("d")
+graph1.verificar_adjacencia("a")
+print()
+print("GRAFO 2")
+graph2 = Grafo(grafo2)
+graph2.__str__()
+graph2.imprime_caminho("a", "b")
+graph2.imprime_caminho("c", "b")
+graph2.imprime_caminho("b", "f")
+graph2.imprime_caminho("c", "f")
+graph2.verificar_aresta({"c", "e"})
+graph2.verificar_aresta({"c", "f"})
+graph2.grau_vertice("d")
+graph2.verificar_adjacencia("a")
+
+G1 = nx.Graph(grafo1)
+# print(G1.edges)
+# print(G1.nodes)
+# print(G1.has_edge("a", "b"))
+# print(G1.has_edge("a", "c"))
+fig = plt.figure()
+fig.suptitle('Grafo 1 ', fontsize = 20)
+nx.draw(G1, with_labels=True)
+plt.show()
+
+G2 = nx.Graph(grafo2)
+fig = plt.figure()
+fig.suptitle('Grafo 2 ', fontsize = 20)
+nx.draw(G2, with_labels=True,)
+plt.show()
