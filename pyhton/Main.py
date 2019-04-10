@@ -66,6 +66,15 @@ graph1.verificar_aresta({"c", "e"})
 graph1.verificar_aresta({"c", "f"})
 graph1.grau_vertice("d")
 graph1.verificar_adjacencia("b")
+if graph1.is_connected():
+    print('O Grafo é conexo')
+else:
+    print('O Grafo não é conexo')
+if graph1.cyclic():
+    print('O grafo é cíclico')
+else:
+    print('O grafo não é cíclico')
+graph1.is_cyclic()
 print()
 print("GRAFO 2")
 graph2 = Grafo(grafo2)
@@ -78,6 +87,15 @@ graph2.verificar_aresta({"c", "e"})
 graph2.verificar_aresta({"c", "f"})
 graph2.grau_vertice("d")
 graph2.verificar_adjacencia("b")
+if graph2.is_connected():
+      print('O Grafo é conexo')
+else:
+      print('O Grafo não é conexo')
+if graph2.cyclic():
+      print('O grafo é cíclico')
+else:
+      print('O grafo não é cíclico')
+graph2.is_cyclic()
 print()
 print("GRAFO 3")
 graph3 = Grafo(grafo3)
@@ -90,7 +108,17 @@ graph3.verificar_aresta({"c", "e"})
 graph3.verificar_aresta({"c", "b"})
 graph3.grau_vertice("b")
 graph3.verificar_adjacencia("b")
+if graph3.is_connected():
+      print('O Grafo é conexo')
+else:
+      print('O Grafo não é conexo')
+if graph3.cyclic():
+      print('O grafo é cíclico')
+else:
+      print('O grafo não é cíclico')
+graph3.is_cyclic()
 
+'''
 G1 = nx.DiGraph(grafo1)
 print(G1.neighbors("b"))
 # print(G1.edges)
@@ -116,3 +144,4 @@ fig = plt.figure()
 fig.suptitle('Grafo 3 ', fontsize=20)
 nx.draw(G3, with_labels=True, )
 plt.show()
+'''

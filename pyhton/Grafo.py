@@ -51,9 +51,9 @@ class Grafo(object):
         """
         arestas = []
         for vertice in self.__grafo_dicionario:
-            for vizinhanca in self.__grafo_dicionario[vertice]:
-                if {vizinhanca, vertice} not in arestas:
-                    arestas.append({vertice, vizinhanca})
+            for vizinho in self.__grafo_dicionario[vertice]:
+                if {vizinho, vertice} not in arestas:
+                    arestas.append({vertice, vizinho})
         return list(arestas)
 
     def verificar_aresta(self, aresta):
@@ -69,8 +69,8 @@ class Grafo(object):
     def verificar_adjacencia(self, vertice):
         result = "Adjacencia do vértice '%s': " % vertice
         adjacencia = []
-        for vizinhanca in self.__grafo_dicionario[vertice]:
-            adjacencia.append(vizinhanca)
+        for vizinho in self.__grafo_dicionario[vertice]:
+            adjacencia.append(vizinho)
         result += str(adjacencia)
         print(result)
 
@@ -148,6 +148,67 @@ class Grafo(object):
                     caminhos.append(p)
         return caminhos
 
+    def is_connected(self,
+                     vertices_encountered=None,
+                     start_vertex=None):
+        """ determines if the graph is connected """
+        if vertices_encountered is None:
+            vertices_encountered = set()
+        gdict = self.__grafo_dicionario
+        vertices = list(gdict.keys())  # "list" necessary in Python 3
+        if not start_vertex:
+            # chosse a vertex from graph as a starting point
+            start_vertex = vertices[0]
+        vertices_encountered.add(start_vertex)
+        if len(vertices_encountered) != len(vertices):
+            for vertex in gdict[start_vertex]:
+                if vertex not in vertices_encountered:
+                    if self.is_connected(vertices_encountered, vertex):
+                        return True
+        else:
+            return True
+        return False
+
+    def is_cyclic(self):
+        path = set()
+
+        def visit(vertice):
+            path.add(vertice)
+            for vizinho in self.__grafo_dicionario.get(vertice, ()):
+                if vizinho in path or visit(vizinho):
+                    return True
+            path.remove(vertice)
+            return False
+        # return any(visit(v) for v in self.__grafo_dicionario)
+        if any(visit(v) for v in self.__grafo_dicionario):
+            print("É Cíclico")
+        else:
+            print("Não é ciclico")
+
+    def cyclic(self):
+        """Return True if the directed graph has a cycle.
+        The graph must be represented as a dictionary mapping vertices to
+        iterables of neighbouring vertices. For example:
+        False"""
+
+        visited = set()
+        path = [object()]
+        path_set = set(path)
+        stack = [iter(self.__grafo_dicionario)]
+        while stack:
+            for v in stack[-1]:
+                if v in path_set:
+                    return True
+                elif v not in visited:
+                    visited.add(v)
+                    path.append(v)
+                    path_set.add(v)
+                    stack.append(iter(self.__grafo_dicionario.get(v, ())))
+                    break
+            else:
+                path_set.remove(path.pop())
+                stack.pop()
+        return False
 # if __name__ is "__main__":
 #     g = {"a": ["d", "f"],
 #          "b": ["c"],
