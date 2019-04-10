@@ -169,6 +169,14 @@ class Grafo(object):
             return True
         return False
 
+    def verificar_conexo(self):
+        result = "Verificar se o grafo é conexo: "
+        if self.is_connected():
+            result += "O grafo é conexo"
+        else:
+            result += "O grafo não é conexo"
+        print(result)
+
     def verificar_ciclico(self):
         result = "Verificar se o grafo é cíclico: "
         path = set()
@@ -188,23 +196,22 @@ class Grafo(object):
         print(result)
 
     def diameter(self):
-        """ calculates the diameter of the graph """
         v = self.vertices()
-        pairs = [(v[i], v[j]) for i in range(len(v) - 1) for j in range(i + 1, len(v))]
-        smallest_paths = []
-        for (s, e) in pairs:
+        pares = [(v[i], v[j]) for i in range(len(v) - 1) for j in range(i + 1, len(v))]
+        caminho_curto = []
+        for (s, e) in pares:
             # paths = self.find_all_paths(s, e)
-            paths = self.encontrar_todos_caminhos(s, e)
-            smallest = sorted(paths, key=len)[0]
-            smallest_paths.append(smallest)
+            caminhos = self.encontrar_todos_caminhos(s, e)
+            mais_curto = sorted(caminhos, key=len)[0]
+            caminho_curto.append(mais_curto)
 
-        smallest_paths.sort(key=len)
+        caminho_curto.sort(key=len)
 
         # longest path is at the end of list,
         # i.e. diameter corresponds to the length of this path
         # diameter = len(smallest_paths[-1])
         # return diameter
-        return smallest_paths[-1]
+        return caminho_curto[-1]
 
     def caminho_curto(self):
         if self.is_connected():
