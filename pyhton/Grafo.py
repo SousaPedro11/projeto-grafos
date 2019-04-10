@@ -169,7 +169,8 @@ class Grafo(object):
             return True
         return False
 
-    def is_cyclic(self):
+    def verificar_ciclico(self):
+        result = "Verificar se o grafo é cíclico: "
         path = set()
 
         def visit(vertice):
@@ -179,11 +180,12 @@ class Grafo(object):
                     return True
             path.remove(vertice)
             return False
-        # return any(visit(v) for v in self.__grafo_dicionario)
+
         if any(visit(v) for v in self.__grafo_dicionario):
-            print("É Cíclico")
+            result += "É Cíclico"
         else:
-            print("Não é ciclico")
+            result += "Não é ciclico"
+        print(result)
 
     def cyclic(self):
         """Return True if the directed graph has a cycle.

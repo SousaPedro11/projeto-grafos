@@ -66,15 +66,11 @@ graph1.verificar_aresta({"c", "e"})
 graph1.verificar_aresta({"c", "f"})
 graph1.grau_vertice("d")
 graph1.verificar_adjacencia("b")
+graph1.verificar_ciclico()
 if graph1.is_connected():
     print('O Grafo é conexo')
 else:
     print('O Grafo não é conexo')
-if graph1.cyclic():
-    print('O grafo é cíclico')
-else:
-    print('O grafo não é cíclico')
-graph1.is_cyclic()
 print()
 print("GRAFO 2")
 graph2 = Grafo(grafo2)
@@ -87,15 +83,11 @@ graph2.verificar_aresta({"c", "e"})
 graph2.verificar_aresta({"c", "f"})
 graph2.grau_vertice("d")
 graph2.verificar_adjacencia("b")
+graph2.verificar_ciclico()
 if graph2.is_connected():
-      print('O Grafo é conexo')
+    print('O Grafo é conexo')
 else:
-      print('O Grafo não é conexo')
-if graph2.cyclic():
-      print('O grafo é cíclico')
-else:
-      print('O grafo não é cíclico')
-graph2.is_cyclic()
+    print('O Grafo não é conexo')
 print()
 print("GRAFO 3")
 graph3 = Grafo(grafo3)
@@ -108,19 +100,15 @@ graph3.verificar_aresta({"c", "e"})
 graph3.verificar_aresta({"c", "b"})
 graph3.grau_vertice("b")
 graph3.verificar_adjacencia("b")
-if graph3.is_connected():
-      print('O Grafo é conexo')
-else:
-      print('O Grafo não é conexo')
-if graph3.cyclic():
-      print('O grafo é cíclico')
-else:
-      print('O grafo não é cíclico')
-graph3.is_cyclic()
+graph3.verificar_ciclico()
 
-'''
+if graph3.is_connected():
+    print('O Grafo é conexo')
+else:
+    print('O Grafo não é conexo')
+
 G1 = nx.DiGraph(grafo1)
-print(G1.neighbors("b"))
+# print(G1.neighbors("b"))
 # print(G1.edges)
 # print(G1.nodes)
 # print(G1.has_edge("a", "b"))
@@ -131,17 +119,16 @@ nx.draw(G1, with_labels=True)
 plt.show()
 
 G2 = nx.DiGraph(grafo2)
-print(G2.neighbors("b"))
+# print(G2.neighbors("b"))
 fig = plt.figure()
 fig.suptitle('Grafo 2 ', fontsize=20)
 nx.draw(G2, with_labels=True, )
 plt.show()
 
 G3 = nx.DiGraph(grafo3)
-print(G3.neighbors("b"))
-print(G3.is_directed())
+# print(G3.neighbors("b"))
+# print(G3.is_directed())
 fig = plt.figure()
 fig.suptitle('Grafo 3 ', fontsize=20)
 nx.draw(G3, with_labels=True, )
 plt.show()
-'''
