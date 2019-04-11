@@ -178,12 +178,15 @@ class Grafo(object):
         print(''.join(result))
 
     def verificar_fortemente_conexos(self):
+        # TODO implementar ester método
         pass
 
     def verificar_eurreliano(self):
+        # TODO implementar ester método
         pass
 
     def diameter(self):
+        # FIXME falta corrigir ou substituir o algoritmo
         v = self.vertices()
         pares = [(v[i], v[j]) for i in range(len(v) - 1) for j in range(i + 1, len(v))]
         caminho_curto = []
@@ -201,4 +204,5 @@ class Grafo(object):
             print(result)
 
     def encontrar_agm(self):
+        # TODO implementar ester método
         pass

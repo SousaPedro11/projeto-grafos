@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Grafo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="161" column="8" selection-start-line="161" selection-start-column="8" selection-end-line="161" selection-end-column="8" />
+            <state relative-caret-position="58">
+              <caret line="180" column="39" selection-start-line="180" selection-start-column="39" selection-end-line="180" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -311,12 +311,12 @@
       <workItem from="1554817657677" duration="10540000" />
       <workItem from="1554902531836" duration="13296000" />
       <workItem from="1554918092786" duration="1659000" />
-      <workItem from="1554983718370" duration="7628000" />
+      <workItem from="1554983718370" duration="7856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41280000" />
+    <option name="totallyTimeSpent" value="41508000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -444,8 +444,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Grafo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="161" column="8" selection-start-line="161" selection-start-column="8" selection-end-line="161" selection-end-column="8" />
+        <state relative-caret-position="58">
+          <caret line="180" column="39" selection-start-line="180" selection-start-column="39" selection-end-line="180" selection-end-column="39" />
         </state>
       </provider>
     </entry>
