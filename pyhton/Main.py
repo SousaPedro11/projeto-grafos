@@ -1,21 +1,7 @@
-from Grafo import Grafo
+# import matplotlib.pyplot as plt
+# import networkx as nx
 
-# def generate_edges(graph):
-#     edges = []
-#     for node in graph:
-#         for neighbour in graph[node]:
-#             edges.append((node, neighbour))
-#     # return edges
-#     print("vertices conexos: ", edges)
-#
-# def find_isolated_nodes(graph):
-#     """ returns a list of isolated nodes. """
-#     isolated = []
-#     for node in graph:
-#         if not graph[node]:
-#             isolated += node
-#     # return isolated
-#     print("vertices isolados:", isolated)
+from Grafo import Grafo
 
 """
     1. Verificar a existência de uma determinada aresta.
@@ -55,10 +41,6 @@ grafo3 = {"a": ["c"],
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
-# graph1.imprime_caminho("a", "b")
-# graph1.imprime_caminho("c", "b")
-# graph1.imprime_caminho("b", "f")
-# graph1.imprime_caminho("c", "f")
 graph1.verificar_aresta({"c", "f"})
 graph1.grau_vertice("d")
 graph1.verificar_adjacencia("b")
@@ -90,14 +72,10 @@ graph3.grau_vertice("b")
 graph3.verificar_adjacencia("b")
 graph3.verificar_ciclico()
 graph3.verificar_conexo()
-graph2.verificar_fortemente_conexos()
-graph2.verificar_eurreliano()
-graph2.caminho_curto()
-graph2.encontrar_agm()
-# if graph3.is_connected():
-#     print('O Grafo é conexo')
-# else:
-#     print('O Grafo não é conexo')
+graph3.verificar_fortemente_conexos()
+graph3.verificar_eurreliano()
+graph3.caminho_curto()
+graph3.encontrar_agm()
 
 # G1 = nx.DiGraph(grafo1)
 # # print(G1.neighbors("b"))

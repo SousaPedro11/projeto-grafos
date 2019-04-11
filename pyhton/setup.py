@@ -8,5 +8,6 @@ setup(
     license='Apache 2.0',
     author='Pedro Paulo Lisboa de Sousa',
     author_email='ppls2106@gmail.com',
-    description='Projeto para solucionar as questões propostas em sala pelo Prof. Nelson'
+    description='Projeto para solucionar as questões propostas em sala pelo Prof. Nelson', requires=['matplotlib',
+                                                                                                     'networkx']
 )
