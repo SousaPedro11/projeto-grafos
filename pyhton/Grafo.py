@@ -76,7 +76,7 @@ class Grafo(object):
         print(result)
 
     def __str__(self):
-        " Similar ao toString"
+        """ Similar ao toString"""
         result = "Vertices: "
         result += str(self.vertices())
         result += "\nArestas: "
