@@ -159,15 +159,7 @@ class Grafo(object):
     def verificar_ciclico(self):
         """ Verifica se o grafo é cíclico"""
         result = ["Verificar se o grafo é cíclico: "]
-        # path = set()
-        #
-        # def visit(vertice):
-        #     path.add(vertice)
-        #     for vizinho in self.__grafo_dicionario.get(vertice, ()):
-        #         if vizinho in path or visit(vizinho):
-        #             return True
-        #     path.remove(vertice)
-        #     return False
+
         caminho = set()
         visitado = set()
 
@@ -200,11 +192,6 @@ class Grafo(object):
             mais_curto = sorted(caminhos, key=len)[0]
             caminho_curto.append(mais_curto)
         caminho_curto.sort(key=len)
-
-        # longest path is at the end of list,
-        # i.e. diameter corresponds to the length of this path
-        # diameter = len(smallest_paths[-1])
-        # return diameter
         return caminho_curto[-1]
 
     def caminho_curto(self):
