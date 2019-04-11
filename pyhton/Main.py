@@ -1,5 +1,6 @@
 # import matplotlib.pyplot as plt
 # import networkx as nx
+from pprint import pprint as pp
 
 from Grafo import Grafo
 
@@ -37,6 +38,10 @@ grafo3 = {"a": ["c"],
           "e": ["f"],
           "f": []
           }
+
+graph = Grafo([("a", "b", 7),  ("a", "c", 9),  ("a", "f", 14), ("b", "c", 10),
+               ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
+               ("e", "f", 9)])
 
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
@@ -76,6 +81,7 @@ graph3.verificar_fortemente_conexos()
 graph3.verificar_eurreliano()
 graph3.caminho_curto()
 graph3.encontrar_agm()
+graph3.dijkstra("a","c")
 
 # G1 = nx.DiGraph(grafo1)
 # # print(G1.neighbors("b"))

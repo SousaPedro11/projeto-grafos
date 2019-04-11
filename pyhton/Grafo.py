@@ -1,4 +1,5 @@
 """ A Python Class"""
+from collections import namedtuple
 
 
 class Grafo(object):
@@ -10,6 +11,7 @@ class Grafo(object):
         if grafo_dicionario is None:
             grafo_dicionario = {}
         self.__grafo_dicionario = grafo_dicionario
+        self.weights = {}
 
     def vertices(self):
         return list(self.__grafo_dicionario.keys())
