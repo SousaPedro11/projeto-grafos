@@ -59,12 +59,10 @@ class Grafo(object):
     def verificar_aresta(self, aresta):
         """Método para verificar se a aresta existe"""
         (vertice1, vertice2) = tuple(aresta)
-        result = "Verificar existencia da aresta %s: " % aresta
-        if {vertice1, vertice2} in self.arestas():
-            result += "A aresta existe"
-        else:
-            result += "A aresta não existe"
-        print(result)
+        result = ["Verificar existencia da aresta %s: " % aresta]
+        result.append("A aresta existe") if {vertice1, vertice2} in self.arestas() else result.append(
+            "A aresta não existe")
+        print(''.join(result))
 
     def verificar_adjacencia(self, vertice):
         result = "Adjacencia do vértice '%s': " % vertice
@@ -87,14 +85,9 @@ class Grafo(object):
 
     def __str__(self):
         result = "Vertices: "
-        # result += ', '.join(self.vertices()) + "]"
         result += str(self.vertices())
-        # for k in self.__grafo_dicionario:
-        #     result += str(k) + " "
         result += "\nArestas: "
         result += ''.join(str(self.arestas()))
-        # for aresta in self.arestas():
-        #     result += str(aresta) + " "
         print(result)
 
     def encontrar_caminho(self, vertice_inicio, vertice_fim, caminho=None):
@@ -118,14 +111,10 @@ class Grafo(object):
         return None
 
     def imprime_caminho(self, vertice_inicio, vertice_fim):
-        result = "Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)
+        result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         caminho = str(self.encontrar_caminho(vertice_inicio, vertice_fim))
-        if 'None' in caminho:
-            result += "Caminho não existe"
-        else:
-            result += caminho
-        print(result)
-        # return None
+        result.append("Caminho não existe") if 'None' in caminho else result.append(caminho)
+        print(''.join(result))
 
     def encontrar_todos_caminhos(self, vertice_inicio, vertice_fim, caminho=None):
         """ find all paths from start_vertice to
@@ -170,41 +159,52 @@ class Grafo(object):
         return False
 
     def verificar_conexo(self):
-        result = "Verificar se o grafo é conexo: "
-        if self.is_connected():
-            result += "O grafo é conexo"
-        else:
-            result += "O grafo não é conexo"
-        print(result)
+        result = ["Verificar se o grafo é conexo: "]
+        result.append("O grafo é conexo") if self.is_connected() else result.append("O grafo não é conexo")
+        print(''.join(result))
 
     def verificar_ciclico(self):
-        result = "Verificar se o grafo é cíclico: "
-        path = set()
+        result = ["Verificar se o grafo é cíclico: "]
+        # path = set()
+        #
+        # def visit(vertice):
+        #     path.add(vertice)
+        #     for vizinho in self.__grafo_dicionario.get(vertice, ()):
+        #         if vizinho in path or visit(vizinho):
+        #             return True
+        #     path.remove(vertice)
+        #     return False
+        caminho = set()
+        visitado = set()
 
         def visit(vertice):
-            path.add(vertice)
+            if vertice in visitado:
+                return False
+            visitado.add(vertice)
+            caminho.add(vertice)
             for vizinho in self.__grafo_dicionario.get(vertice, ()):
-                if vizinho in path or visit(vizinho):
+                if vizinho in caminho or visit(vizinho):
                     return True
-            path.remove(vertice)
+            caminho.remove(vertice)
             return False
 
-        if any(visit(v) for v in self.__grafo_dicionario):
-            result += "É cíclico"
-        else:
-            result += "Não é ciclico"
-        print(result)
+        result.append("É cíclico") if any(visit(v) for v in self.__grafo_dicionario) else result.append("Não é ciclico")
+        print(''.join(result))
+
+    def verificar_fortemente_conexos(self):
+        pass
+
+    def verificar_eurreliano(self):
+        pass
 
     def diameter(self):
         v = self.vertices()
         pares = [(v[i], v[j]) for i in range(len(v) - 1) for j in range(i + 1, len(v))]
         caminho_curto = []
         for (s, e) in pares:
-            # paths = self.find_all_paths(s, e)
             caminhos = self.encontrar_todos_caminhos(s, e)
             mais_curto = sorted(caminhos, key=len)[0]
             caminho_curto.append(mais_curto)
-
         caminho_curto.sort(key=len)
 
         # longest path is at the end of list,
@@ -219,30 +219,34 @@ class Grafo(object):
             result += str(self.diameter())
             print(result)
 
-    def cyclic(self):
-        """Return True if the directed graph has a cycle.
-        The graph must be represented as a dictionary mapping vertices to
-        iterables of neighbouring vertices. For example:
-        False"""
+    def encontrar_agm(self):
+        pass
 
-        visited = set()
-        path = [object()]
-        path_set = set(path)
-        stack = [iter(self.__grafo_dicionario)]
-        while stack:
-            for v in stack[-1]:
-                if v in path_set:
-                    return True
-                elif v not in visited:
-                    visited.add(v)
-                    path.append(v)
-                    path_set.add(v)
-                    stack.append(iter(self.__grafo_dicionario.get(v, ())))
-                    break
-            else:
-                path_set.remove(path.pop())
-                stack.pop()
-        return False
+    # def cyclic(self):
+    #     """Return True if the directed graph has a cycle.
+    #     The graph must be represented as a dictionary mapping vertices to
+    #     iterables of neighbouring vertices. For example:
+    #     False"""
+    #
+    #     visited = set()
+    #     path = [object()]
+    #     path_set = set(path)
+    #     stack = [iter(self.__grafo_dicionario)]
+    #     while stack:
+    #         for v in stack[-1]:
+    #             if v in path_set:
+    #                 return True
+    #             elif v not in visited:
+    #                 visited.add(v)
+    #                 path.append(v)
+    #                 path_set.add(v)
+    #                 stack.append(iter(self.__grafo_dicionario.get(v, ())))
+    #                 break
+    #         else:
+    #             path_set.remove(path.pop())
+    #             stack.pop()
+    #     return False
+
 # if __name__ is "__main__":
 #     g = {"a": ["d", "f"],
 #          "b": ["c"],
