@@ -1,15 +1,11 @@
-""" A Python Class
-A simple Python graph class, demonstrating the essential
-facts and functionalities of graphs.
-"""
+""" A Python Class"""
 
 
 class Grafo(object):
 
     def __init__(self, grafo_dicionario=None):
-        """ initializes a graph object
-            If no dictionary or None is given,
-            an empty dictionary will be used
+        """ Inicializa o grafo.
+            Se não houver um dicionario, será usado um vazio
         """
         if grafo_dicionario is None:
             grafo_dicionario = {}
@@ -22,18 +18,17 @@ class Grafo(object):
         return self.__gerar_arestas()
 
     def adicionar_vertice(self, vertice):
-        """ If the vertice "vertice" is not in
-            self.__graph_dict, a key "vertice" with an empty
-            list as a value is added to the dictionary.
-            Otherwise nothing has to be done.
+        """ Se o vertice não estiver presente no dicionário,
+        uma chave vertice com uma lista vazia é adicionada.
+            Se estiver presente, nada é feito.
         """
         if vertice not in self.__grafo_dicionario:
             self.__grafo_dicionario[vertice] = []
             print(vertice)
 
     def adicionar_aresta(self, aresta):
-        """ assumes that aresta is of type set, tuple or list;
-            between two vertices can be multiple arestas!
+        """ A "aresta" pode ser do tipo set, tupla ou lista;
+        entre dois vértices pode ter várias arestas.
         """
         aresta = set(aresta)
         (vertice1, vertice2) = tuple(aresta)
@@ -44,10 +39,9 @@ class Grafo(object):
         print(aresta)
 
     def __gerar_arestas(self):
-        """ A static method generating the arestas of the
-            graph "graph". arestas are represented as sets
-            with one (a loop back to the vertice) or two
-            vertices
+        """ Método estático que gera as arestas do grafo.
+            Arestas podem ser representadas como sets com
+        um (se for loop) ou dois vertices.
         """
         arestas = []
         for vertice in self.__grafo_dicionario:
@@ -73,10 +67,8 @@ class Grafo(object):
         print(result)
 
     def grau_vertice(self, vertice):
-        """ The grau of a vertice is the number of arestas connecting
-            it, i.e. the number of adjacencia vertices. Loops are counted
-            double, i.e. every occurence of vertice in the list
-            of adjacencia vertices. """
+        """ Grau do vértice, representa o número de arestas conectadas ao vértice.
+        """
         result = "Grau do vértice '%s': " % vertice
         vertices_adjacentes = self.__grafo_dicionario[vertice]
         grau = len(vertices_adjacentes) + vertices_adjacentes.count(vertice)
@@ -84,6 +76,7 @@ class Grafo(object):
         print(result)
 
     def __str__(self):
+        " Similar ao toString"
         result = "Vertices: "
         result += str(self.vertices())
         result += "\nArestas: "
@@ -91,8 +84,7 @@ class Grafo(object):
         print(result)
 
     def encontrar_caminho(self, vertice_inicio, vertice_fim, caminho=None):
-        """ find a path from start_vertice to end_vertice
-            in graph """
+        """ Encontra um caminho entre dois vértices"""
         if caminho is None:
             caminho = []
         grafo = self.__grafo_dicionario
@@ -111,14 +103,14 @@ class Grafo(object):
         return None
 
     def imprime_caminho(self, vertice_inicio, vertice_fim):
+        """ Imprime o caminho entre dois vertices. """
         result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         caminho = str(self.encontrar_caminho(vertice_inicio, vertice_fim))
         result.append("Caminho não existe") if 'None' in caminho else result.append(caminho)
         print(''.join(result))
 
     def encontrar_todos_caminhos(self, vertice_inicio, vertice_fim, caminho=None):
-        """ find all paths from start_vertice to
-            end_vertice in graph """
+        """ encontra todos os caminhos entre dois vértices """
         if caminho is None:
             caminho = []
         grafo = self.__grafo_dicionario
@@ -140,7 +132,7 @@ class Grafo(object):
     def is_connected(self,
                      vertices_encountered=None,
                      start_vertex=None):
-        """ determines if the graph is connected """
+        """ Determina se o grafo é conexo """
         if vertices_encountered is None:
             vertices_encountered = set()
         gdict = self.__grafo_dicionario
@@ -159,11 +151,13 @@ class Grafo(object):
         return False
 
     def verificar_conexo(self):
+        """ Imprime o resultado se o grafo é conexo ou não"""
         result = ["Verificar se o grafo é conexo: "]
         result.append("O grafo é conexo") if self.is_connected() else result.append("O grafo não é conexo")
         print(''.join(result))
 
     def verificar_ciclico(self):
+        """ Verifica se o grafo é cíclico"""
         result = ["Verificar se o grafo é cíclico: "]
         # path = set()
         #
@@ -221,91 +215,3 @@ class Grafo(object):
 
     def encontrar_agm(self):
         pass
-
-    # def cyclic(self):
-    #     """Return True if the directed graph has a cycle.
-    #     The graph must be represented as a dictionary mapping vertices to
-    #     iterables of neighbouring vertices. For example:
-    #     False"""
-    #
-    #     visited = set()
-    #     path = [object()]
-    #     path_set = set(path)
-    #     stack = [iter(self.__grafo_dicionario)]
-    #     while stack:
-    #         for v in stack[-1]:
-    #             if v in path_set:
-    #                 return True
-    #             elif v not in visited:
-    #                 visited.add(v)
-    #                 path.append(v)
-    #                 path_set.add(v)
-    #                 stack.append(iter(self.__grafo_dicionario.get(v, ())))
-    #                 break
-    #         else:
-    #             path_set.remove(path.pop())
-    #             stack.pop()
-    #     return False
-
-# if __name__ is "__main__":
-#     g = {"a": ["d", "f"],
-#          "b": ["c"],
-#          "c": ["b", "c", "d", "e"],
-#          "d": ["a", "c"],
-#          "e": ["c"],
-#          "f": ["d"]
-#          }
-#
-#     graph = Grafo(g)
-#
-#     print("Vertices of graph:")
-#     print(graph.vertices())
-#
-#     print("arestas of graph:")
-#     print(graph.arestas())
-#
-#     print("Add vertice:")
-#     graph.adicionar_vertice("z")
-#
-#     print("Vertices of graph:")
-#     print(graph.vertices())
-#
-#     print("Add an aresta:")
-#     graph.adicionar_aresta({"a", "z"})
-#
-#     print("Vertices of graph:")
-#     print(graph.vertices())
-#
-#     print("arestas of graph:")
-#     print(graph.arestas())
-#
-#     print('Adding an aresta {"x","y"} with new vertices:')
-#     graph.adicionar_aresta({"x", "y"})
-#     print("Vertices of graph:")
-#     print(graph.vertices())
-#     print("arestas of graph:")
-#     print(graph.arestas())
-#
-#     print('The path from vertice "a" to vertice "b":')
-#     path = graph.encontrar_caminho("a", "b")
-#     print(path)
-#
-#     print('The path from vertice "a" to vertice "f":')
-#     path = graph.encontrar_caminho("a", "f")
-#     print(path)
-#
-#     print('The path from vertice "c" to vertice "c":')
-#     path = graph.encontrar_caminho("c", "c")
-#     print(path)
-#
-#     print('All paths from vertice "a" to vertice "b":')
-#     path = graph.encontrar_todos_caminhos("a", "b")
-#     print(path)
-#
-#     print('All paths from vertice "a" to vertice "f":')
-#     path = graph.encontrar_todos_caminhos("a", "f")
-#     print(path)
-#
-#     print('All paths from vertice "c" to vertice "c":')
-#     path = graph.encontrar_todos_caminhos("c", "c")
-#     print(path)
