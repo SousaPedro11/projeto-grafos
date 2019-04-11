@@ -1,5 +1,5 @@
 # import matplotlib.pyplot as plt
-# import networkx as nx
+import networkx as nx
 from pprint import pprint as pp
 
 from Grafo import Grafo
@@ -81,7 +81,7 @@ graph3.verificar_fortemente_conexos()
 graph3.verificar_eurreliano()
 graph3.caminho_curto()
 graph3.encontrar_agm()
-graph3.dijkstra("a","c")
+# print(nx.is_eulerian(nx.DiGraph(grafo3)))
 
 # G1 = nx.DiGraph(grafo1)
 # # print(G1.neighbors("b"))

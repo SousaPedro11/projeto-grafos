@@ -1,5 +1,5 @@
 """ A Python Class"""
-from collections import namedtuple
+import networkx as nx
 
 
 class Grafo(object):
@@ -180,12 +180,16 @@ class Grafo(object):
         print(''.join(result))
 
     def verificar_fortemente_conexos(self):
-        # TODO implementar ester método
-        pass
+        grafo = nx.DiGraph(self.__grafo_dicionario)
+        print(nx.is_strongly_connected(grafo))
+        print(str(nx.strongly_connected_components(grafo)))
+
 
     def verificar_eurreliano(self):
-        # TODO implementar ester método
-        pass
+        result = ["Verificar se o grafo é Euleriano: "]
+        result.append("É Euleriano") if nx.is_eulerian(nx.DiGraph(self.__grafo_dicionario)) else result.append(
+            "Não é Euleriano")
+        print(''.join(result))
 
     def diameter(self):
         # FIXME falta corrigir ou substituir o algoritmo
