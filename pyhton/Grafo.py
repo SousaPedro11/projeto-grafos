@@ -151,7 +151,7 @@ class Grafo(object):
         return False
 
     def verificar_conexo(self):
-        """ Imprime o resultado se o grafo é conexo ou não"""
+        """ Imprime o resultado se o grafo é conexo ou não."""
         result = ["Verificar se o grafo é conexo: "]
         result.append("O grafo é conexo") if self.is_connected() else result.append("O grafo não é conexo")
         print(''.join(result))
