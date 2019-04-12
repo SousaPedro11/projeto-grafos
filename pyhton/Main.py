@@ -39,15 +39,14 @@ grafo3 = {"a": ["c"],
           "f": []
           }
 
-graph = Grafo([("a", "b", 7), ("a", "c", 9), ("a", "f", 14), ("b", "c", 10),
+grafo5 = Grafo([("a", "b", 7), ("a", "c", 9), ("a", "f", 14), ("b", "c", 10),
                ("b", "d", 15), ("c", "d", 11), ("c", "f", 2), ("d", "e", 6),
                ("e", "f", 9)])
 
-grafo4 = {"u1": ["u2", "u4", "u3"],
+grafo4 = {"u1": ["u2", "u4"],
           "u2": ["u1", "u3"],
-          "u3": ["u1", "u2", "u4", "u5"],
-          "u4": ["u1", "u3"],
-          "u5": ["u3"]
+          "u3": ["u2", "u4"],
+          "u4": ["u1", "u3"]
           }
 
 print("GRAFO 1")
@@ -59,7 +58,7 @@ graph1.verificar_adjacencia("b")
 graph1.verificar_ciclico()
 graph1.verificar_conexo()
 graph1.verificar_fortemente_conexos()
-graph1.verificar_eurreliano()
+graph1.verificar_eureliano()
 graph1.caminho_curto()
 graph1.encontrar_agm()
 print()
@@ -72,7 +71,7 @@ graph2.verificar_adjacencia("b")
 graph2.verificar_ciclico()
 graph2.verificar_conexo()
 graph2.verificar_fortemente_conexos()
-graph2.verificar_eurreliano()
+graph2.verificar_eureliano()
 graph2.caminho_curto()
 graph2.encontrar_agm()
 print()
@@ -85,7 +84,7 @@ graph3.verificar_adjacencia("b")
 graph3.verificar_ciclico()
 graph3.verificar_conexo()
 graph3.verificar_fortemente_conexos()
-graph3.verificar_eurreliano()
+graph3.verificar_eureliano()
 graph3.caminho_curto()
 graph3.encontrar_agm()
 # print(nx.is_eulerian(nx.DiGraph(grafo3)))
@@ -101,7 +100,7 @@ print("What components are Strongly Connected")
 print(tarjan_graph)
 
 graph4 = Grafo(grafo4)
-graph4.verificar_eurreliano()
+graph4.verificar_eureliano()
 # G1 = nx.DiGraph(grafo1)
 # # print(G1.neighbors("b"))
 # # print(G1.edges)

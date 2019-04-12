@@ -185,43 +185,18 @@ class Grafo(object):
         # print(str(nx.strongly_connected_components(grafo)))
         pass
 
-    def verificar_eurreliano(self):
-        # FIXME falta corrigir
+    def verificar_eureliano(self):
+        # FIXME falta revisar
         result = ["Verificar se o grafo é Euleriano: "]
-        # result.append("É Euleriano") if nx.is_eulerian(nx.DiGraph(self.__grafo_dicionario)) else result.append(
-        #     "Não é Euleriano")
-        # print(''.join(result))
-        # def isEulerian(self):
-        # Check if all non-zero degree vertices are connected
         if not self.is_connected():
-            result.append("É eureliano")
+            result.append("Não é eureliano")
         else:
-            # Count vertices with odd degree
             odd = 0
-            num_vertices = len(self.__grafo_dicionario.keys())
-            for i in range(num_vertices):
-                vertice = self.vertices()[i]
-                adjacentes = self.__grafo_dicionario[vertice]
-                graphi = len(adjacentes)
-                if graphi % 2 != 0:
+            for vertice in self.vertices():
+                if len(self.__grafo_dicionario[vertice]) % 2 is not 0:
                     odd += 1
-
-            '''If odd count is 2, then semi-eulerian. 
-            If odd count is 0, then eulerian 
-            If count is more than 2, then graph is not Eulerian 
-            Note that odd count can never be 1 for undirected graph'''
-            # result.append("É Euleriano") if odd is 0 else (
-            #     result.append("O grafo tem caminho Euleriano") if odd is 2 else result.append(
-            #         "O grafo tem ciclo Euleriano"))
-            if odd == 0:
-                result.append("Não é Euleriano")
-            elif odd == 2:
-                result.append("O grafo tem caminho Euleriano")
-            elif odd > 2:
-                result.append("O grafo tem ciclo Euleriano")
-            else:
-                result.append("O grafo não é Euleriano")
-            print(''.join(result))
+            result.append("É Euleriano") if odd is 0 else result.append("Não é Euleriano")
+        print("".join(result))
 
     def diameter(self):
         # FIXME falta corrigir ou substituir o algoritmo
@@ -246,7 +221,7 @@ class Grafo(object):
         pass
 
     def tarjan(self):
-        # Victor
+        # FIXME falta revisar
         # Declare globals
         index = {}  # Dictionary of vertices and connections
         lowlink = {}  # Dictionary of smallest indices of any node reachable from v
