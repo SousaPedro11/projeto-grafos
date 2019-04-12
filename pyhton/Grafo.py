@@ -1,5 +1,4 @@
 """ A Python Class"""
-import networkx as nx
 
 
 class Grafo(object):
@@ -180,16 +179,49 @@ class Grafo(object):
         print(''.join(result))
 
     def verificar_fortemente_conexos(self):
-        grafo = nx.DiGraph(self.__grafo_dicionario)
-        print(nx.is_strongly_connected(grafo))
-        print(str(nx.strongly_connected_components(grafo)))
-
+        # TODO falta implementar
+        # grafo = nx.DiGraph(self.__grafo_dicionario)
+        # print(nx.is_strongly_connected(grafo))
+        # print(str(nx.strongly_connected_components(grafo)))
+        pass
 
     def verificar_eurreliano(self):
+        # FIXME falta corrigir
         result = ["Verificar se o grafo é Euleriano: "]
-        result.append("É Euleriano") if nx.is_eulerian(nx.DiGraph(self.__grafo_dicionario)) else result.append(
-            "Não é Euleriano")
-        print(''.join(result))
+        # result.append("É Euleriano") if nx.is_eulerian(nx.DiGraph(self.__grafo_dicionario)) else result.append(
+        #     "Não é Euleriano")
+        # print(''.join(result))
+        # def isEulerian(self):
+        # Check if all non-zero degree vertices are connected
+        if not self.is_connected():
+            result.append("É eureliano")
+        else:
+            # Count vertices with odd degree
+            odd = 0
+            num_vertices = len(self.__grafo_dicionario.keys())
+            for i in range(num_vertices):
+                vertice = self.vertices()[i]
+                adjacentes = self.__grafo_dicionario[vertice]
+                graphi = len(adjacentes)
+                if graphi % 2 != 0:
+                    odd += 1
+
+            '''If odd count is 2, then semi-eulerian. 
+            If odd count is 0, then eulerian 
+            If count is more than 2, then graph is not Eulerian 
+            Note that odd count can never be 1 for undirected graph'''
+            # result.append("É Euleriano") if odd is 0 else (
+            #     result.append("O grafo tem caminho Euleriano") if odd is 2 else result.append(
+            #         "O grafo tem ciclo Euleriano"))
+            if odd == 0:
+                result.append("Não é Euleriano")
+            elif odd == 2:
+                result.append("O grafo tem caminho Euleriano")
+            elif odd > 2:
+                result.append("O grafo tem ciclo Euleriano")
+            else:
+                result.append("O grafo não é Euleriano")
+            print(''.join(result))
 
     def diameter(self):
         # FIXME falta corrigir ou substituir o algoritmo
@@ -212,3 +244,72 @@ class Grafo(object):
     def encontrar_agm(self):
         # TODO implementar ester método
         pass
+
+    def tarjan(self):
+        # Victor
+        # Declare globals
+        index = {}  # Dictionary of vertices and connections
+        lowlink = {}  # Dictionary of smallest indices of any node reachable from v
+        stack = []  # S - stack (List)
+        result = []  # List to store SCCs
+        counter = [0]  # Must be list type for dictionary iteration - marks number of visits
+
+        # onStack = []
+        # onLowlink = []
+
+        # Inner function; Python encapsulation convention
+        # Depth-first search
+        def strong_connect(v):
+
+            # Empty graph object/list
+            if not self:
+                raise ValueError("Graph is empty.")
+
+            index[v] = counter[0]  # Depth index v = smallest unused index
+            lowlink[v] = counter[0]  # Computed during depth-first search from v
+            counter[0] += 1  # counter++; Keep track of visits (used by stack)
+            stack.append(v)  # Add vertex to stack = S.push(v)
+
+            # Consider successors (edges) of v
+            edges = self.__grafo_dicionario[v]
+            # for each (v, w) in E do (iterate on graph[v])
+            for w in edges:
+                # If (w[index] undefined], successor hasn't been visited yet
+                if w not in stack:
+                    # Visit and add as successor
+                    strong_connect(w)
+                    lowlink[v] = min(lowlink[v], lowlink[w])
+                # If w already in stack
+                elif w in stack:
+                    # Successor is a lowlink (smallest index reachable from v)
+                    lowlink[v] = min(lowlink[v], index[w])
+
+            # If v is a root node, pop the stack and generate an SCC
+            # If current vertex = root vertex
+            if lowlink[v] == index[v]:
+                # Start a new SCC list
+                scc = []
+
+                # Repeat while successor < current scc
+                # True: lowlink[v] == index[v]
+                # v must be left on the stack if v.lowlink < v.index
+                while True:
+                    w = stack.pop()
+                    # Add w to SCC list
+                    scc.append(w)
+                    # If already visited (and are same), break
+                    # v must be removed as the root of a strongly connected component if v.lowlink == v.index
+                    if w == v:
+                        break
+                # Output the current strongly connected component
+                # Store in tuple, immutable
+                result.append(tuple(scc))
+
+        vertices = self.__grafo_dicionario
+        for v in vertices:
+            # If v is unvisited, make it a SCC
+            if v not in lowlink:
+                strong_connect(v)
+
+        # Return list of edges (tuples)
+        return tuple(result)

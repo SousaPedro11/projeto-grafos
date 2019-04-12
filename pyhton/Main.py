@@ -1,6 +1,6 @@
 # import matplotlib.pyplot as plt
-import networkx as nx
-from pprint import pprint as pp
+# import networkx as nx
+# from pprint import pprint as pp
 
 from Grafo import Grafo
 
@@ -39,9 +39,16 @@ grafo3 = {"a": ["c"],
           "f": []
           }
 
-graph = Grafo([("a", "b", 7),  ("a", "c", 9),  ("a", "f", 14), ("b", "c", 10),
-               ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
+graph = Grafo([("a", "b", 7), ("a", "c", 9), ("a", "f", 14), ("b", "c", 10),
+               ("b", "d", 15), ("c", "d", 11), ("c", "f", 2), ("d", "e", 6),
                ("e", "f", 9)])
+
+grafo4 = {"u1": ["u2", "u4", "u3"],
+          "u2": ["u1", "u3"],
+          "u3": ["u1", "u2", "u4", "u5"],
+          "u4": ["u1", "u3"],
+          "u5": ["u3"]
+          }
 
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
@@ -83,6 +90,18 @@ graph3.caminho_curto()
 graph3.encontrar_agm()
 # print(nx.is_eulerian(nx.DiGraph(grafo3)))
 
+tarjan_graph = graph3.tarjan()
+print('How many components are Strongly Connected')
+cont = 0
+for i in range(0, len(tarjan_graph)):
+    for j in tarjan_graph[i]:
+        cont += 1
+print(cont)
+print("What components are Strongly Connected")
+print(tarjan_graph)
+
+graph4 = Grafo(grafo4)
+graph4.verificar_eurreliano()
 # G1 = nx.DiGraph(grafo1)
 # # print(G1.neighbors("b"))
 # # print(G1.edges)
