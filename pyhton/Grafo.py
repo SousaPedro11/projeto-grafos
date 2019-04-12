@@ -182,7 +182,6 @@ class Grafo(object):
         # TODO falta implementar
         # grafo = nx.DiGraph(self.__grafo_dicionario)
         # print(nx.is_strongly_connected(grafo))
-        # print(str(nx.strongly_connected_components(grafo)))
         pass
 
     def verificar_eureliano(self):
