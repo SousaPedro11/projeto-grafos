@@ -1,6 +1,6 @@
 """ A Python Class"""
-#import matplotlib.pyplot as plt
-#import networkx as nx
+import matplotlib.pyplot as plt
+import networkx as nx
 
 
 # import matplotlib.pyplot as plt
@@ -15,13 +15,24 @@ class Grafo(object):
         if grafo_dicionario is None:
             grafo_dicionario = {}
         self.__grafo_dicionario = grafo_dicionario
-        self.weights = {}
+        self.weights = grafo_dicionario
 
     def vertices(self):
         return list(self.__grafo_dicionario.keys())
 
     def arestas(self):
-        return self.__gerar_arestas()
+        direcionado = self.verificar_direcionado()
+        if direcionado:
+            arestas = []
+            for vertice in self.vertices():
+                for vertice_interno in self.__grafo_dicionario[vertice]:
+                    arestas.append((vertice, vertice_interno))
+            return list(arestas)
+        else:
+            return self.__gerar_arestas()
+
+    def pesos(self):
+        pass
 
     def adicionar_vertice(self, vertice):
         """ Se o vertice não estiver presente no dicionário,
@@ -73,21 +84,27 @@ class Grafo(object):
         print(result)
 
     def grau_vertice(self, vertice):
+        # FIXME alterar para incluir grafos ponderados
         """ Grau do vértice, representa o número de arestas conectadas ao vértice.
         """
         result = "Grau do vértice '%s': " % vertice
         vertices_adjacentes = self.__grafo_dicionario[vertice]
+        # valores = list(vertices_adjacentes.keys())
         grau = len(vertices_adjacentes) + vertices_adjacentes.count(vertice)
         result += str(grau)
         print(result)
 
     def __str__(self):
+        # FIXME falta aprimorar
         """ Similar ao toString"""
-        result = "Vertices: "
-        result += str(self.vertices())
-        result += "\nArestas: "
-        result += ''.join(str(self.arestas()))
-        print(result)
+        direcionado = self.verificar_direcionado()
+        result = []
+        result.append("Grafo direcionado") if direcionado else result.append("Grafo não direcionado")
+        result.append("\nVertices: ")
+        result.append(self.vertices())
+        result.append("\nArestas: ")
+        result.append(str(self.arestas()))
+        print(''.join(str(e) for e in result))
 
     def encontrar_caminho(self, vertice_inicio, vertice_fim, caminho=None):
         """ Encontra um caminho entre dois vértices"""
@@ -185,12 +202,18 @@ class Grafo(object):
 
     def verificar_fortemente_conexos(self):
         # TODO falta implementar
-        # grafo = nx.DiGraph(self.__grafo_dicionario)
-        # print(nx.is_strongly_connected(grafo))
-        pass
+        if self.verificar_direcionado():
+            tarjan_graph = self.tarjan()
+            cont = 0
+            for i in range(0, len(tarjan_graph)):
+                for j in tarjan_graph[i]:
+                    cont += 1
+            print("Número de componentes fortemente conexos: %s" % cont)
+            print("Componentes fortemente conexos: ", end='')
+            print(tarjan_graph)
 
     def verificar_eureliano(self):
-        # FIXME falta revisar
+        # FIXME ajustar para grafo ponderado
         result = ["Verificar se o grafo é Euleriano: "]
         if not self.is_connected():
             result.append("Não é eureliano")
@@ -200,7 +223,7 @@ class Grafo(object):
                 if len(self.__grafo_dicionario[vertice]) % 2 is not 0:
                     odd += 1
             result.append("É Euleriano") if odd is 0 else result.append("Não é Euleriano")
-        print("".join(result))
+        print(''.join(result))
 
     def diameter(self):
         # FIXME falta corrigir ou substituir o algoritmo
@@ -233,27 +256,28 @@ class Grafo(object):
         # print(arestas_invertidas)
 
     def caminho_curto(self):
+        # FIXME ajustar para grafo ponderado
         if self.is_connected():
             result = "O caminho mais curto é: "
             result += str(self.diameter())
             print(result)
 
     def encontrar_agm(self):
-        # TODO implementar ester método
+        # TODO implementar para grafo ponderado
         pass
 
-#    def plotar(self):
-#        if self.verificar_direcionado():
-#            graph = nx.DiGraph(self.__grafo_dicionario)
-#        else:
-#            graph = nx.Graph(self.__grafo_dicionario)
-#        # fig = plt.figure()
-#        # fig.suptitle(str(self), fontsize=20)
-#        nx.draw(graph, with_labels=True)
-#        plt.show()
+    def plotar(self):
+        if self.verificar_direcionado():
+            graph = nx.MultiDiGraph(self.__grafo_dicionario)
+        else:
+            graph = nx.MultiGraph(self.__grafo_dicionario)
+        # fig = plt.figure()
+        # fig.suptitle(str(self), fontsize=20)
+        nx.draw(graph, with_labels=True)
+        plt.show()
 
     def tarjan(self):
-        # FIXME falta revisar
+        # FIXME falta revisar para grafo ponderado
         # Declare globals
         index = {}  # Dictionary of vertices and connections
         lowlink = {}  # Dictionary of smallest indices of any node reachable from v
