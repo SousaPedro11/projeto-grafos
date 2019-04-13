@@ -1,6 +1,6 @@
 """ A Python Class"""
-import matplotlib.pyplot as plt
-import networkx as nx
+#import matplotlib.pyplot as plt
+#import networkx as nx
 
 
 # import matplotlib.pyplot as plt
@@ -214,7 +214,7 @@ class Grafo(object):
         caminho_curto.sort(key=len)
         return caminho_curto[-1]
 
-    def direcionado(self):
+    def verificar_direcionado(self):
         arestas = []
         arestas_invertidas = []
         v = self.vertices()
@@ -242,15 +242,15 @@ class Grafo(object):
         # TODO implementar ester método
         pass
 
-    def plotar(self):
-        if self.direcionado():
-            graph = nx.DiGraph(self.__grafo_dicionario)
-        else:
-            graph = nx.Graph(self.__grafo_dicionario)
-        # fig = plt.figure()
-        # fig.suptitle(str(self), fontsize=20)
-        nx.draw(graph, with_labels=True)
-        plt.show()
+#    def plotar(self):
+#        if self.verificar_direcionado():
+#            graph = nx.DiGraph(self.__grafo_dicionario)
+#        else:
+#            graph = nx.Graph(self.__grafo_dicionario)
+#        # fig = plt.figure()
+#        # fig.suptitle(str(self), fontsize=20)
+#        nx.draw(graph, with_labels=True)
+#        plt.show()
 
     def tarjan(self):
         # FIXME falta revisar
