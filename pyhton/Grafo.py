@@ -1,4 +1,9 @@
 """ A Python Class"""
+import matplotlib.pyplot as plt
+import networkx as nx
+
+
+# import matplotlib.pyplot as plt
 
 
 class Grafo(object):
@@ -209,6 +214,24 @@ class Grafo(object):
         caminho_curto.sort(key=len)
         return caminho_curto[-1]
 
+    def direcionado(self):
+        arestas = []
+        arestas_invertidas = []
+        v = self.vertices()
+        for vertice in v:
+            # print(vertice + ': ' + str(self.__grafo_dicionario[vertice]))
+            for vertice_interno in self.__grafo_dicionario[vertice]:
+                arestas.append((vertice, vertice_interno))
+                arestas_invertidas.append((vertice_interno, vertice))
+        arestas.sort()
+        arestas_invertidas.sort()
+        if arestas == arestas_invertidas:
+            return False
+        return True
+        #     print("Grafo não direcionado")
+        # print(arestas)
+        # print(arestas_invertidas)
+
     def caminho_curto(self):
         if self.is_connected():
             result = "O caminho mais curto é: "
@@ -218,6 +241,16 @@ class Grafo(object):
     def encontrar_agm(self):
         # TODO implementar ester método
         pass
+
+    def plotar(self):
+        if self.direcionado():
+            graph = nx.DiGraph(self.__grafo_dicionario)
+        else:
+            graph = nx.Graph(self.__grafo_dicionario)
+        # fig = plt.figure()
+        # fig.suptitle(str(self), fontsize=20)
+        nx.draw(graph, with_labels=True)
+        plt.show()
 
     def tarjan(self):
         # FIXME falta revisar
@@ -233,34 +266,34 @@ class Grafo(object):
 
         # Inner function; Python encapsulation convention
         # Depth-first search
-        def strong_connect(v):
+        def strong_connect(vertex):
 
             # Empty graph object/list
             if not self:
                 raise ValueError("Graph is empty.")
 
-            index[v] = counter[0]  # Depth index v = smallest unused index
-            lowlink[v] = counter[0]  # Computed during depth-first search from v
+            index[vertex] = counter[0]  # Depth index v = smallest unused index
+            lowlink[vertex] = counter[0]  # Computed during depth-first search from v
             counter[0] += 1  # counter++; Keep track of visits (used by stack)
-            stack.append(v)  # Add vertex to stack = S.push(v)
+            stack.append(vertex)  # Add vertex to stack = S.push(v)
 
             # Consider successors (edges) of v
-            edges = self.__grafo_dicionario[v]
+            edges = self.__grafo_dicionario[vertex]
             # for each (v, w) in E do (iterate on graph[v])
             for w in edges:
                 # If (w[index] undefined], successor hasn't been visited yet
                 if w not in stack:
                     # Visit and add as successor
                     strong_connect(w)
-                    lowlink[v] = min(lowlink[v], lowlink[w])
+                    lowlink[vertex] = min(lowlink[vertex], lowlink[w])
                 # If w already in stack
                 elif w in stack:
                     # Successor is a lowlink (smallest index reachable from v)
-                    lowlink[v] = min(lowlink[v], index[w])
+                    lowlink[vertex] = min(lowlink[vertex], index[w])
 
             # If v is a root node, pop the stack and generate an SCC
             # If current vertex = root vertex
-            if lowlink[v] == index[v]:
+            if lowlink[vertex] == index[vertex]:
                 # Start a new SCC list
                 scc = []
 
@@ -273,7 +306,7 @@ class Grafo(object):
                     scc.append(w)
                     # If already visited (and are same), break
                     # v must be removed as the root of a strongly connected component if v.lowlink == v.index
-                    if w == v:
+                    if w == vertex:
                         break
                 # Output the current strongly connected component
                 # Store in tuple, immutable
