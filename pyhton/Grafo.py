@@ -344,3 +344,15 @@ class Grafo(object):
 
         # Return list of edges (tuples)
         return tuple(result)
+
+    def dijsktra(self, initial):
+        grafo = []
+        for x in self.__grafo_dicionario.items():
+            h = x[0]
+            j = x[1].values()
+            k = x[1].keys()
+            # grafo.append(x[1])
+            for y in x[1]:
+                a = y
+                grafo.append(y)
+        print(grafo)
