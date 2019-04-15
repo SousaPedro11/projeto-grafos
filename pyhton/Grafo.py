@@ -15,7 +15,7 @@ class Grafo(object):
         if grafo_dicionario is None:
             grafo_dicionario = {}
         self.__grafo_dicionario = grafo_dicionario
-        self.weights = grafo_dicionario
+        # self.weight = {0}
 
     def vertices(self):
         return list(self.__grafo_dicionario.keys())
@@ -345,14 +345,12 @@ class Grafo(object):
         # Return list of edges (tuples)
         return tuple(result)
 
-    def dijsktra(self, initial):
+    def dijsktra(self):
         grafo = []
-        for x in self.__grafo_dicionario.items():
-            h = x[0]
-            j = x[1].values()
-            k = x[1].keys()
-            # grafo.append(x[1])
-            for y in x[1]:
-                a = y
-                grafo.append(y)
-        print(grafo)
+        for k, v in self.__grafo_dicionario.items():
+            for v2, p in v.items():
+                # print(v2)
+                grafo.append((k, v2, p))
+                # print(p)
+        print("\nArestas com peso")
+        print('\n'.join(str(x) for x in grafo))
