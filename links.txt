@@ -1,2 +1,3 @@
 https://www.baeldung.com/java-graphs
 https://www.cos.ufrj.br/~marroquim/grafos/
+https://codereview.stackexchange.com/questions/142734/dijkstras-algorithm-using-a-dictionary-for-the-priority-queue

@@ -1,6 +1,5 @@
 import heapq
 
-
 class HeapEntry:
     def __init__(self, node, priority):
         self.node = node
@@ -8,7 +7,6 @@ class HeapEntry:
 
     def __lt__(self, other):
         return self.priority < other.priority
-
 
 class Graph(object):
 
@@ -68,7 +66,6 @@ class Graph(object):
         if {vertex1, vertex2} in self.edges():
             return print("A aresta existe")
         return print("A aresta não existe")
-
     def check_adjacent(self, vertex):
         adjacent = []
         for neighbour in self.__graph_dict[vertex]:
@@ -122,23 +119,24 @@ class Graph(object):
                     caminhos.append(p)
         return caminhos
 
+
     def vertex_degree(self, vertex):
         """ The degree of a vertex is the number of edges connecting
             it, i.e. the number of adjacent vertices. Loops are counted
             double, i.e. every occurence of vertex in the list
             of adjacent vertices. """
-        adj_vertices = self.__graph_dict[vertex]
+        adj_vertices =  self.__graph_dict[vertex]
         degree = len(adj_vertices) + adj_vertices.count(vertex)
         return degree
 
     def is_connected(self,
-                     vertices_encountered=None,
+                     vertices_encountered = None,
                      start_vertex=None):
         """ determines if the graph is connected """
         if vertices_encountered is None:
             vertices_encountered = set()
         gdict = self.__graph_dict
-        vertices = list(gdict.keys())  # "list" necessary in Python 3
+        vertices = list(gdict.keys()) # "list" necessary in Python 3
         if not start_vertex:
             # chosse a vertex from graph as a starting point
             start_vertex = vertices[0]
@@ -179,14 +177,13 @@ class Graph(object):
 
     def tarjan(self):
         # Declare globals
-        index = {}  # Dictionary of vertices and connections
-        lowlink = {}  # Dictionary of smallest indices of any node reachable from v
-        stack = []  # S - stack (List)
-        result = []  # List to store SCCs
-        counter = [0]  # Must be list type for dictionary iteration - marks number of visits
-
-        # onStack = []
-        # onLowlink = []
+        index = {}          # Dictionary of vertices and connections
+        lowlink = {}        # Dictionary of smallest indices of any node reachable from v
+        stack = []          # S - stack (List)
+        result = []         # List to store SCCs
+        counter = [0]       # Must be list type for dictionary iteration - marks number of visits
+        #onStack = []
+        #onLowlink = []
 
         # Inner function; Python encapsulation convention
         # Depth-first search
@@ -196,11 +193,11 @@ class Graph(object):
             if not self:
                 raise ValueError("Graph is empty.")
 
-            index[v] = counter[0]  # Depth index v = smallest unused index
-            lowlink[v] = counter[0]  # Computed during depth-first search from v
-            counter[0] += 1  # counter++; Keep track of visits (used by stack)
-            stack.append(v)  # Add vertex to stack = S.push(v)
-
+            index[v] = counter[0]   # Depth index v = smallest unused index
+            lowlink[v] = counter[0] # Computed during depth-first search from v
+            counter[0] += 1         # counter++; Keep track of visits (used by stack)
+            stack.append(v)         # Add vertex to stack = S.push(v)
+        
             # Consider successors (edges) of v
             edges = self.__graph_dict[v]
             # for each (v, w) in E do (iterate on graph[v])
@@ -270,12 +267,14 @@ class Graph(object):
         caminho_curto.sort(key=len)
         return caminho_curto[-1]
 
+
     def caminho_curto(self):
         # FIXME ajustar para grafo ponderado
         if self.is_connected():
             result = "O caminho mais curto é: "
             result += str(self.diameter())
             print(result)
+
 
     def traceback_path(self, target, parents):
         path = []
