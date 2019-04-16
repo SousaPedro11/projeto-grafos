@@ -56,6 +56,13 @@ grafo6 = {"a": {'b': 1},
           "d": {"a": 1, "c": 5}
           }
 
+grafo7 = {"0": {"1": 1, "3": 3, "4": 10},
+          "1": {"2": 5},
+          "2": {"4": 1},
+          "3": {"2": 2, "4": 6},
+          "4": {}
+          }
+
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
@@ -140,5 +147,13 @@ graph6.verificar_eureliano()
 graph6.caminho_curto()
 graph6.encontrar_agm()
 # graph6.plotar()
-graph6.dijsktra()
+# graph6.inspect_pesos()
+# graph6.print_caminhos("a")
+# graph6.print_caminhos("b")
+# graph6.print_caminhos("c")
+# graph6.print_caminhos("d")
 print()
+print("Grafo 7")
+graph7 = Grafo(grafo7)
+# graph7.plotar()
+graph7.print_caminhos("0")

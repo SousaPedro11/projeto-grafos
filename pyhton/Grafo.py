@@ -1,4 +1,6 @@
 """ A Python Class"""
+import heapq
+
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -345,7 +347,7 @@ class Grafo(object):
         # Return list of edges (tuples)
         return tuple(result)
 
-    def dijsktra(self):
+    def inspect_pesos(self):
         grafo = []
         for k, v in self.__grafo_dicionario.items():
             for v2, p in v.items():
@@ -354,3 +356,39 @@ class Grafo(object):
                 # print(p)
         print("\nArestas com peso")
         print('\n'.join(str(x) for x in grafo))
+
+    def dijkstra(self, vertice_inicial):
+        distancias = {vertice: float('infinity') for vertice in self.__grafo_dicionario}
+        distancias[vertice_inicial] = 0
+
+        bloqueio_entrada = {}
+        heap = []
+
+        for vertice, distancia in distancias.items():
+            entrada = [distancia, vertice]
+            bloqueio_entrada[vertice] = entrada
+            heapq.heappush(heap, entrada)
+
+        while len(heap) > 0:
+            distancia_atual, vertice_atual = heapq.heappop(heap)
+
+            for vizinho, distancia_vizinho in self.__grafo_dicionario[vertice_atual].items():
+                distancia = distancias[vertice_atual] + distancia_vizinho
+                if distancia < distancias[vizinho]:
+                    distancias[vizinho] = distancia
+                    bloqueio_entrada[vizinho][0] = distancia
+
+        return distancias
+
+    def print_caminhos(self, inicial):
+        caminho_desordenado = self.dijkstra(inicial)
+        s = [(k, caminho_desordenado[k]) for k in
+             sorted(caminho_desordenado, key=caminho_desordenado.get, reverse=False)]
+        caminho_ordenado = []
+        distancia = 0
+        for k, v in s:
+            if isinstance(v, int):
+                caminho_ordenado.append(k)
+        # lista = list((k, v) for k, v in s)
+        print(inicial, end=': ')
+        print(caminho_ordenado)
