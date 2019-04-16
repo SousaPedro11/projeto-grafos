@@ -1,7 +1,6 @@
 """ A Python Class"""
 import heapq
 
-import math
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -82,17 +81,27 @@ class Grafo(object):
         print(''.join(result))
 
     def verificar_vertice(self, vertice):
+        """Verifica se o vértice existe"""
         if vertice in self.__grafo_dicionario.keys():
             return True
         else:
             return False
 
-    def verificar_adjacencia(self, vertice):
-        result = "Adjacencia do vértice '%s': " % vertice
+    def adjacentes(self, vertice):
         adjacencia = []
         for vizinho in self.__grafo_dicionario[vertice]:
             adjacencia.append(vizinho)
-        result += str(adjacencia)
+        return adjacencia
+
+    def verificar_adjacencia(self, vertice):
+        result = "Adjacencia do vértice '%s': " % vertice
+        # adjacencia = []
+        # for vizinho in self.__grafo_dicionario[vertice]:
+        #     adjacencia.append(vizinho)
+        if self.verificar_vertice(vertice):
+            result += str(self.adjacentes(vertice))
+        else:
+            result += "O vértice não existe no grafo"
         print(result)
 
     def grau_vertice(self, vertice):
@@ -100,10 +109,14 @@ class Grafo(object):
         """ Grau do vértice, representa o número de arestas conectadas ao vértice.
         """
         result = "Grau do vértice '%s': " % vertice
-        vertices_adjacentes = self.__grafo_dicionario[vertice]
-        # valores = list(vertices_adjacentes.keys())
-        grau = len(vertices_adjacentes) + vertices_adjacentes.count(vertice)
-        result += str(grau)
+        if self.verificar_vertice(vertice):
+            if not self.ponderado():
+                vertices_adjacentes = self.adjacentes(vertice)
+                # valores = list(vertices_adjacentes.keys())
+                grau = len(vertices_adjacentes) + vertices_adjacentes.count(vertice)
+                result += str(grau)
+        else:
+            result += "Vértice não existe"
         print(result)
 
     def __str__(self):
