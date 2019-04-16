@@ -53,3 +53,31 @@ def calculate_distances(graph, starting_vertex):
                 entry_lookup[neighbor][0] = distance
 
     return distances
+
+def prim(graph, root):
+    vertex = [root]  # Lista dos vertices a partir do qual buscamos as arestas
+    selected_edges = []  # Lista com as arestas selecionadas
+
+    weight = 0  # Peso do minimum spanning tree
+
+    remaing_vertices = list(graph.vertices())  # Lista com os vertices destinos da busca
+    remaing_vertices.remove(root)  # O root eh ponto de partida, entao sai da lista
+
+    for i in range(len(remaing_vertices)):  # Devemos buscar |V| - 1 vertices
+        min_cost = inf  # Inicializamos o custo minimo como infinito
+        va, vb = None, None  # Vertices candidatos para a aresta selecionada
+        for v1 in vertex:  # Para cada vertice na lista de busca origem
+            for v2 in remaing_vertices:  # Buscamos os vertices que ainda nao estao no grafo final
+                cost = graph.direct_cost(v1, v2)  # Calcula o custo da aresta
+                if cost < min_cost:  # Se for menor que o minimo ate entao, atualizamos os dados
+                    va = v1
+                    vb = v2
+                    min_cost = cost
+
+        if min_cost < inf:  # Depois de todas as buscas, se o custo eh finito:
+            selected_edges.append((va, vb, min_cost))  # Adicionamos a aresta de va a vb na solucao
+            vertex.append(vb)  # vb agora sera nova origem de busca
+            remaing_vertices.remove(vb)  # vb nao mais sera destino de busca, pois ja consta na solucao
+            weight += min_cost  # Atualiza o peso
+
+    return selected_edges, weight  # Retorna a lista de arestas selecionadas com o peso total

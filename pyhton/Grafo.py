@@ -1,6 +1,7 @@
 """ A Python Class"""
 import heapq
 
+import math
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -290,6 +291,7 @@ class Grafo(object):
 
     def encontrar_agm(self):
         # TODO implementar para grafo ponderado
+        # Grafo conectado, ponderado e não direcionado
         pass
 
     def plotar(self):
