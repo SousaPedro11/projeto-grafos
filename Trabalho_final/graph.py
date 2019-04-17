@@ -83,3 +83,4 @@ graph1.verificar_eureliano()
 graph1.caminho_curto()
 print("Caminho mais curto entre os vétices 'a' e 'b' para grafo valorado, usando Dijkstra")
 print(graph3.shortest_path("a","b"))
+teste
