@@ -1,10 +1,10 @@
 """ A Python Class"""
 import heapq
-import math
-import operator
 
+import math
 import matplotlib.pyplot as plt
 import networkx as nx
+import graphviz
 
 
 class HeapEntry:
@@ -257,7 +257,7 @@ class Grafo(object):
             tarjan_graph = self.tarjan()
             cont = 0
             for i in range(0, len(tarjan_graph)):
-                for j in tarjan_graph[i]:
+                for _ in tarjan_graph[i]:
                     cont += 1
             print("Número de componentes fortemente conexos: %s" % cont)
             print("Componentes fortemente conexos: ", end='')
@@ -306,7 +306,6 @@ class Grafo(object):
         # TODO implementar para grafo ponderado
         # Grafo conectado, ponderado e não direcionado
         result = ["Arestas da AGM: "]
-        resolvido = False
         conectado = self.is_connected()
         ponderado = self.ponderado()
         direcionado = self.verificar_direcionado()
@@ -324,9 +323,11 @@ class Grafo(object):
             condicao.append("não apresenta o vértice '%s'" % vertice_inicial)
 
         if conectado and ponderado and not direcionado and vertice_existe:
-            lista = self.dijkstra(vertice_inicial)
+            # lista = self.dijkstra(vertice_inicial)
+            lista, peso_total = self.prim(vertice_inicial)
             result.append(', '.join(str(x) for x in lista))
-            resolvido = True
+            result.append("\nPeso da AGM: ")
+            result.append(str(peso_total))
         else:
             result.append("O grafo " + ', '.join(condicao) + ".")
         print(''.join(result))
@@ -334,12 +335,15 @@ class Grafo(object):
     def plotar(self):
         if self.verificar_direcionado():
             graph = nx.MultiDiGraph(self.__grafo_dicionario)
+            # g = graphviz.Digraph(self.__grafo_dicionario)
         else:
             graph = nx.MultiGraph(self.__grafo_dicionario)
+            # g = graphviz.Digraph(self.__grafo_dicionario)
         # fig = plt.figure()
         # fig.suptitle(str(self), fontsize=20)
         nx.draw(graph, with_labels=True)
         plt.show()
+        # g.view()
 
     def tarjan(self):
         # FIXME falta revisar para grafo ponderado
@@ -417,65 +421,66 @@ class Grafo(object):
             else:
                 return False
 
-    def dijkstra(self, vertice_inicial):
-        arestas_agm = []
-        distancias = {vertice: float('infinity') for vertice in self.__grafo_dicionario}
-        distancias[vertice_inicial] = 0
+    # def dijkstra(self, vertice_inicial):
+    #     arestas_agm = []
+    #     distancias = {vertice: float('infinity') for vertice in self.__grafo_dicionario}
+    #     distancias[vertice_inicial] = 0
+    #
+    #     bloqueio_entrada = {}
+    #     heap = []
+    #
+    #     # path = []
+    #     for vertice, distancia in distancias.items():
+    #         entrada = [distancia, vertice]
+    #         bloqueio_entrada[vertice] = entrada
+    #         heapq.heappush(heap, entrada)
+    #
+    #     while len(heap) > 0:
+    #         distancia_atual, vertice_atual = heapq.heappop(heap)
+    #         # print(vertice_atual, distancia_atual)
+    #         # path.append((distancia_atual, vertice_atual))
+    #         for vizinho, distancia_vizinho in self.__grafo_dicionario[vertice_atual].items():
+    #             distancia = distancias[vertice_atual] + distancia_vizinho
+    #             distancias_vizinho = distancias[vizinho]
+    #             if distancia < distancias_vizinho:
+    #                 distancias[vizinho] = distancia
+    #                 bloqueio_entrada[vizinho][0] = distancia
+    #                 # print(bloqueio_entrada)
+    #                 arestas_agm.append((vertice_atual, vizinho))
+    #                 # print(vertice_atual, vizinho)
+    #
+    #     # ----------------------------------------------------
+    #     path = []
+    #     do = [(k, distancias[k]) for k in
+    #           sorted(distancias, key=distancias.get, reverse=True)]
+    #     for x in range(len(do) - 1):
+    #         if (do[x + 1][0], do[x][0]) in self.arestas():
+    #             path.append((do[x + 1][0], do[x][0]))
+    #
+    #     # print(path)
+    #     # print(do)
+    #     # print(arestas_agm)
+    #     return arestas_agm
+    #     # ----------------------------------------------------
+    #     # return distancias
+    #
+    # # def print_caminhos(self, inicial):
+    # #     caminho_desordenado = self.dijkstra(inicial)
+    # #     s = [(k, caminho_desordenado[k]) for k in
+    # #          sorted(caminho_desordenado, key=caminho_desordenado.get, reverse=False)]
+    # #     caminho_ordenado = []
+    # #     distancia = 0
+    # #     for k, v in s:
+    # #         if isinstance(v, int):
+    # #             caminho_ordenado.append(k)
+    # #     lista = list((k, v) for k, v in s)
+    # #     custo = max(s, key=operator.itemgetter(1))[1]
+    # #     print(inicial, end=': ')
+    # #     print(caminho_ordenado)
+    # #     print("Custo = " + str(custo))
 
-        bloqueio_entrada = {}
-        heap = []
-
-        path = []
-        for vertice, distancia in distancias.items():
-            entrada = [distancia, vertice]
-            bloqueio_entrada[vertice] = entrada
-            heapq.heappush(heap, entrada)
-
-        while len(heap) > 0:
-            distancia_atual, vertice_atual = heapq.heappop(heap)
-            # print(vertice_atual, distancia_atual)
-            # path.append((distancia_atual, vertice_atual))
-            for vizinho, distancia_vizinho in self.__grafo_dicionario[vertice_atual].items():
-                distancia = distancias[vertice_atual] + distancia_vizinho
-                distancias_vizinho = distancias[vizinho]
-                if distancia < distancias_vizinho:
-                    distancias[vizinho] = distancia
-                    bloqueio_entrada[vizinho][0] = distancia
-                    # print(bloqueio_entrada)
-                    arestas_agm.append((vertice_atual, vizinho))
-                    # print(vertice_atual, vizinho)
-
-        # ----------------------------------------------------
-        path = []
-        do = [(k, distancias[k]) for k in
-             sorted(distancias, key=distancias.get, reverse=True)]
-        for x in range(len(do)-1):
-            if (do[x+1][0], do[x][0]) in self.arestas():
-                path.append((do[x+1][0], do[x][0]))
-
-        # print(path)
-        # print(do)
-        # print(arestas_agm)
-        return arestas_agm
-        # ----------------------------------------------------
-        # return distancias
-
-    def print_caminhos(self, inicial):
-        caminho_desordenado = self.dijkstra(inicial)
-        s = [(k, caminho_desordenado[k]) for k in
-             sorted(caminho_desordenado, key=caminho_desordenado.get, reverse=False)]
-        caminho_ordenado = []
-        distancia = 0
-        for k, v in s:
-            if isinstance(v, int):
-                caminho_ordenado.append(k)
-        lista = list((k, v) for k, v in s)
-        custo = max(s, key=operator.itemgetter(1))[1]
-        print(inicial, end=': ')
-        print(caminho_ordenado)
-        print("Custo = " + str(custo))
-
-    def traceback_path(self, target, parents):
+    @staticmethod
+    def traceback_path(target, parents):
         path = []
         while target:
             path.append(target)
@@ -484,24 +489,24 @@ class Grafo(object):
         return list(reversed(path))
 
     def encontrar_caminho_ponderado(self, start, finish):
-        OPEN = [HeapEntry(start, 0.0)]
-        CLOSED = set()
+        open = [HeapEntry(start, 0.0)]
+        closed = set()
         parents = {start: None}
         distance = {start: 0.0}
 
-        while OPEN:
-            current = heapq.heappop(OPEN).node
+        while open:
+            current = heapq.heappop(open).node
 
             if current is finish:
                 return self.traceback_path(finish, parents)
 
-            if current in CLOSED:
+            if current in closed:
                 continue
 
-            CLOSED.add(current)
+            closed.add(current)
 
             for child in self.__grafo_dicionario[current].keys():
-                if child in CLOSED:
+                if child in closed:
                     continue
                 tentative_cost = distance[current] + self.__grafo_dicionario[current][child]
 
@@ -509,7 +514,7 @@ class Grafo(object):
                     distance[child] = tentative_cost
                     parents[child] = current
                     heap_entry = HeapEntry(child, tentative_cost)
-                    heapq.heappush(OPEN, heap_entry)
+                    heapq.heappush(open, heap_entry)
 
     def direct_cost(self, vertex1, vertex2):
         list_v1 = self.__grafo_dicionario.items()
@@ -543,15 +548,15 @@ class Grafo(object):
                         if not self.aresta_existe({v1, v2}):
                             cost = math.inf
                         else:
-                            cost = self.direct_cost(v1, v2)
-                        # cost = self.direct_cost(v1, v2)  # Calcula o custo da aresta
+                            cost = self.direct_cost(v1, v2)  # Calcula o custo da aresta
                         if cost < min_cost:  # Se for menor que o minimo ate entao, atualizamos os dados
                             va = v1
                             vb = v2
                             min_cost = cost
 
                 if min_cost < math.inf:  # Depois de todas as buscas, se o custo eh finito:
-                    selected_edges.append((va, vb, min_cost))  # Adicionamos a aresta de va a vb na solucao
+                    # selected_edges.append((va, vb, min_cost))  # Adicionamos a aresta de va a vb na solucao
+                    selected_edges.append((va, vb))  # Adicionamos a aresta de va a vb na solucao
                     vertex.append(vb)  # vb agora sera nova origem de busca
                     remaing_vertices.remove(vb)  # vb nao mais sera destino de busca, pois ja consta na solucao
                     weight += min_cost  # Atualiza o peso

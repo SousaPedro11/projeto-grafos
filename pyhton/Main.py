@@ -70,6 +70,13 @@ grafo8 = {"a": {"c": 1},
           "e": {"c": 4, "d": 7}
           }
 
+grafo9 = {"1": {"2": 2, "5": 1, "6": 5},
+          "2": {"1": 2, "3": 3, "5": 7},
+          "3": {"2": 3, "4": 9, "5": 3},
+          "4": {"3": 9, "5": 4},
+          "5": {"1": 1, "2": 7, "3": 3, "4": 4, "6": 4},
+          "6": {"1": 5, "5": 4}
+          }
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
@@ -150,7 +157,7 @@ graph6.verificar_ciclico()
 graph6.verificar_conexo()
 graph6.verificar_fortemente_conexos()
 graph6.verificar_eureliano()
-graph6.imprime_caminho("a", "d")
+graph6.imprime_caminho("a", "c")
 graph6.encontrar_agm("a")
 graph6.plotar()
 print()
@@ -182,3 +189,18 @@ graph8.imprime_caminho("a", "d")
 graph8.encontrar_agm("a")
 # print(graph8.prim("a"))
 graph8.plotar()
+print()
+print("Grafo 9")
+graph9 = Grafo(grafo9)
+graph9.__str__()
+graph9.verificar_aresta({"c", "f"})
+graph9.grau_vertice("d")
+graph9.verificar_adjacencia("d")
+graph9.verificar_ciclico()
+graph9.verificar_conexo()
+graph9.verificar_fortemente_conexos()
+graph9.verificar_eureliano()
+graph9.imprime_caminho("1", "6")
+graph9.encontrar_agm("1")
+graph9.plotar()
+# <class 'list'>: [('1', '5', 1), ('1', '2', 2), ('5', '3', 3), ('5', '4', 4), ('5', '6', 4)]

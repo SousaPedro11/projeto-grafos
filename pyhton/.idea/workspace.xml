@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98f44336-7bce-483d-a52d-82f3e48947bb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/projeto-grafos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projeto-grafos.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="75" column="35" lean-forward="true" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
+            <state relative-caret-position="457">
+              <caret line="204" column="10" lean-forward="true" selection-start-line="204" selection-start-column="10" selection-end-line="204" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -27,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Grafo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="110" selection-start-line="110" selection-end-line="110" />
+            <state relative-caret-position="329">
+              <caret line="343" column="40" lean-forward="true" selection-start-line="343" selection-start-column="40" selection-end-line="344" selection-end-column="18" />
               <folding>
                 <element signature="e#22#34#0" expanded="true" />
               </folding>
@@ -49,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/Grafo2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1411">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
             </state>
           </provider>
         </entry>
@@ -123,7 +124,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -329,11 +330,12 @@
       <workItem from="1555087475652" duration="4554000" />
       <workItem from="1555415379679" duration="18626000" />
       <workItem from="1555436011945" duration="2505000" />
+      <workItem from="1555501273345" duration="3879000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75154000" />
+    <option name="totallyTimeSpent" value="79033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -345,7 +347,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49683544" weight="0.2155361" />
@@ -353,8 +355,8 @@
       <window_info id="Favorites" order="2" sideWeight="0.50165564" side_tool="true" weight="0.1849315" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989059" weight="0.30877572" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989059" visible="true" weight="0.3118162" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934355" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -367,7 +369,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.40138593" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.7439825" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="4" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
@@ -380,8 +382,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Grafo.py</url>
-          <line>110</line>
-          <option name="timeStamp" value="3" />
+          <line>326</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -389,7 +391,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/projeto_grafos$setup.coverage" NAME="setup Coverage Results" MODIFIED="1554294972282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/projeto_grafos$Main.coverage" NAME="Main Coverage Results" MODIFIED="1554299569205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pyhton$Main.coverage" NAME="Main Coverage Results" MODIFIED="1555438482887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pyhton$Main.coverage" NAME="Main Coverage Results" MODIFIED="1555505163115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md" />
@@ -494,21 +496,24 @@
     <entry file="file://$PROJECT_DIR$/Grafo2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="75" column="35" lean-forward="true" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
+        <state relative-caret-position="457">
+          <caret line="204" column="10" lean-forward="true" selection-start-line="204" selection-start-column="10" selection-end-line="204" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Grafo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="329">
+          <caret line="343" column="40" lean-forward="true" selection-start-line="343" selection-start-column="40" selection-end-line="344" selection-end-column="18" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
           </folding>
