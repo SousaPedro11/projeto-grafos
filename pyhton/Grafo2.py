@@ -54,6 +54,16 @@ def calculate_distances(graph, starting_vertex):
 
     return distances
 
+
+def direct_cost(self, vertex1, vertex2):
+    list_v1 = self.__graph_dict[vertex1]
+    for (v, cost) in list_v1:
+        if v is vertex2:
+            return cost
+        else:
+            return math.inf
+
+
 def prim(graph, root):
     vertex = [root]  # Lista dos vertices a partir do qual buscamos as arestas
     selected_edges = []  # Lista com as arestas selecionadas
