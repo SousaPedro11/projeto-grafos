@@ -86,6 +86,15 @@ grafo10 = {"a": {"b": 3, "c": 5, "d": 1},
            "f": {"d": 3, "e": 7}
            }
 
+grafo11 = {"A": {"B": 2, "D": 7, "O": 2},
+           "B": {"A": 2, "C": 1, "D": 4, "E": 3, "O": 5},
+           "C": {"B": 1, "E": 4, "O": 4},
+           "D": {"A": 7, "B": 4, "E": 1, "T": 5},
+           "E": {"B": 3, "C": 4, "D": 1, "T": 7},
+           "O": {"A": 2, "B": 5, "C": 4},
+           "T": {"D": 5, "E": 7}
+           }
+
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
@@ -228,3 +237,18 @@ graph10.imprime_caminho("1", "6")
 graph10.encontrar_agm("a")
 graph10.plotar()
 graph10.aresta_peso()
+print()
+print("Grafo 11")
+graph11 = Grafo(grafo11)
+graph11.__str__()
+graph11.verificar_aresta({"C", "B"})
+graph11.grau_vertice("D")
+graph11.verificar_adjacencia("D")
+graph11.verificar_ciclico()
+graph11.verificar_conexo()
+graph11.verificar_fortemente_conexos()
+graph11.verificar_eureliano()
+graph11.imprime_caminho("O", "T")
+graph11.encontrar_agm("A")
+graph11.plotar()
+graph11.aresta_peso()

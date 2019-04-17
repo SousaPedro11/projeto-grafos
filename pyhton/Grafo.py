@@ -436,64 +436,6 @@ class Grafo(object):
             else:
                 return False
 
-    # def dijkstra(self, vertice_inicial):
-    #     arestas_agm = []
-    #     distancias = {vertice: float('infinity') for vertice in self.__grafo_dicionario}
-    #     distancias[vertice_inicial] = 0
-    #
-    #     bloqueio_entrada = {}
-    #     heap = []
-    #
-    #     # path = []
-    #     for vertice, distancia in distancias.items():
-    #         entrada = [distancia, vertice]
-    #         bloqueio_entrada[vertice] = entrada
-    #         heapq.heappush(heap, entrada)
-    #
-    #     while len(heap) > 0:
-    #         distancia_atual, vertice_atual = heapq.heappop(heap)
-    #         # print(vertice_atual, distancia_atual)
-    #         # path.append((distancia_atual, vertice_atual))
-    #         for vizinho, distancia_vizinho in self.__grafo_dicionario[vertice_atual].items():
-    #             distancia = distancias[vertice_atual] + distancia_vizinho
-    #             distancias_vizinho = distancias[vizinho]
-    #             if distancia < distancias_vizinho:
-    #                 distancias[vizinho] = distancia
-    #                 bloqueio_entrada[vizinho][0] = distancia
-    #                 # print(bloqueio_entrada)
-    #                 arestas_agm.append((vertice_atual, vizinho))
-    #                 # print(vertice_atual, vizinho)
-    #
-    #     # ----------------------------------------------------
-    #     path = []
-    #     do = [(k, distancias[k]) for k in
-    #           sorted(distancias, key=distancias.get, reverse=True)]
-    #     for x in range(len(do) - 1):
-    #         if (do[x + 1][0], do[x][0]) in self.arestas():
-    #             path.append((do[x + 1][0], do[x][0]))
-    #
-    #     # print(path)
-    #     # print(do)
-    #     # print(arestas_agm)
-    #     return arestas_agm
-    #     # ----------------------------------------------------
-    #     # return distancias
-    #
-    # # def print_caminhos(self, inicial):
-    # #     caminho_desordenado = self.dijkstra(inicial)
-    # #     s = [(k, caminho_desordenado[k]) for k in
-    # #          sorted(caminho_desordenado, key=caminho_desordenado.get, reverse=False)]
-    # #     caminho_ordenado = []
-    # #     distancia = 0
-    # #     for k, v in s:
-    # #         if isinstance(v, int):
-    # #             caminho_ordenado.append(k)
-    # #     lista = list((k, v) for k, v in s)
-    # #     custo = max(s, key=operator.itemgetter(1))[1]
-    # #     print(inicial, end=': ')
-    # #     print(caminho_ordenado)
-    # #     print("Custo = " + str(custo))
-
     @staticmethod
     def traceback_path(target, parents):
         path = []
