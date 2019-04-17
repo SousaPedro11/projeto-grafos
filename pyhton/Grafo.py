@@ -4,7 +4,6 @@ import heapq
 import math
 import matplotlib.pyplot as plt
 import networkx as nx
-import graphviz
 
 
 class HeapEntry:
@@ -332,8 +331,20 @@ class Grafo(object):
             result.append("O grafo " + ', '.join(condicao) + ".")
         print(''.join(result))
 
+    def aresta_peso(self):
+        aresta_peso = {}
+        if self.ponderado():
+            for k, v in self.__grafo_dicionario.items():
+                for k2, v2 in v.items():
+                    if (k2, k, v2) not in aresta_peso:
+                        aresta_peso[k, k2] = v2
+        return aresta_peso
+        # print(''.join(str(x) for x in aresta_peso))
+
     def plotar(self):
-        if self.verificar_direcionado():
+        # graph = nx.Graph(self.__grafo_dicionario)
+        direcionado = self.verificar_direcionado()
+        if direcionado:
             graph = nx.MultiDiGraph(self.__grafo_dicionario)
             # g = graphviz.Digraph(self.__grafo_dicionario)
         else:
@@ -341,7 +352,11 @@ class Grafo(object):
             # g = graphviz.Digraph(self.__grafo_dicionario)
         # fig = plt.figure()
         # fig.suptitle(str(self), fontsize=20)
-        nx.draw(graph, with_labels=True)
+        pos = nx.spring_layout(graph)
+        nx.draw(graph, pos, with_labels=True)
+        if self.ponderado():
+            nx.draw_networkx_edge_labels(graph, pos, edge_labels=self.aresta_peso())
+        plt.axis('off')
         plt.show()
         # g.view()
 
