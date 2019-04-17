@@ -77,6 +77,15 @@ grafo9 = {"1": {"2": 2, "5": 1, "6": 5},
           "5": {"1": 1, "2": 7, "3": 3, "4": 4, "6": 4},
           "6": {"1": 5, "5": 4}
           }
+
+grafo10 = {"a": {"b": 3, "c": 5, "d": 1},
+           "b": {"a": 3, "e": 4},
+           "c": {"a": 5, "d": 4, "e": 8},
+           "d": {"a": 1, "c": 4, "f": 3},
+           "e": {"b": 4, "c": 8, "f": 7},
+           "f": {"d": 3, "e": 7}
+           }
+
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
@@ -204,4 +213,18 @@ graph9.imprime_caminho("1", "6")
 graph9.encontrar_agm("1")
 graph9.plotar()
 graph9.aresta_peso()
-# <class 'list'>: [('1', '5', 1), ('1', '2', 2), ('5', '3', 3), ('5', '4', 4), ('5', '6', 4)]
+print()
+print("Grafo 10")
+graph10 = Grafo(grafo10)
+graph10.__str__()
+graph10.verificar_aresta({"c", "f"})
+graph10.grau_vertice("d")
+graph10.verificar_adjacencia("d")
+graph10.verificar_ciclico()
+graph10.verificar_conexo()
+graph10.verificar_fortemente_conexos()
+graph10.verificar_eureliano()
+graph10.imprime_caminho("1", "6")
+graph10.encontrar_agm("a")
+graph10.plotar()
+graph10.aresta_peso()
