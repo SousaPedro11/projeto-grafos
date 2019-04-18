@@ -173,6 +173,7 @@ class Grafo(object):
 
     def imprime_caminho(self, vertice_inicio, vertice_fim):
         """ Imprime o caminho entre dois vertices. """
+        peso = 0
         result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         inexistente = []
         inicio_existe = self.verificar_vertice(vertice_inicio)
