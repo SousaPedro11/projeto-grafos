@@ -104,6 +104,11 @@ grafo11 = {"A": {"B": 2, "D": 7, "O": 2},
 #            "c": {"c": 0, "b": 2}
 #            }
 
+#Possivel solucao
+# grafo12 = {'A': [('B', 1), ('B', 4)],
+#            'B': [('C', 1), ('A', 4)],
+#            }
+
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
