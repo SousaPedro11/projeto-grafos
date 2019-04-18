@@ -117,11 +117,21 @@ class Grafo(object):
         """
         result = "Grau do vértice '%s': " % vertice
         if self.verificar_vertice(vertice):
-            if not self.ponderado():
-                vertices_adjacentes = self.adjacentes(vertice)
-                # valores = list(vertices_adjacentes.keys())
-                grau = len(vertices_adjacentes) + vertices_adjacentes.count(vertice)
-                result += str(grau)
+            ocorrencias = []
+
+            arestas = self.__gerar_arestas()
+            for v in arestas:
+                if len(v) > 1:
+                    v1, v2 = tuple(v)
+                    ocorrencias.append(v1)
+                    ocorrencias.append(v2)
+                else:
+                    element = next(iter(v))
+                    v1, v2 = element, element
+                    ocorrencias.append(v1)
+                    ocorrencias.append(v2)
+            grau = ocorrencias.count(vertice)
+            result += str(grau)
         else:
             result += "Vértice não existe"
         print(result)

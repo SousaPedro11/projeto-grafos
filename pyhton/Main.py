@@ -95,6 +95,15 @@ grafo11 = {"A": {"B": 2, "D": 7, "O": 2},
            "T": {"D": 5, "E": 7}
            }
 
+# FIXME o grafo 12 é um multigrafo com self loop, a implementação atual não enxerga ambos
+""" Como o dicionario baseia-se em Set, ele não aceita chaves repetidas, logo ('a', 'c', 7) e ('a', 'c', 4) nao conseguem
+        coexistir ficando apenas o último ('a', 'c', 4), assim como ('c', 'c', 0) é reconhecido como ('c',0).
+"""
+# grafo12 = {"a": {"b": 4, "c": 7, "c": 4},
+#            "b": {"c": 5},
+#            "c": {"c": 0, "b": 2}
+#            }
+
 print("GRAFO 1")
 graph1 = Grafo(grafo1)
 graph1.__str__()
@@ -252,3 +261,20 @@ graph11.imprime_caminho("O", "T")
 graph11.encontrar_agm("A")
 graph11.plotar()
 graph11.aresta_peso()
+print()
+# FIXME o grafo 12 é um multigrafo com self loop, a implementação atual não enxerga ambos
+# print("Grafo 12")
+# graph12 = Grafo(grafo12)
+# graph12.__str__()
+# graph12.verificar_aresta({"c", "b"})
+# graph12.grau_vertice("d")
+# graph12.verificar_adjacencia("d")
+# graph12.verificar_ciclico()
+# graph12.verificar_conexo()
+# graph12.verificar_fortemente_conexos()
+# graph12.verificar_eureliano()
+# graph12.imprime_caminho("o", "t")
+# graph12.encontrar_agm("a")
+# # graph12.plotar()
+# graph12.aresta_peso()
+# # <class 'dict'>: {'a': {'b': 4, 'c': 4}, 'b': {'c': 5}, 'c': {'c': 0, 'b': 2}}
