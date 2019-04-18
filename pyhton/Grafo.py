@@ -73,18 +73,26 @@ class Grafo(object):
                     arestas.append({vertice, vizinho})
         return list(arestas)
 
-    def verificar_aresta(self, aresta):
+    def verificar_aresta(self, vertice1, vertice2):
         """Método para verificar se a aresta existe"""
-        (vertice1, vertice2) = tuple(aresta)
-        result = ["Verificar existencia da aresta %s: " % aresta]
-        result.append("A aresta existe") if {vertice1, vertice2} in self.arestas() else result.append(
+        result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
+        result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
             "A aresta não existe")
+        # result.append("A aresta existe") if {vertice1, vertice2} in self.arestas() else result.append(
         print(''.join(result))
 
-    def aresta_existe(self, aresta):
-        (vertice1, vertice2) = tuple(aresta)
-        if {vertice1, vertice2} in self.arestas():
-            return True
+    def aresta_existe(self, vertice1, vertice2):
+        arestas = self.arestas()
+        # if {vertice1, vertice2} in arestas:
+        for v1, v2 in arestas:
+            verif1 = vertice1 is v1 and vertice2 is v2
+            verif2 = vertice1 is v2 and vertice2 is v1
+            if self.verificar_direcionado():
+                if verif1:
+                    return True
+            else:
+                if verif1 or verif2:
+                    return True
         return False
 
     def verificar_vertice(self, vertice):
@@ -118,18 +126,15 @@ class Grafo(object):
         result = "Grau do vértice '%s': " % vertice
         if self.verificar_vertice(vertice):
             ocorrencias = []
-
             arestas = self.__gerar_arestas()
             for v in arestas:
                 if len(v) > 1:
                     v1, v2 = tuple(v)
-                    ocorrencias.append(v1)
-                    ocorrencias.append(v2)
                 else:
                     element = next(iter(v))
                     v1, v2 = element, element
-                    ocorrencias.append(v1)
-                    ocorrencias.append(v2)
+                ocorrencias.append(v1)
+                ocorrencias.append(v2)
             grau = ocorrencias.count(vertice)
             result += str(grau)
         else:
@@ -179,10 +184,18 @@ class Grafo(object):
 
         if inicio_existe and fim_existe:
             if self.ponderado():
-                caminho = str(self.encontrar_caminho_ponderado(vertice_inicio, vertice_fim))
+                caminho = self.encontrar_caminho_ponderado(vertice_inicio, vertice_fim)
+                peso = self.caminho_ponderado_peso(caminho)
             else:
-                caminho = str(self.encontrar_caminho(vertice_inicio, vertice_fim))
-            result.append("Caminho não existe") if 'None' in caminho else result.append(caminho)
+                caminho = self.encontrar_caminho(vertice_inicio, vertice_fim)
+            # result.append("Caminho não existe") if 'None' in str(caminho) else result.append(str(caminho))
+            if 'None' in str(caminho):
+                result.append("Caminho não existe")
+            else:
+                result.append(str(caminho))
+                if self.ponderado():
+                    result.append("\nCusto do caminho: ")
+                    result.append(str(peso))
         else:
             if len(inexistente) == 1:
                 result.append("Vértice " + ''.join(inexistente))
@@ -496,6 +509,14 @@ class Grafo(object):
         # else:
         #     return math.inf
 
+    def caminho_ponderado_peso(self, caminho):
+        peso = 0
+        for v in range(len(caminho)-1):
+            vatual = caminho[v]
+            vpos = caminho[v+1]
+            peso += self.direct_cost(vatual,vpos)
+        return peso
+
     def prim(self, root):
         # Grafo conectado, ponderado e não direcionado
         if not self.verificar_direcionado() and self.is_connected() and self.ponderado():
@@ -512,7 +533,7 @@ class Grafo(object):
                 va, vb = None, None  # Vertices candidatos para a aresta selecionada
                 for v1 in vertex:  # Para cada vertice na lista de busca origem
                     for v2 in remaing_vertices:  # Buscamos os vertices que ainda nao estao no grafo final
-                        if not self.aresta_existe({v1, v2}):
+                        if not self.aresta_existe(v1, v2):
                             cost = math.inf
                         else:
                             cost = self.direct_cost(v1, v2)  # Calcula o custo da aresta
