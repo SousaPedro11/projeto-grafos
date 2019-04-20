@@ -1,6 +1,4 @@
-from pyhton.main import Entrada
-from pyhton.main.Grafo import Grafo
-from pyhton.util import Utilitario
+import pyhton.main.Grafo
 
 lista = dir(Entrada)
 for x in lista:

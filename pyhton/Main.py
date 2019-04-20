@@ -1,5 +1,5 @@
-from pyhton.main import Entrada
-from pyhton.main.Grafo import Grafo
+import Entrada
+from Grafo import Grafo
 
 """
     1. Verificar a existência de uma determinada aresta.
