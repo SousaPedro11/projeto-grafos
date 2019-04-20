@@ -31,10 +31,10 @@ class Grafo(object):
         global ponderado_global
         # self.weight = {0}
         vertices_global = self.vertices()
+        ponderado_global = self.ponderado()
         direcionado_global = self.verificar_direcionado()
         arestas_global = self.arestas()
         conectado_global = self.is_connected()
-        ponderado_global = self.ponderado()
 
     def vertices(self):
         return list(self.__grafo_dicionario.keys())
@@ -44,7 +44,9 @@ class Grafo(object):
             arestas = []
             for vertice in vertices_global:
                 for vertice_interno in self.__grafo_dicionario[vertice]:
-                    arestas.append((vertice, vertice_interno))
+                    # if ponderado_global:
+                    #     arestas.append((vertice, vertice_interno[0]))
+                    arestas.append((vertice, vertice_interno[0]))
             return list(arestas)
         else:
             return self.__gerar_arestas()
@@ -79,7 +81,7 @@ class Grafo(object):
         for vertice in self.__grafo_dicionario:
             for vizinho in self.__grafo_dicionario[vertice]:
                 if {vizinho, vertice} not in arestas:
-                    arestas.append({vertice, vizinho})
+                    arestas.append({vertice, vizinho[0]})
         return list(arestas)
 
     def verificar_aresta(self, vertice1, vertice2):
@@ -110,6 +112,7 @@ class Grafo(object):
             return False
 
     def adjacentes(self, vertice):
+        # FIXME alterar para nova entrada - solucao do problema
         adjacencia = []
         for vizinho in self.__grafo_dicionario[vertice]:
             adjacencia.append(vizinho)
@@ -248,8 +251,8 @@ class Grafo(object):
         vertices_encountered.add(start_vertex)
         if len(vertices_encountered) != len(vertices):
             for vertex in gdict[start_vertex]:
-                if vertex not in vertices_encountered:
-                    if self.is_connected(vertices_encountered, vertex):
+                if vertex[0] not in vertices_encountered:
+                    if self.is_connected(vertices_encountered, vertex[0]):
                         return True
         else:
             return True
@@ -325,10 +328,17 @@ class Grafo(object):
         # FIXME falta corrigir para novo formato de entrada
         arestas = []
         arestas_invertidas = []
+        v1 = ''
+        peso = 0
         for vertice in vertices_global:
-            for vertice_interno in self.__grafo_dicionario[vertice]:
-                arestas.append((vertice, vertice_interno))
-                arestas_invertidas.append((vertice_interno, vertice))
+            vertices_internos = self.__grafo_dicionario[vertice]
+            if ponderado_global:
+                vertice_interno = v1, peso
+            else:
+                vertice_interno = v1
+            for vertice_interno in vertices_internos:
+                arestas.append((vertice, vertice_interno[0]))
+                arestas_invertidas.append((vertice_interno[0], vertice))
         arestas.sort()
         arestas_invertidas.sort()
         if arestas == arestas_invertidas:
@@ -405,18 +415,23 @@ class Grafo(object):
         # Inner function; Python encapsulation convention
         # Depth-first search
         def strong_connect(vertex):
-
+            # FIXME falta corrigir para novas entradas
             # Empty graph object/list
             if not self:
                 raise ValueError("Graph is empty.")
-
+            edges = []
             index[vertex] = counter[0]  # Depth index v = smallest unused index
             lowlink[vertex] = counter[0]  # Computed during depth-first search from v
             counter[0] += 1  # counter++; Keep track of visits (used by stack)
             stack.append(vertex)  # Add vertex to stack = S.push(v)
 
             # Consider successors (edges) of v
-            edges = self.__grafo_dicionario[vertex]
+
+            if ponderado_global:
+                for vert in self.__grafo_dicionario[vertex]:
+                    edges.append(vert[0])
+            else:
+                edges = self.__grafo_dicionario[vertex]
             # for each (v, w) in E do (iterate on graph[v])
             for w in edges:
                 # If (w[index] undefined], successor hasn't been visited yet
@@ -461,10 +476,13 @@ class Grafo(object):
 
     def ponderado(self):
         for k, v in self.__grafo_dicionario.items():
-            if isinstance(v, dict):
-                return True
-            else:
-                return False
+            for vi in v:
+                if len(vi) < 1:
+                    continue
+                if isinstance(vi, tuple):
+                    return True
+                else:
+                    return False
 
     @staticmethod
     def traceback_path(target, parents):
