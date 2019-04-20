@@ -1,7 +1,7 @@
 """ A Python Class"""
 import heapq
-
 import math
+
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -186,7 +186,8 @@ class Grafo(object):
         if inicio_existe and fim_existe:
             if self.ponderado():
                 caminho = self.encontrar_caminho_ponderado(vertice_inicio, vertice_fim)
-                peso = self.caminho_ponderado_peso(caminho)
+                if 'None' not in str(caminho):
+                    peso = self.caminho_ponderado_peso(caminho)
             else:
                 caminho = self.encontrar_caminho(vertice_inicio, vertice_fim)
             # result.append("Caminho não existe") if 'None' in str(caminho) else result.append(str(caminho))
@@ -195,7 +196,7 @@ class Grafo(object):
             else:
                 result.append(str(caminho))
                 if self.ponderado():
-                    result.append("\nCusto do caminho: ")
+                    result.append("\n\tCusto do caminho: ")
                     result.append(str(peso))
         else:
             if len(inexistente) == 1:
@@ -283,8 +284,10 @@ class Grafo(object):
                 for _ in tarjan_graph[i]:
                     cont += 1
             print("Número de componentes fortemente conexos: %s" % cont)
-            print("Componentes fortemente conexos: ", end='')
+            print("\tComponentes fortemente conexos: ", end='')
             print(tarjan_graph)
+        else:
+            print('O grafo não é fortemente conexo')
 
     def verificar_eureliano(self):
         # FIXME ajustar para grafo ponderado
@@ -349,7 +352,7 @@ class Grafo(object):
             # lista = self.dijkstra(vertice_inicial)
             lista, peso_total = self.prim(vertice_inicial)
             result.append(', '.join(str(x) for x in lista))
-            result.append("\nPeso da AGM: ")
+            result.append("\n\tPeso da AGM: ")
             result.append(str(peso_total))
         else:
             result.append("O grafo " + ', '.join(condicao) + ".")
@@ -470,13 +473,13 @@ class Grafo(object):
         return list(reversed(path))
 
     def encontrar_caminho_ponderado(self, start, finish):
-        open = [HeapEntry(start, 0.0)]
+        aberto = [HeapEntry(start, 0.0)]
         closed = set()
         parents = {start: None}
         distance = {start: 0.0}
 
-        while open:
-            current = heapq.heappop(open).node
+        while aberto:
+            current = heapq.heappop(aberto).node
 
             if current is finish:
                 return self.traceback_path(finish, parents)
@@ -495,7 +498,7 @@ class Grafo(object):
                     distance[child] = tentative_cost
                     parents[child] = current
                     heap_entry = HeapEntry(child, tentative_cost)
-                    heapq.heappush(open, heap_entry)
+                    heapq.heappush(aberto, heap_entry)
 
     def direct_cost(self, vertex1, vertex2):
         list_v1 = self.__grafo_dicionario.items()
@@ -512,10 +515,10 @@ class Grafo(object):
 
     def caminho_ponderado_peso(self, caminho):
         peso = 0
-        for v in range(len(caminho)-1):
+        for v in range(len(caminho) - 1):
             vatual = caminho[v]
-            vpos = caminho[v+1]
-            peso += self.direct_cost(vatual,vpos)
+            vpos = caminho[v + 1]
+            peso += self.direct_cost(vatual, vpos)
         return peso
 
     def prim(self, root):
