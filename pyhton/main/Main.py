@@ -1,5 +1,5 @@
-import Entrada
-from Grafo import Grafo
+from pyhton.main import Entrada
+from pyhton.main.Grafo import Grafo
 
 """
     1. Verificar a existência de uma determinada aresta.
@@ -15,8 +15,10 @@ from Grafo import Grafo
 """
 
 # FIXME o grafo 12 é um multigrafo com self loop, a implementação atual não enxerga ambos
-""" Como o dicionario baseia-se em Set, ele não aceita chaves repetidas, logo ('a', 'c', 7) e ('a', 'c', 4) nao conseguem
-        coexistir ficando apenas o último ('a', 'c', 4), assim como ('c', 'c', 0) é reconhecido como ('c',0).
+
+
+""" Como o dicionario baseia-se em Set, ele não aceita chaves repetidas, logo ('a', 'c', 7) e ('a', 'c', 4) nao
+        conseguem coexistir ficando apenas o último ('a', 'c', 4), assim como ('c', 'c', 0) é reconhecido como ('c',0).
 """
 # grafo12 = {"a": {"b": 4, "c": 7, "c": 4},
 #            "b": {"c": 5},
