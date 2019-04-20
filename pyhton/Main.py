@@ -1,5 +1,6 @@
-from Grafo import Grafo
 import Entrada
+from Grafo import Grafo
+
 """
     1. Verificar a existência de uma determinada aresta.
     2. Informar o grau de um dado vértice.
@@ -24,9 +25,9 @@ import Entrada
 #            }
 
 # Possivel solucao
-grafo12 = {'A': [('B', 1), ('B', 4)],
-           'B': [('C', 1), ('A', 4)],
-           }
+# grafo12 = {'A': [('B', 1), ('B', 4)],
+#            'B': [('C', 1), ('A', 4)],
+#            }
 
 print("GRAFO 1")
 graph1 = Grafo(Entrada.grafo01)
@@ -193,8 +194,8 @@ graph11.plotar()
 graph11.aresta_peso()
 print()
 # FIXME o grafo 12 é um multigrafo com self loop, a implementação atual não enxerga ambos
-print("Grafo 12")
-graph12 = Grafo(grafo12)
+# print("Grafo 12")
+# graph12 = Grafo(grafo12)
 # print(graph12.vertices())
 # print(graph12.arestas())
 # graph12.verificar_direcionado()

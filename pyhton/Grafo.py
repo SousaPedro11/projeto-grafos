@@ -77,7 +77,7 @@ class Grafo(object):
         """Método para verificar se a aresta existe"""
         result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
         result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
-            "A aresta não existe")
+                "A aresta não existe")
         # result.append("A aresta existe") if {vertice1, vertice2} in self.arestas() else result.append(
         print(''.join(result))
 
@@ -230,6 +230,7 @@ class Grafo(object):
     def is_connected(self,
                      vertices_encountered=None,
                      start_vertex=None):
+        # FIXME falta ajustar
         """ Determina se o grafo é conexo """
         if vertices_encountered is None:
             vertices_encountered = set()
