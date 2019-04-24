@@ -1,7 +1,7 @@
 """ A Python Class"""
 import heapq
-import math
 
+import math
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -43,10 +43,8 @@ class Grafo(object):
         if direcionado_global:
             arestas = []
             for vertice in vertices_global:
-                for vertice_interno in self.__grafo_dicionario[vertice]:
-                    # if ponderado_global:
-                    #     arestas.append((vertice, vertice_interno[0]))
-                    arestas.append((vertice, vertice_interno[0]))
+                for vertice_interno in self.adjacentes(vertice):
+                    arestas.append((vertice, vertice_interno))
             return list(arestas)
         else:
             return self.__gerar_arestas()
@@ -79,16 +77,16 @@ class Grafo(object):
         """
         arestas = []
         for vertice in self.__grafo_dicionario:
-            for vizinho in self.__grafo_dicionario[vertice]:
+            for vizinho in self.adjacentes(vertice):
                 if {vizinho, vertice} not in arestas:
-                    arestas.append({vertice, vizinho[0]})
+                    arestas.append((vertice, vizinho))
         return list(arestas)
 
     def verificar_aresta(self, vertice1, vertice2):
         """Método para verificar se a aresta existe"""
         result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
         result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
-                "A aresta não existe")
+            "A aresta não existe")
         print(''.join(result))
 
     def aresta_existe(self, vertice1, vertice2):
@@ -115,14 +113,15 @@ class Grafo(object):
         # FIXME alterar para nova entrada - solucao do problema
         adjacencia = []
         for vizinho in self.__grafo_dicionario[vertice]:
-            adjacencia.append(vizinho)
+            if isinstance(vizinho, tuple):
+                k, v = tuple(vizinho)
+                adjacencia.append(k)
+            else:
+                adjacencia.append(vizinho)
         return adjacencia
 
     def verificar_adjacencia(self, vertice):
         result = "Adjacencia do vértice '%s': " % vertice
-        # adjacencia = []
-        # for vizinho in self.__grafo_dicionario[vertice]:
-        #     adjacencia.append(vizinho)
         if self.verificar_vertice(vertice):
             result += str(self.adjacentes(vertice))
         else:
@@ -130,7 +129,6 @@ class Grafo(object):
         print(result)
 
     def grau_vertice(self, vertice):
-        # FIXME alterar para incluir grafos ponderados
         """ Grau do vértice, representa o número de arestas conectadas ao vértice.
         """
         result = "Grau do vértice '%s': " % vertice
@@ -243,16 +241,16 @@ class Grafo(object):
         """ Determina se o grafo é conexo """
         if vertices_encountered is None:
             vertices_encountered = set()
-        gdict = self.__grafo_dicionario
+        # gdict = self.__grafo_dicionario
         vertices = vertices_global  # "list" necessary in Python 3
         if not start_vertex:
             # chosse a vertex from graph as a starting point
             start_vertex = vertices[0]
         vertices_encountered.add(start_vertex)
         if len(vertices_encountered) != len(vertices):
-            for vertex in gdict[start_vertex]:
-                if vertex[0] not in vertices_encountered:
-                    if self.is_connected(vertices_encountered, vertex[0]):
+            for vertex in self.adjacentes(start_vertex):
+                if vertex not in vertices_encountered:
+                    if self.is_connected(vertices_encountered, vertex):
                         return True
         else:
             return True
@@ -276,7 +274,8 @@ class Grafo(object):
                 return False
             visitado.add(vertice)
             caminho.add(vertice)
-            for vizinho in self.__grafo_dicionario.get(vertice, ()):
+            # for vizinho in self.__grafo_dicionario.get(vertice, ()):
+            for vizinho in self.adjacentes(vertice):
                 if vizinho in caminho or visit(vizinho):
                     return True
             caminho.remove(vertice)
@@ -300,14 +299,15 @@ class Grafo(object):
             print('O grafo não é fortemente conexo')
 
     def verificar_eureliano(self):
-        # FIXME ajustar para grafo ponderado
+        # FIXME ajustar para grafo conectado
         result = ["Verificar se o grafo é Euleriano: "]
         if not conectado_global:
             result.append("Não é eureliano")
         else:
             odd = 0
             for vertice in vertices_global:
-                if len(self.__grafo_dicionario[vertice]) % 2 is not 0:
+                a = self.adjacentes(vertice)
+                if len(a) % 2 is not 0:
                     odd += 1
             result.append("É Euleriano") if odd is 0 else result.append("Não é Euleriano")
         print(''.join(result))
@@ -325,20 +325,21 @@ class Grafo(object):
         return caminho_curto[-1]
 
     def verificar_direcionado(self):
-        # FIXME falta corrigir para novo formato de entrada
+        # FIXME falta corrigir para novo formato de entrada e adjacencia vazia
         arestas = []
         arestas_invertidas = []
         v1 = ''
         peso = 0
         for vertice in vertices_global:
-            vertices_internos = self.__grafo_dicionario[vertice]
-            if ponderado_global:
-                vertice_interno = v1, peso
-            else:
-                vertice_interno = v1
+            vertices_internos = self.adjacentes(vertice)
+            # if ponderado_global:
+            #     vertice_interno = v1, peso
+            # else:
+            #     vertice_interno = v1
             for vertice_interno in vertices_internos:
-                arestas.append((vertice, vertice_interno[0]))
-                arestas_invertidas.append((vertice_interno[0], vertice))
+
+                arestas.append((vertice, vertice_interno))
+                arestas_invertidas.append((vertice_interno, vertice))
         arestas.sort()
         arestas_invertidas.sort()
         if arestas == arestas_invertidas:
@@ -376,24 +377,42 @@ class Grafo(object):
         aresta_peso = {}
         if ponderado_global:
             for k, v in self.__grafo_dicionario.items():
-                for k2, v2 in v.items():
+                for k2, v2 in v:
                     if (k2, k, v2) not in aresta_peso:
                         aresta_peso[k, k2] = v2
         return aresta_peso
         # print(''.join(str(x) for x in aresta_peso))
 
+    def aresta_ponderada(self):
+        aresta_peso = []
+        dict_aresta = self.aresta_peso()
+        for e in dict_aresta.keys():
+            peso = dict_aresta[e]
+            k = e[0]
+            v = e[1]
+            aresta_peso.append((k, v, peso))
+        return aresta_peso
+
     def plotar(self):
         # graph = nx.Graph(self.__grafo_dicionario)
         if direcionado_global:
-            graph = nx.MultiDiGraph(self.__grafo_dicionario)
+            graph = nx.MultiDiGraph()
+            # graph = nx.MultiDiGraph(self.__grafo_dicionario)
             # g = graphviz.Digraph(self.__grafo_dicionario)
         else:
-            graph = nx.MultiGraph(self.__grafo_dicionario)
+            # graph = nx.MultiGraph(self.__grafo_dicionario)
+            graph = nx.MultiGraph()
             # g = graphviz.Digraph(self.__grafo_dicionario)
         # fig = plt.figure()
         # fig.suptitle(str(self), fontsize=20)
+        graph.add_nodes_from(vertices_global)
+        graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado_global else graph.add_edges_from(
+            arestas_global)
         pos = nx.spring_layout(graph)
-        nx.draw(graph, pos, with_labels=True)
+        # nx.draw(graph, pos, with_labels=True)
+        nx.draw_networkx_nodes(graph, pos)
+        nx.draw_networkx_labels(graph, pos)
+        nx.draw_networkx_edges(graph, pos)
         if ponderado_global:
             nx.draw_networkx_edge_labels(graph, pos, edge_labels=self.aresta_peso())
         plt.axis('off')
@@ -428,10 +447,11 @@ class Grafo(object):
             # Consider successors (edges) of v
 
             if ponderado_global:
-                for vert in self.__grafo_dicionario[vertex]:
-                    edges.append(vert[0])
+                # for vert in self.__grafo_dicionario[vertex]:
+                for vert in self.adjacentes(vertex):
+                    edges.append(vert)
             else:
-                edges = self.__grafo_dicionario[vertex]
+                edges = self.adjacentes(vertex)
             # for each (v, w) in E do (iterate on graph[v])
             for w in edges:
                 # If (w[index] undefined], successor hasn't been visited yet
@@ -494,6 +514,7 @@ class Grafo(object):
         return list(reversed(path))
 
     def encontrar_caminho_ponderado(self, start, finish):
+        # FIXME ajustar para nova entrada
         aberto = [HeapEntry(start, 0.0)]
         closed = set()
         parents = {start: None}
