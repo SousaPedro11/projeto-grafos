@@ -531,10 +531,13 @@ class Grafo(object):
 
             closed.add(current)
 
-            for child in self.__grafo_dicionario[current].keys():
+            # for child in self.__grafo_dicionario[current].keys():
+            adjacentes = self.adjacentes(current)
+            for child in adjacentes:
                 if child in closed:
                     continue
-                tentative_cost = distance[current] + self.__grafo_dicionario[current][child]
+                # tentative_cost = distance[current] + self.__grafo_dicionario[current][child]
+                tentative_cost = distance[current] + adjacentes[child]
 
                 if child not in distance.keys() or distance[child] > tentative_cost:
                     distance[child] = tentative_cost
