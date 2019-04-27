@@ -284,14 +284,13 @@ class Grafo(object):
         result.append("É cíclico") if any(visit(v) for v in self.__grafo_dicionario) else result.append("Não é ciclico")
         print(''.join(result))
 
-    def verificar_fortemente_conexos(self):
+        def verificar_fortemente_conexos(self):
         # FIXME
         if direcionado_global:
             tarjan_graph = self.tarjan()
             cont = 0
-            for i in range(0, len(tarjan_graph)):
-                for _ in tarjan_graph[i]:
-                    cont += 1
+            for i in tarjan_graph:
+                cont += 1
             print("Número de componentes fortemente conexos: %s" % cont)
             print("\tComponentes fortemente conexos: ", end='')
             print(tarjan_graph)
