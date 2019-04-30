@@ -30,5 +30,5 @@ def teste_grafo(grafo):
     grafo.imprime_caminho(a, b)
     print("q9.", end=' ')
     grafo.encontrar_agm(random_vertices(grafo))
-    # Grafo.plotar()
+    # grafo.plotar()
     print()

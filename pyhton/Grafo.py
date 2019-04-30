@@ -29,7 +29,6 @@ class Grafo(object):
         global arestas_global
         global conectado_global
         global ponderado_global
-        # self.weight = {0}
         vertices_global = self.vertices()
         ponderado_global = self.ponderado()
         direcionado_global = self.verificar_direcionado()
@@ -337,7 +336,6 @@ class Grafo(object):
             # else:
             #     vertice_interno = v1
             for vertice_interno in vertices_internos:
-
                 arestas.append((vertice, vertice_interno))
                 arestas_invertidas.append((vertice_interno, vertice))
         arestas.sort()
@@ -531,13 +529,10 @@ class Grafo(object):
 
             closed.add(current)
 
-            # for child in self.__grafo_dicionario[current].keys():
-            adjacentes = self.adjacentes(current)
-            for child in adjacentes:
+            for child in self.__grafo_dicionario[current].keys():
                 if child in closed:
                     continue
-                # tentative_cost = distance[current] + self.__grafo_dicionario[current][child]
-                tentative_cost = distance[current] + adjacentes[child]
+                tentative_cost = distance[current] + self.__grafo_dicionario[current][child]
 
                 if child not in distance.keys() or distance[child] > tentative_cost:
                     distance[child] = tentative_cost
