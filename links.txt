@@ -3,3 +3,4 @@ https://www.cos.ufrj.br/~marroquim/grafos/
 https://codereview.stackexchange.com/questions/142734/dijkstras-algorithm-using-a-dictionary-for-the-priority-queue
 https://stackoverflow.com/questions/6575058/tarjans-strongly-connected-components-algorithm-in-python-not-working
 https://www.geeksforgeeks.org/strongly-connected-components/
+https://www.geeksforgeeks.org/tarjan-algorithm-find-strongly-connected-components/
