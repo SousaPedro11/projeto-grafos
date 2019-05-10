@@ -1,0 +1,14 @@
+#CONSTRUCAO
+construtor - init
+vertices
+arestas
+adicionar_aresta
+adicionar_vertice
+gerar_arestas
+
+#VERIFICACAO - retorna boolean
+aresta_existe
+vertice_existe
+
+#RESOLUCAO
+#IMPRESSAO

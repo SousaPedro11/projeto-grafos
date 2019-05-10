@@ -81,13 +81,6 @@ class Grafo(object):
                     arestas.append((vertice, vizinho))
         return list(arestas)
 
-    def verificar_aresta(self, vertice1, vertice2):
-        """Método para verificar se a aresta existe"""
-        result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
-        result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
-            "A aresta não existe")
-        print(''.join(result))
-
     def aresta_existe(self, vertice1, vertice2):
         # if {vertice1, vertice2} in arestas:
         for v1, v2 in arestas_global:
@@ -101,12 +94,19 @@ class Grafo(object):
                     return True
         return False
 
-    def verificar_vertice(self, vertice):
+    def vertice_existe(self, vertice):
         """Verifica se o vértice existe"""
         if vertice in vertices_global:
             return True
         else:
             return False
+
+    def verificar_aresta(self, vertice1, vertice2):
+        """Método para verificar se a aresta existe"""
+        result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
+        result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
+            "A aresta não existe")
+        print(''.join(result))
 
     def adjacentes(self, vertice):
         # FIXME alterar para nova entrada - solucao do problema
@@ -121,7 +121,7 @@ class Grafo(object):
 
     def verificar_adjacencia(self, vertice):
         result = "Adjacencia do vértice '%s': " % vertice
-        if self.verificar_vertice(vertice):
+        if self.vertice_existe(vertice):
             result += str(self.adjacentes(vertice))
         else:
             result += "O vértice não existe no grafo"
@@ -131,7 +131,7 @@ class Grafo(object):
         """ Grau do vértice, representa o número de arestas conectadas ao vértice.
         """
         result = "Grau do vértice '%s': " % vertice
-        if self.verificar_vertice(vertice):
+        if self.vertice_existe(vertice):
             ocorrencias = []
             arestas = self.__gerar_arestas()
             for v in arestas:
@@ -182,8 +182,8 @@ class Grafo(object):
         peso = 0
         result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         inexistente = []
-        inicio_existe = self.verificar_vertice(vertice_inicio)
-        fim_existe = self.verificar_vertice(vertice_fim)
+        inicio_existe = self.vertice_existe(vertice_inicio)
+        fim_existe = self.vertice_existe(vertice_fim)
         if not inicio_existe:
             inexistente.append("'" + vertice_inicio + "'")
         if not fim_existe:
@@ -348,7 +348,7 @@ class Grafo(object):
         # TODO implementar para grafo ponderado
         # Grafo conectado, ponderado e não direcionado
         result = ["Arestas da AGM: "]
-        vertice_existe = self.verificar_vertice(vertice_inicial)
+        vertice_existe = self.vertice_existe(vertice_inicial)
 
         condicao = []
         if vertice_existe:
