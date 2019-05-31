@@ -18,8 +18,15 @@ class HeapEntry:
 class Grafo(object):
 
     def __init__(self, grafo_dicionario=None):
-        """ Inicializa o grafo.
-            Se não houver um dicionario, será usado um vazio
+        """
+        Descrição
+        ---------
+        Inicializa o grafo. Se não houver um dicionario, será usado um vazio.
+
+        Parametros
+        ----------
+        grafo_dicionario : dict
+            Dicionário que representa o grafo de entrada.
         """
         if grafo_dicionario is None:
             grafo_dicionario = {}
@@ -36,22 +43,53 @@ class Grafo(object):
         conectado_global = self.is_connected()
 
     def vertices(self):
-        return list(self.__grafo_dicionario.keys())
+        """
+        Descrição
+        ---------
+        Método que identifica os vértices do grafo.
+
+        Retorno
+        -------
+        vertices : list
+            Vértices identificados no dicionário (grafo de entrada)
+        """
+        vertices = list(self.__grafo_dicionario.keys())
+        return vertices
 
     def arestas(self):
+        """
+        Descrição
+        ---------
+        Método que identifica as arestas do grafo
+
+        Retorno
+        -------
+        listaarestas : list
+            Arestas identificadas no dicionário (grafo de entrada)
+        """
         if direcionado_global:
             arestas = []
             for vertice in vertices_global:
                 for vertice_interno in self.adjacentes(vertice):
                     arestas.append((vertice, vertice_interno))
-            return list(arestas)
+            listaarestas = list(arestas)
         else:
-            return self.__gerar_arestas()
+            listaarestas = self.__gerar_arestas()
+        return listaarestas
 
     def adicionar_vertice(self, vertice):
-        """ Se o vertice não estiver presente no dicionário,
+        #FIXME corrigir documentação
+        """
+        Descrição
+        ---------
+        Se o vertice não estiver presente no dicionário,
         uma chave vertice com uma lista vazia é adicionada.
             Se estiver presente, nada é feito.
+
+        Parametros
+        ----------
+        vertice : str
+            Vértice que será adicionado ao grafo
         """
         if vertice not in self.__grafo_dicionario:
             self.__grafo_dicionario[vertice] = []
@@ -102,13 +140,21 @@ class Grafo(object):
             return False
 
     def verificar_aresta(self, vertice1, vertice2):
-        """Método para verificar se a aresta existe"""
+
+        """Método para verificar se a aresta existe
+        :param vertice1:
+        :param vertice2:
+        """
         result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
         result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
             "A aresta não existe")
         print(''.join(result))
 
     def adjacentes(self, vertice):
+        """
+        :param vertice:
+        :return adjacencia:
+        """
         # FIXME alterar para nova entrada - solucao do problema
         adjacencia = []
         for vizinho in self.__grafo_dicionario[vertice]:
