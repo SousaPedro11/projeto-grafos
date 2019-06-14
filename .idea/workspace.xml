@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf32eb4-9e4a-402e-b47c-fb0abe67b37c" name="Default Changelist" comment="refatorando para variaveis globais, add FIXME para nova entrada">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/projeto-grafos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projeto-grafos.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyhton/Grafo.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyhton/Grafo.py" afterDir="false" />
     </list>
@@ -12,23 +14,35 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3857272">
+    <splitter split-orientation="horizontal" split-proportion="0.4041096">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pyhton/Entrada.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1530">
+                <state relative-caret-position="522">
                   <caret line="90" column="27" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pyhton/Main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="119" column="7" lean-forward="true" selection-start-line="119" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
+                <state relative-caret-position="131">
+                  <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pyhton/Inspecionar.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
                   <folding>
                     <element signature="e#0#14#0" expanded="true" />
                   </folding>
@@ -39,8 +53,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pyhton/Teste.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="10" selection-start-line="10" selection-end-line="10" />
+                <state relative-caret-position="150">
+                  <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
                   <folding>
                     <element signature="e#0#14#0" expanded="true" />
                   </folding>
@@ -55,8 +69,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pyhton/Grafo.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="194" selection-start-line="194" selection-end-line="194" />
+                <state relative-caret-position="117">
+                  <caret line="516" column="19" lean-forward="true" selection-start-line="516" selection-start-column="19" selection-end-line="516" selection-end-column="19" />
                   <folding>
                     <element signature="e#22#34#0" expanded="true" />
                   </folding>
@@ -131,7 +145,22 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="projeto-grafos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto-grafos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto-grafos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto-grafos" type="462c0819:PsiDirectoryNode" />
+              <item name="pyhton" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -161,7 +190,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.Inspecionar">
+    <configuration name="Inspecionar" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="projeto-grafos" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyhton" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyhton/Inspecionar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="projeto-grafos" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -192,12 +243,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyhton/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyhton" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyhton/test/Teste.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyhton/Teste.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -229,13 +280,15 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Teste" />
       <item itemvalue="Python.Main" />
+      <item itemvalue="Python.Inspecionar" />
+      <item itemvalue="Python.Teste" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Main" />
+        <item itemvalue="Python.Inspecionar" />
         <item itemvalue="Python.Teste" />
+        <item itemvalue="Python.Main" />
         <item itemvalue="Python.Teste" />
       </list>
     </recent_temporary>
@@ -258,6 +311,7 @@
       <workItem from="1556116329115" duration="3417000" />
       <workItem from="1556122437051" duration="4056000" />
       <workItem from="1556289198629" duration="1671000" />
+      <workItem from="1560550289914" duration="2432000" />
     </task>
     <task id="LOCAL-00001" summary="organize import">
       <created>1555732565713</created>
@@ -270,17 +324,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33206000" />
+    <option name="totallyTimeSpent" value="35638000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="0" width="1360" height="736" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25373134" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.13774733" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.32502708" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.3245033" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39328277" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -311,13 +365,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pyhton/Main.py</url>
-          <line>204</line>
+          <line>205</line>
           <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyhton/Grafo.py</url>
-          <line>517</line>
-          <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pyhton/Main.py</url>
@@ -328,9 +377,10 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/projeto_grafos$Teste__1_.coverage" NAME="Teste Coverage Results" MODIFIED="1555734361473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyhton" />
-    <SUITE FILE_PATH="coverage/projeto_grafos$Teste.coverage" NAME="Teste Coverage Results" MODIFIED="1555731581378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyhton/test" />
+    <SUITE FILE_PATH="coverage/projeto_grafos$Teste__1_.coverage" NAME="Teste (1) Coverage Results" MODIFIED="1560552184568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyhton" />
+    <SUITE FILE_PATH="coverage/projeto_grafos$Inspecionar.coverage" NAME="Inspecionar Coverage Results" MODIFIED="1560552214964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyhton" />
     <SUITE FILE_PATH="coverage/projeto_grafos$Main.coverage" NAME="Main Coverage Results" MODIFIED="1556290097637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyhton" />
+    <SUITE FILE_PATH="coverage/projeto_grafos$Teste.coverage" NAME="Teste Coverage Results" MODIFIED="1560552204890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyhton" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pyhton/main/__init__.py" />
@@ -353,48 +403,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/digraph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="303" selection-start-line="303" selection-end-line="303" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="573" selection-start-line="573" selection-end-line="573" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/drawing/nx_pylab.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="900" selection-start-line="900" selection-end-line="900" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/multigraph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="509" selection-start-line="509" selection-end-line="509" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="995" selection-start-line="995" selection-end-line="995" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/utils/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="391" selection-start-line="391" selection-end-line="391" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/digraph.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/matplotlib/pyplot.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/drawing/nx_pylab.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/multigraph.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/graph.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/utils/decorators.py" />
     <entry file="file://$PROJECT_DIR$/pyhton/Utilitario.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-95">
@@ -402,49 +416,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/drawing/nx_agraph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="132" column="18" lean-forward="true" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="324" selection-start-line="324" selection-end-line="324" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/igraph/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/drawing/nx_agraph.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/codecs.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/igraph/__init__.py" />
     <entry file="file://$PROJECT_DIR$/pyhton/multidot.png" />
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/drawing/nx_pydot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/multidigraph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4879">
-          <caret line="296" selection-start-line="296" selection-end-line="296" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/drawing/nx_pydot.py" />
+    <entry file="file://C:/Program Files/Python37/Lib/site-packages/networkx/classes/multidigraph.py" />
     <entry file="file://$PROJECT_DIR$/pyhton/Entrada.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
+        <state relative-caret-position="522">
           <caret line="90" column="27" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyhton/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyhton/Teste.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyhton/Inspecionar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -453,20 +461,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pyhton/Grafo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="194" selection-start-line="194" selection-end-line="194" />
+        <state relative-caret-position="117">
+          <caret line="516" column="19" lean-forward="true" selection-start-line="516" selection-start-column="19" selection-end-line="516" selection-end-column="19" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyhton/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="119" column="7" lean-forward="true" selection-start-line="119" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,7 +1,7 @@
 """ A Python Class"""
 import heapq
-
 import math
+
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -205,7 +205,7 @@ class Grafo(object):
         """
         result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
         result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
-            "A aresta não existe")
+                "A aresta não existe")
         print(''.join(result))
 
     def adjacentes(self, vertice):
@@ -307,8 +307,11 @@ class Grafo(object):
         Parametros
         ----------
         vertice_inicio : str
+            Vértice de origem
         vertice_fim : str
+            Vértice de destino
         caminho : array
+            Array com os vértices visitados
 
         Retorno
         -------
@@ -335,14 +338,15 @@ class Grafo(object):
         """
         Descrição
         ---------
-        Metodo que verifica se a aresta existe
+        Metodo que imprime o caminho entre dois vértices
 
         Parametros
         ----------
         vertice_inicio : str
+            Vértice de origem
         vertice_fim : str
-
-        Imprime o caminho entre dois vertices. """
+            Vértice de destino
+        """
         peso = 0
         result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         inexistente = []
@@ -378,7 +382,23 @@ class Grafo(object):
         print(''.join(result))
 
     def encontrar_todos_caminhos(self, vertice_inicio, vertice_fim, caminho=None):
-        """ encontra todos os caminhos entre dois vértices """
+        """
+        Descrição
+        ---------
+        Metodo que encontra todos os caminhos entre dois vértices
+
+        Parametros
+        ----------
+        vertice_inicio : str
+            Vértice de origem
+        vertice_fim : str
+            Vértice de destino
+
+        Retorno
+        -------
+        caminhos : array
+            Array com os caminhos encontrados
+        """
         if caminho is None:
             caminho = []
         grafo = self.__grafo_dicionario
@@ -397,21 +417,35 @@ class Grafo(object):
                     caminhos.append(p)
         return caminhos
 
-    def is_connected(self,
-                     vertices_encountered=None,
-                     start_vertex=None):
+    def is_connected(self, vertices_encountered=None, vertice_inicial=None):
         # FIXME falta ajustar
-        """ Determina se o grafo é conexo """
+        """
+        Descrição
+        ---------
+        Método que verifica se o grafo é conexo
+
+        Parametros
+        ----------
+        vertices_encountered : set
+            Set de todos os vértices visitados a partir de outros
+        vertice_inicial : array
+            Vértice de início (opcional)
+
+        Retorno
+        -------
+        : bool
+            Retorna True caso o vértice seja conexo ou False caso não seja
+        """
         if vertices_encountered is None:
             vertices_encountered = set()
         # gdict = self.__grafo_dicionario
         vertices = vertices_global  # "list" necessary in Python 3
-        if not start_vertex:
+        if not vertice_inicial:
             # chosse a vertex from graph as a starting point
-            start_vertex = vertices[0]
-        vertices_encountered.add(start_vertex)
+            vertice_inicial = vertices[0]
+        vertices_encountered.add(vertice_inicial)
         if len(vertices_encountered) != len(vertices):
-            for vertex in self.adjacentes(start_vertex):
+            for vertex in self.adjacentes(vertice_inicial):
                 if vertex not in vertices_encountered:
                     if self.is_connected(vertices_encountered, vertex):
                         return True
@@ -421,13 +455,21 @@ class Grafo(object):
 
     @staticmethod
     def verificar_conexo():
-        """ Imprime o resultado se o grafo é conexo ou não."""
+        """
+        Descrição
+        ---------
+        Mostra se um grafo é conexo ou não a partir do resultado de outro algoritmo
+        """
         result = ["Verificar se o grafo é conexo: "]
         result.append("O grafo é conexo") if conectado_global else result.append("O grafo não é conexo")
         print(''.join(result))
 
     def verificar_ciclico(self):
-        """ Verifica se o grafo é cíclico"""
+        """
+        Descrição
+        ---------
+        Mostra se o grafo é cíclico ou não utilizando um método interno
+        """
         result = ["Verificar se o grafo é cíclico: "]
 
         caminho = set()
@@ -449,7 +491,11 @@ class Grafo(object):
         print(''.join(result))
 
     def verificar_fortemente_conexos(self):
-
+        """
+        Descrição
+        ---------
+        Método que mostra se o grafo é fortemente conexo ou não, se for é mostrado seus componentes fortemente conexos
+        """
         # FIXME
         if direcionado_global:
             tarjan_graph = self.tarjan()
@@ -570,7 +616,7 @@ class Grafo(object):
         # fig.suptitle(str(self), fontsize=20)
         graph.add_nodes_from(vertices_global)
         graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado_global else graph.add_edges_from(
-            arestas_global)
+                arestas_global)
         pos = nx.spring_layout(graph)
         # nx.draw(graph, pos, with_labels=True)
         nx.draw_networkx_nodes(graph, pos)
