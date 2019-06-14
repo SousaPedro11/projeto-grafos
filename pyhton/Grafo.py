@@ -78,13 +78,13 @@ class Grafo(object):
         return listaarestas
 
     def adicionar_vertice(self, vertice):
-        #FIXME corrigir documentação
         """
         Descrição
         ---------
+        Método que adiciona vértices ao grafo
         Se o vertice não estiver presente no dicionário,
         uma chave vertice com uma lista vazia é adicionada.
-            Se estiver presente, nada é feito.
+        Se estiver presente, nada é feito.
 
         Parametros
         ----------
@@ -96,8 +96,17 @@ class Grafo(object):
             print(vertice)
 
     def adicionar_aresta(self, aresta):
-        """ A "aresta" pode ser do tipo set, tupla ou lista;
-        entre dois vértices pode ter várias arestas.
+        """
+        Descrição
+        ---------
+        Método que adiciona aresta ao grafo.
+        A "aresta" pode ser do tipo set, tupla ou lista
+        Entre dois vértices pode ter várias arestas.
+
+        Parametros
+        ----------
+        aresta : str
+            Aresta que será adicionada ao grafo
         """
         aresta = set(aresta)
         (vertice1, vertice2) = tuple(aresta)
@@ -108,18 +117,45 @@ class Grafo(object):
         print(aresta)
 
     def __gerar_arestas(self):
-        """ Método estático que gera as arestas do grafo.
+        """
+        Descrição
+        ---------
+        Método estático que gera as arestas do grafo.
             Arestas podem ser representadas como sets com
         um (se for loop) ou dois vertices.
+
+        Retorno
+        -------
+        listaarestas : list
+            Arestas identificadas no dicionário (grafo de entrada)
         """
         arestas = []
         for vertice in self.__grafo_dicionario:
             for vizinho in self.adjacentes(vertice):
                 if {vizinho, vertice} not in arestas:
                     arestas.append((vertice, vizinho))
-        return list(arestas)
+        listaarestas = list(arestas)
+        return listaarestas
 
-    def aresta_existe(self, vertice1, vertice2):
+    @staticmethod
+    def aresta_existe(vertice1, vertice2):
+        """
+        Descrição
+        ---------
+        Metodo que verifica se a aresta existe
+
+        Parametros
+        ----------
+        vertice1 : str
+            Representa o vértice de origem da aresta
+        vertice2 : str
+            Representa o vértice de destino da aresta
+
+        Retorno
+        -------
+        : bool
+            Retorna True se a aresta existir ou False caso não exista
+        """
         # if {vertice1, vertice2} in arestas:
         for v1, v2 in arestas_global:
             verif1 = vertice1 is v1 and vertice2 is v2
@@ -132,18 +168,40 @@ class Grafo(object):
                     return True
         return False
 
-    def vertice_existe(self, vertice):
-        """Verifica se o vértice existe"""
+    @staticmethod
+    def vertice_existe(vertice):
+        """
+        Descrição
+        ---------
+        Metodo que verifica se o vértice existe
+
+        Parametros
+        ----------
+        vertice : str
+            Vértice a ser verificado pelo algoritmo
+
+        Retorno
+        -------
+        : bool
+            Retorna True se o vértice existir ou False caso não exista
+        """
         if vertice in vertices_global:
             return True
         else:
             return False
 
     def verificar_aresta(self, vertice1, vertice2):
+        """
+        Descrição
+        ---------
+        Metodo que imprime na tela se a aresta existe, utilizando um método auxiliar
 
-        """Método para verificar se a aresta existe
-        :param vertice1:
-        :param vertice2:
+        Parametros
+        ----------
+        vertice1 : str
+            Representa o vértice de origem da aresta
+        vertice2 : str
+            Representa o vértice de destino da aresta
         """
         result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
         result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
@@ -152,8 +210,19 @@ class Grafo(object):
 
     def adjacentes(self, vertice):
         """
-        :param vertice:
-        :return adjacencia:
+        Descrição
+        ---------
+        Metodo se há vertices adjacentes ao vértice base
+
+        Parametros
+        ----------
+        vertice : str
+            Vértice base que o algoritmo buscará as adjacências
+
+        Retorno
+        -------
+        adjacencia : array
+            Retorna a lista de vértices adjacentes ao vértice de entrada
         """
         # FIXME alterar para nova entrada - solucao do problema
         adjacencia = []
@@ -166,6 +235,16 @@ class Grafo(object):
         return adjacencia
 
     def verificar_adjacencia(self, vertice):
+        """
+        Descrição
+        ---------
+        Metodo imprime o resultado da verificação de adjacência do vértice base
+
+        Parametros
+        ----------
+        vertice : str
+            Vertice base para ser verificada as adjacências
+        """
         result = "Adjacencia do vértice '%s': " % vertice
         if self.vertice_existe(vertice):
             result += str(self.adjacentes(vertice))
@@ -174,28 +253,43 @@ class Grafo(object):
         print(result)
 
     def grau_vertice(self, vertice):
-        """ Grau do vértice, representa o número de arestas conectadas ao vértice.
+        """
+        Descrição
+        ---------
+        Metodo que imprime o grau do vértice
+
+        Parametros
+        ----------
+        vertice : str
+            Vértice base que terá o grau verificado
         """
         result = "Grau do vértice '%s': " % vertice
         if self.vertice_existe(vertice):
-            ocorrencias = []
-            arestas = self.__gerar_arestas()
-            for v in arestas:
-                if len(v) > 1:
-                    v1, v2 = tuple(v)
-                else:
-                    element = next(iter(v))
-                    v1, v2 = element, element
-                ocorrencias.append(v1)
-                ocorrencias.append(v2)
-            grau = ocorrencias.count(vertice)
-            result += str(grau)
+            if direcionado_global:
+                ocorrencias = []
+                arestas = self.__gerar_arestas()
+                for v in arestas:
+                    if len(v) > 1:
+                        v1, v2 = tuple(v)
+                    else:
+                        element = next(iter(v))
+                        v1, v2 = element, element
+                    ocorrencias.append(v1)
+                    ocorrencias.append(v2)
+                grau = ocorrencias.count(vertice)
+                result += str(grau)
+            else:
+                result += str(len(self.adjacentes(vertice)))
         else:
             result += "Vértice não existe"
         print(result)
 
     def __str__(self):
-        """ Similar ao toString"""
+        """
+        Descrição
+        ---------
+        Similar ao toString
+        """
         result = []
         result.append("Grafo direcionado") if direcionado_global else result.append("Grafo não direcionado")
         result.append("\nVertices: ")
@@ -205,7 +299,21 @@ class Grafo(object):
         print(''.join(str(e) for e in result))
 
     def encontrar_caminho(self, vertice_inicio, vertice_fim, caminho=None):
-        """ Encontra um caminho entre dois vértices"""
+        """
+        Descrição
+        ---------
+        Encontra caminho entre dois vértices
+
+        Parametros
+        ----------
+        vertice_inicio : str
+        vertice_fim : str
+        caminho : array
+
+        Retorno
+        -------
+        None
+        """
         if caminho is None:
             caminho = []
         grafo = self.__grafo_dicionario
@@ -224,7 +332,17 @@ class Grafo(object):
         return None
 
     def imprime_caminho(self, vertice_inicio, vertice_fim):
-        """ Imprime o caminho entre dois vertices. """
+        """
+        Descrição
+        ---------
+        Metodo que verifica se a aresta existe
+
+        Parametros
+        ----------
+        vertice_inicio : str
+        vertice_fim : str
+
+        Imprime o caminho entre dois vertices. """
         peso = 0
         result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         inexistente = []
@@ -301,7 +419,8 @@ class Grafo(object):
             return True
         return False
 
-    def verificar_conexo(self):
+    @staticmethod
+    def verificar_conexo():
         """ Imprime o resultado se o grafo é conexo ou não."""
         result = ["Verificar se o grafo é conexo: "]
         result.append("O grafo é conexo") if conectado_global else result.append("O grafo não é conexo")
@@ -373,8 +492,8 @@ class Grafo(object):
         # FIXME falta corrigir para novo formato de entrada e adjacencia vazia
         arestas = []
         arestas_invertidas = []
-        v1 = ''
-        peso = 0
+        # v1 = ''
+        # peso = 0
         for vertice in vertices_global:
             vertices_internos = self.adjacentes(vertice)
             # if ponderado_global:
