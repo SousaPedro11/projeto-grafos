@@ -16,14 +16,15 @@ O grupo de até 5 (cinco) integrantes deverá implementar um programa computacio
 
 OBS: Entrega até dia 03/07/2019
 
-## Implementação
+## Projeto
+### Implementação
 Inicialmente o problema seria resolvido em Java, mas devido o prazo e
 o conhecimento em comum entre os desenvolvedores, ficou estabelecido que
 a implementação será em Python 3.
 
 [Implementação em Python](https://gitlab.com/SousaPedro11/projeto-grafos/tree/master/pyhton)
 
-## Requisitos Básicos do Ambiente
+### Requisitos Básicos do Ambiente
 * Python 3
 * Git
 * IDE (recomendo PyCharm - estou utilizando para fazer o projeto) ou editor de texto
