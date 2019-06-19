@@ -8,7 +8,7 @@ def __random_vertices(grafo):
 def teste_grafo(grafo):
     a = __random_vertices(grafo)
     b = __random_vertices(grafo)
-    if grafo.ponderado():
+    if grafo.is_weighted():
         while a is b:
             b = __random_vertices(grafo)
     grafo.__str__()

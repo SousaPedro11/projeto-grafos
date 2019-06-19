@@ -37,8 +37,8 @@ class Grafo(object):
         global conectado_global
         global ponderado_global
         vertices_global = self.vertices()
-        ponderado_global = self.ponderado()
-        direcionado_global = self.verificar_direcionado()
+        ponderado_global = self.is_weighted()
+        direcionado_global = self.is_directed()
         arestas_global = self.arestas()
         conectado_global = self.is_connected()
 
@@ -302,17 +302,20 @@ class Grafo(object):
         """
         Descrição
         ---------
-        Encontra caminho entre dois vértices
+        Encontra caminho mínimo entre dois vértices não ponderados
 
         Parametros
         ----------
         vertice_inicio : str
+            Vértice de origem
         vertice_fim : str
+            Vértice de destino
         caminho : array
+            Vértices visitados
 
         Retorno
         -------
-        None
+        caminho : array or None
         """
         if caminho is None:
             caminho = []
@@ -335,14 +338,15 @@ class Grafo(object):
         """
         Descrição
         ---------
-        Metodo que verifica se a aresta existe
+        Metodo que imprime o caminho mínimo entre dois vértices, utilizando dois metodos para casos específicos
 
         Parametros
         ----------
         vertice_inicio : str
+            Vertice de origem
         vertice_fim : str
-
-        Imprime o caminho entre dois vertices. """
+            Vértice de destino
+        """
         peso = 0
         result = ["Caminho do vértice '%s' para o vértice '%s': " % (vertice_inicio, vertice_fim)]
         inexistente = []
@@ -378,7 +382,24 @@ class Grafo(object):
         print(''.join(result))
 
     def encontrar_todos_caminhos(self, vertice_inicio, vertice_fim, caminho=None):
-        """ encontra todos os caminhos entre dois vértices """
+        """
+        Descrição
+        ---------
+        Encontra todos os caminhos entre dois vértices
+
+        Parametros
+        ----------
+        vertice_inicio : str
+            Vértice de origem
+        vertice_fim : str
+            Vértice de destino
+        caminho : array
+            Vértices visitados
+
+        Retorno
+        -------
+        caminho : array
+        """
         if caminho is None:
             caminho = []
         grafo = self.__grafo_dicionario
@@ -401,7 +422,21 @@ class Grafo(object):
                      vertices_encountered=None,
                      start_vertex=None):
         # FIXME falta ajustar
-        """ Determina se o grafo é conexo """
+        """
+        Descrição
+        ---------
+        Verifica se o grafo é conexo
+
+        Parametros
+        ----------
+        vertices_encountered : set
+            Set de vértices encontrados
+        start_vertex : str
+
+        Retorno
+        -------
+        : bool
+        """
         if vertices_encountered is None:
             vertices_encountered = set()
         # gdict = self.__grafo_dicionario
@@ -421,13 +456,21 @@ class Grafo(object):
 
     @staticmethod
     def verificar_conexo():
-        """ Imprime o resultado se o grafo é conexo ou não."""
+        """
+        Descrição
+        ---------
+        Imprime o resultado se o grafo é conexo ou não, utilizando o método de verificação.
+        """
         result = ["Verificar se o grafo é conexo: "]
         result.append("O grafo é conexo") if conectado_global else result.append("O grafo não é conexo")
         print(''.join(result))
 
     def verificar_ciclico(self):
-        """ Verifica se o grafo é cíclico"""
+        """
+        Descrição
+        ---------
+        Imprime se o grafo é cíclico ou não, utilizando um método interno como auxiliar.
+        """
         result = ["Verificar se o grafo é cíclico: "]
 
         caminho = set()
@@ -449,8 +492,13 @@ class Grafo(object):
         print(''.join(result))
 
     def verificar_fortemente_conexos(self):
-
-        # FIXME
+        """
+        Descrição
+        ---------
+        Imprime se o grafo é fortemente conexo e caso seja mostra os compeonentes. É utilizado o
+        método tarjan como auxiliar.
+        """
+        # FIXME ajustar o tarjan para nova entrada
         if direcionado_global:
             tarjan_graph = self.tarjan()
             cont = 0
@@ -463,6 +511,11 @@ class Grafo(object):
             print('O grafo não é fortemente conexo')
 
     def verificar_eureliano(self):
+        """
+        Descrição
+        ---------
+        Verifica e imprime se o grafo é euleriano
+        """
         # FIXME ajustar para grafo conectado
         result = ["Verificar se o grafo é Euleriano: "]
         if not conectado_global:
@@ -477,7 +530,16 @@ class Grafo(object):
         print(''.join(result))
 
     def diameter(self):
-        # FIXME falta corrigir ou substituir o algoritmo
+        """
+        MÉTODO NÃO UTILIZADO
+        Descrição
+        ---------
+        Encontra o caminho mais curto do grafo.
+
+        Retorno
+        -------
+        caminho_curto[-1] : array
+        """
         v = vertices_global
         pares = [(v[i], v[j]) for i in range(len(v) - 1) for j in range(i + 1, len(v))]
         caminho_curto = []
@@ -488,7 +550,16 @@ class Grafo(object):
         caminho_curto.sort(key=len)
         return caminho_curto[-1]
 
-    def verificar_direcionado(self):
+    def is_directed(self):
+        """
+        Descrição
+        ---------
+        Verifica se o grafo é direcionado
+
+        Retorno
+        -------
+        : bool
+        """
         # FIXME falta corrigir para novo formato de entrada e adjacencia vazia
         arestas = []
         arestas_invertidas = []
@@ -510,6 +581,16 @@ class Grafo(object):
         return True
 
     def encontrar_agm(self, vertice_inicial):
+        """
+        Descrição
+        ---------
+        Imprime a AGM do grafo usando algoritmo de prim, se possível.
+
+        Parametros
+        ----------
+        vertice_vertice_inicial : str
+            Vértice base
+        """
         # TODO implementar para grafo ponderado
         # Grafo conectado, ponderado e não direcionado
         result = ["Arestas da AGM: "]
@@ -537,6 +618,15 @@ class Grafo(object):
         print(''.join(result))
 
     def aresta_peso(self):
+        """
+        Descrição
+        ---------
+        Identifica o peso das arestas
+
+        Retorno
+        -------
+        aresta_peso : set
+        """
         aresta_peso = {}
         if ponderado_global:
             for k, v in self.__grafo_dicionario.items():
@@ -547,6 +637,15 @@ class Grafo(object):
         # print(''.join(str(x) for x in aresta_peso))
 
     def aresta_ponderada(self):
+        """
+        Descrição
+        ---------
+        Identifica o peso das arestas
+
+        Retorno
+        -------
+        aresta_peso : array
+        """
         aresta_peso = []
         dict_aresta = self.aresta_peso()
         for e in dict_aresta.keys():
@@ -557,6 +656,11 @@ class Grafo(object):
         return aresta_peso
 
     def plotar(self):
+        """
+        Descrição
+        ---------
+        Plota o grafo
+        """
         # graph = nx.Graph(self.__grafo_dicionario)
         if direcionado_global:
             graph = nx.MultiDiGraph()
@@ -583,6 +687,15 @@ class Grafo(object):
         # g.view()
 
     def tarjan(self):
+        """
+        Descrição
+        ---------
+        Encontra os componentes fortemente conexos do grafo
+
+        Retorno
+        -------
+        tuple(resultado) : tuple
+        """
         # FIXME falta revisar para grafo ponderado
         # Declare globals
         index = {}  # Dictionary of vertices and connections
@@ -657,7 +770,17 @@ class Grafo(object):
         # Return list of edges (tuples)
         return tuple(result)
 
-    def ponderado(self):
+    def is_weighted(self):
+        """
+        Descrição
+        ---------
+        Verifica se o grafo é ponderado
+
+        Retorno
+        -------
+        : bool
+        """
+        # FIXME ajustar para dict
         for k, v in self.__grafo_dicionario.items():
             for vi in v:
                 if len(vi) < 1:
@@ -669,6 +792,20 @@ class Grafo(object):
 
     @staticmethod
     def traceback_path(target, parents):
+        """
+        Descrição
+        ---------
+        Encontra caminho entre dois vértices num grafo ponderado
+
+        Parametros
+        ----------
+        target : str
+        parents : set
+
+        Retorno
+        -------
+        list(reversed(path)) : list
+        """
         path = []
         while target:
             path.append(target)
@@ -677,6 +814,22 @@ class Grafo(object):
         return list(reversed(path))
 
     def encontrar_caminho_ponderado(self, start, finish):
+        """
+        Descrição
+        ---------
+        Encontra caminho entre dois vértices num grafo ponderado
+
+        Parametros
+        ----------
+        start : str
+            Vértice de origem
+        finish : str
+            Vértice de destino
+
+        Retorno
+        -------
+        traceback_path(finish, parents) : list
+        """
         # FIXME ajustar para nova entrada
         aberto = [HeapEntry(start, 0.0)]
         closed = set()
@@ -706,6 +859,22 @@ class Grafo(object):
                     heapq.heappush(aberto, heap_entry)
 
     def direct_cost(self, vertex1, vertex2):
+        """
+        Descrição
+        ---------
+        Encontra custo entre dois vértices
+
+        Parametros
+        ----------
+        vertex1 : str
+            Vértice de origem
+        vertex2 : str
+            Vértice de destino
+
+        Retorno
+        -------
+        valor : int
+        """
         list_v1 = self.__grafo_dicionario.items()
         custo = []
         for v, cost in list_v1:
@@ -719,6 +888,20 @@ class Grafo(object):
         #     return math.inf
 
     def caminho_ponderado_peso(self, caminho):
+        """
+        Descrição
+        ---------
+        Encontra o custo total de um caminho
+
+        Parametros
+        ----------
+        caminho : array
+            Caminho a ser calculado o custo
+
+        Retorno
+        -------
+        peso : int
+        """
         peso = 0
         for v in range(len(caminho) - 1):
             vatual = caminho[v]
@@ -727,6 +910,21 @@ class Grafo(object):
         return peso
 
     def prim(self, root):
+        """
+        Descrição
+        ---------
+        Encontra a AGM
+
+        Parametros
+        ----------
+        root : str
+            Vértice base
+
+        Retorno
+        -------
+        selected_edges : array
+        weight : int
+        """
         # Grafo conectado, ponderado e não direcionado
         if not direcionado_global and conectado_global and ponderado_global:
             vertex = [root]  # Lista dos vertices a partir do qual buscamos as arestas

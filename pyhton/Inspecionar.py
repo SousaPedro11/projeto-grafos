@@ -13,6 +13,8 @@ for x in funcoes:
     funcao = x[1]
     h = inspect.signature(funcao)
     if callable(funcao):
+        # if ": bool" in str(x[1].__doc__):
+            # print(nome)
         # print(dir(funcao))
         print(nome, h, '\n' + str(x[1].__doc__))
 
