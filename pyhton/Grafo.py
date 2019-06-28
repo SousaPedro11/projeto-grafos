@@ -77,6 +77,17 @@ class Grafo(object):
             listaarestas = self.__gerar_arestas()
         return listaarestas
 
+    def imprime_arestas(self):
+        if direcionado_global:
+            return self.arestas()
+        else:
+            arestas = []
+            for vertice in self.__grafo_dicionario:
+                for vizinho in self.adjacentes(vertice):
+                    if {vizinho, vertice} not in arestas:
+                        arestas.append({vertice, vizinho})
+            return list(arestas)
+
     def adicionar_vertice(self, vertice):
         """
         Descrição
@@ -295,7 +306,7 @@ class Grafo(object):
         result.append("\nVertices: ")
         result.append(vertices_global)
         result.append("\nArestas: ")
-        result.append(str(arestas_global))
+        result.append(str(self.imprime_arestas()))
         print(''.join(str(e) for e in result))
 
     def encontrar_caminho(self, vertice_inicio, vertice_fim, caminho=None):
