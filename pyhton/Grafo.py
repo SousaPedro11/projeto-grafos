@@ -469,6 +469,16 @@ class Grafo(object):
             return True
         return False
 
+    # def testeConexo(self):
+    #     M = len(vertices_global)
+    #     N = len(self.imprime_arestas())
+    #     verificador = (N-1)*(N-2)/2
+    #     print(M, verificador)
+    #     if M > verificador:
+    #         print('Grafo conexo')
+    #     else:
+    #         print("Grafo desconexo")
+
     @staticmethod
     def verificar_conexo():
         """

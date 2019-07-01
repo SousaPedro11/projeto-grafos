@@ -30,8 +30,9 @@ from Grafo import Grafo
 #            }
 
 # print("GRAFO 1")
-# graph1 = Grafo(Entrada.grafo01)
+# graph1 = Grafo(Entrada.grafo03)
 # graph1.__str__()
+# graph1.testeConexo()
 # graph1.verificar_aresta("f", "d")
 # graph1.verificar_aresta("e", "d")
 # graph1.grau_vertice("d")
