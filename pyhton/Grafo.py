@@ -169,8 +169,12 @@ class Grafo(object):
         """
         # if {vertice1, vertice2} in arestas:
         for v1, v2 in arestas_global:
-            verif1 = vertice1 is v1 and vertice2 is v2
-            verif2 = vertice1 is v2 and vertice2 is v1
+            ver1 = vertice1 == v1
+            ver2 = vertice2 == v2
+            ver3 = vertice1 == v2
+            ver4 = vertice2 == v1
+            verif1 = ver1 and ver2
+            verif2 = ver3 and ver4
             if direcionado_global:
                 if verif1:
                     return True
@@ -792,14 +796,20 @@ class Grafo(object):
         : bool
         """
         # FIXME ajustar para dict
+        # for k, v in self.__grafo_dicionario.items():
+        #     for vi in v:
+        #         if len(vi) < 1:
+        #             continue
+        #         # if isinstance(vi, tuple):
+        #         if isinstance(vi, dict):
+        #             return True
+        #         else:
+        #             return False
         for k, v in self.__grafo_dicionario.items():
-            for vi in v:
-                if len(vi) < 1:
-                    continue
-                if isinstance(vi, tuple):
-                    return True
-                else:
-                    return False
+            if isinstance(v, dict):
+                return True
+            else:
+                return False
 
     @staticmethod
     def traceback_path(target, parents):

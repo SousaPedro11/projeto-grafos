@@ -11,24 +11,24 @@ def teste_grafo(grafo):
     if grafo.is_weighted():
         while a is b:
             b = __random_vertices(grafo)
-    grafo.__str__()
+    grafo.__str__()  # OK
     print("q1.", end=' ')
-    grafo.verificar_aresta(__random_vertices(grafo), __random_vertices(grafo))
+    grafo.verificar_aresta(a, b)  # OK
     print("q2.", end=' ')
-    grafo.grau_vertice(__random_vertices(grafo))
+    grafo.grau_vertice(__random_vertices(grafo))  # OK
     print("q3.", end=' ')
-    grafo.verificar_adjacencia(__random_vertices(grafo))
+    grafo.verificar_adjacencia(__random_vertices(grafo))  # OK
     print("q4.", end=' ')
-    grafo.verificar_ciclico()
+    grafo.verificar_ciclico()  # FIXME
     print("q5.", end=' ')
-    grafo.verificar_conexo()
+    grafo.verificar_conexo()  # FIXME
     print("q6.", end=' ')
-    grafo.verificar_fortemente_conexos()
+    grafo.verificar_fortemente_conexos()  # FIXME
     print("q7.", end=' ')
-    grafo.verificar_eureliano()
+    grafo.verificar_eureliano()  # FIXME verificar
     print("q8.", end=' ')
-    grafo.imprime_caminho(a, b)
+    grafo.imprime_caminho(a, b)  # FIXME
     print("q9.", end=' ')
-    grafo.encontrar_agm(__random_vertices(grafo))
-    grafo.plotar()
+    grafo.encontrar_agm(__random_vertices(grafo))  # FIXME
+    # grafo.plotar()
     print()
