@@ -567,6 +567,22 @@ class Grafo(object):
         result.append("É cíclico") if any(visit(v) for v in self.__grafo_dicionario) else result.append("Não é ciclico")
         print(''.join(result))
 
+    def is_cyclic(self):
+        result = ["Verificar se o grafo é cíclico: "]
+        arestas = set(self.arestas())
+        if self.is_directed():
+            tam_arestas = len(arestas)
+        else:
+            tam_arestas = len(arestas)/2
+
+        if (tam_arestas > len(vertices_global) - 1):
+            # print("Grafo Cíclico por Nº Aresta : %i >= Nº Vértices: %i" % (
+            #     tam_arestas, len(vertices_global)))
+            result.append("É cíclico - nº arestas (%i) >= nº vertices (%i)" % (tam_arestas, len(vertices_global)))
+        else:
+            result.append("Não é ciclico")
+        print(''.join(result))
+
     def verificar_fortemente_conexos(self):
         """
         Descrição
