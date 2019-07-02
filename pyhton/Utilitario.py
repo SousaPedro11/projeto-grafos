@@ -19,9 +19,9 @@ def teste_grafo(grafo):
     print("q3.", end=' ')
     grafo.verificar_adjacencia(__random_vertices(grafo))  # OK
     print("q4.", end=' ')
-    grafo.verificar_ciclico()  # FIXME
-    # print("q5.", end=' ')
-    # grafo.verificar_conexo()  # FIXME
+    grafo.verificar_ciclico()  # OK
+    print("q5.", end=' ')
+    grafo.verificar_conexo()  # OK
     # print("q6.", end=' ')
     # grafo.verificar_fortemente_conexos()  # FIXME
     # print("q7.", end=' ')

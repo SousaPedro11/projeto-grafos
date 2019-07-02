@@ -32,15 +32,17 @@ class Grafo(object):
             grafo_dicionario = {}
         self.__grafo_dicionario = grafo_dicionario
         global vertices_global
-        global direcionado_global
         global arestas_global
         global conectado_global
         global ponderado_global
         vertices_global = self.vertices()
         ponderado_global = self.is_weighted()
-        direcionado_global = self.is_directed()
         arestas_global = self.arestas()
-        conectado_global = self.is_connected()
+        if not self.is_directed():
+            conectado_global = self.is_connected()
+        else:
+            graph = Grafo(self.to_undirected())
+            conectado_global = graph.is_connected()
 
     def vertices(self):
         """
@@ -67,7 +69,7 @@ class Grafo(object):
         listaarestas : list
             Arestas identificadas no dicionário (grafo de entrada)
         """
-        if direcionado_global:
+        if self.is_directed():
             arestas = []
             for vertice in vertices_global:
                 for vertice_interno in self.adjacentes(vertice):
@@ -78,7 +80,7 @@ class Grafo(object):
         return listaarestas
 
     def imprime_arestas(self):
-        if direcionado_global:
+        if self.is_directed():
             return self.arestas()
         else:
             arestas = []
@@ -148,8 +150,7 @@ class Grafo(object):
         listaarestas = list(arestas)
         return listaarestas
 
-    @staticmethod
-    def aresta_existe(vertice1, vertice2):
+    def aresta_existe(self, vertice1, vertice2):
         """
         Descrição
         ---------
@@ -175,7 +176,7 @@ class Grafo(object):
             ver4 = vertice2 == v1
             verif1 = ver1 and ver2
             verif2 = ver3 and ver4
-            if direcionado_global:
+            if self.is_directed():
                 if verif1:
                     return True
             else:
@@ -269,7 +270,7 @@ class Grafo(object):
 
     def calcula_grau(self, vertice):
         if self.vertice_existe(vertice):
-            if direcionado_global:
+            if self.is_directed():
                 ocorrencias = []
                 arestas = self.__gerar_arestas()
                 for v in arestas:
@@ -300,7 +301,7 @@ class Grafo(object):
         """
         result = "Grau do vértice '%s': " % vertice
         if self.vertice_existe(vertice):
-            if direcionado_global:
+            if self.is_directed():
                 ocorrencias = []
                 arestas = self.__gerar_arestas()
                 for v in arestas:
@@ -326,7 +327,7 @@ class Grafo(object):
         Similar ao toString
         """
         result = []
-        result.append("Grafo direcionado") if direcionado_global else result.append("Grafo não direcionado")
+        result.append("Grafo direcionado") if self.is_directed() else result.append("Grafo não direcionado")
         result.append("\nVertices: ")
         result.append(vertices_global)
         result.append("\nArestas: ")
@@ -472,6 +473,7 @@ class Grafo(object):
         -------
         : bool
         """
+
         if vertices_encountered is None:
             vertices_encountered = set()
         # gdict = self.__grafo_dicionario
@@ -489,11 +491,11 @@ class Grafo(object):
         return False
 
     def testeConexo(self):
-        if not direcionado_global:
+        if not self.is_directed():
             Deg = 0
             N = len(vertices_global)
             M = len(self.imprime_arestas())
-            verificador = N*(N-1)/2
+            verificador = N * (N - 1) / 2
             print('arestas: ', M, '\tverificador: ', verificador)
             if M <= verificador:
                 print('Grafo conexo')
@@ -504,17 +506,40 @@ class Grafo(object):
                 Deg += self.calcula_grau(x)
             print(Deg)
 
-
-    @staticmethod
-    def verificar_conexo():
+    def verificar_conexo(self):
         """
         Descrição
         ---------
         Imprime o resultado se o grafo é conexo ou não, utilizando o método de verificação.
         """
         result = ["Verificar se o grafo é conexo: "]
+        # if not direcionado_global:
         result.append("O grafo é conexo") if conectado_global else result.append("O grafo não é conexo")
+        # else:
+        #     graph = Grafo(self.to_undirected())
+        #     # conectado_global = graph.is_connected()
+        #     result.append("O grafo é conexo") if conectado_global else result.append("O grafo não é conexo")
         print(''.join(result))
+
+    def to_undirected(self):
+        if self.is_directed():
+            arestas = []
+            for vertice in self.__grafo_dicionario:
+                for vizinho in self.adjacentes(vertice):
+                    if {vizinho, vertice} not in arestas:
+                        arestas.append((vertice, vizinho))
+                        arestas.append((vizinho, vertice))
+
+            grafo = {}
+            for k, _ in arestas:
+                arr1 = []
+                for _, v in arestas:
+                    if (k, v) in arestas:
+                        # print(k, v)
+                        arr1.append(v) if v not in arr1 else ''
+                # print(k, arr1)
+                grafo[str(k)] = arr1
+            return grafo
 
     def verificar_ciclico(self):
         """
@@ -550,7 +575,7 @@ class Grafo(object):
         método tarjan como auxiliar.
         """
         # FIXME ajustar o tarjan para nova entrada
-        if direcionado_global:
+        if self.is_directed():
             tarjan_graph = self.tarjan()
             cont = 0
             for _ in tarjan_graph:
@@ -614,15 +639,9 @@ class Grafo(object):
         # FIXME falta corrigir para novo formato de entrada e adjacencia vazia
         arestas = []
         arestas_invertidas = []
-        # v1 = ''
-        # peso = 0
-        for vertice in vertices_global:
-            vertices_internos = self.adjacentes(vertice)
-            # if ponderado_global:
-            #     vertice_interno = v1, peso
-            # else:
-            #     vertice_interno = v1
-            for vertice_interno in vertices_internos:
+        v = self.vertices()
+        for vertice in v:
+            for vertice_interno in self.__grafo_dicionario[vertice]:
                 arestas.append((vertice, vertice_interno))
                 arestas_invertidas.append((vertice_interno, vertice))
         arestas.sort()
@@ -653,12 +672,12 @@ class Grafo(object):
                 condicao.append("deve ser conectado")
             if not ponderado_global:
                 condicao.append("deve ser ponderado")
-            if direcionado_global:
+            if self.is_directed():
                 condicao.append("não deve ser direcionado")
         else:
             condicao.append("não apresenta o vértice '%s'" % vertice_inicial)
 
-        if conectado_global and ponderado_global and not direcionado_global and vertice_existe:
+        if conectado_global and ponderado_global and not self.is_directed() and vertice_existe:
             # lista = self.dijkstra(vertice_inicial)
             lista, peso_total = self.prim(vertice_inicial)
             result.append(', '.join(str(x) for x in lista))
@@ -713,7 +732,7 @@ class Grafo(object):
         Plota o grafo
         """
         # graph = nx.Graph(self.__grafo_dicionario)
-        if direcionado_global:
+        if self.is_directed():
             graph = nx.MultiDiGraph()
             # graph = nx.MultiDiGraph(self.__grafo_dicionario)
             # g = graphviz.Digraph(self.__grafo_dicionario)
@@ -983,7 +1002,7 @@ class Grafo(object):
         weight : int
         """
         # Grafo conectado, ponderado e não direcionado
-        if not direcionado_global and conectado_global and ponderado_global:
+        if not self.is_directed() and conectado_global and ponderado_global:
             vertex = [root]  # Lista dos vertices a partir do qual buscamos as arestas
             selected_edges = []  # Lista com as arestas selecionadas
 
