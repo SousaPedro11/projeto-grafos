@@ -30,11 +30,11 @@ a implementação será em Python 3.
 * IDE (recomendo PyCharm - estou utilizando para fazer o projeto) ou editor de texto
 
 ### Arquivos
-* Entrada.py - Os grafos estão definidos aqui. É utilizada a estrutura de dicionário (dict).
-* Main.py - Arquivo de execução personalizada. Os métodos podem ser chamados de acordo com a necessidade.
-* Utilitario.py - São definidos métodos auxiliares para a execução do projeto. É utilizado por Teste.py.
-* Grafo.py - É onde se encontram todos os métodos para manipular os grafos de acordo com o esboço do projeto.
-* Teste.py - É um suite de teste que executa o método teste_grafo do Utilitario.py para todos os grafos 
+* [Entrada.py](https://gitlab.com/SousaPedro11/projeto-grafos/blob/master/pyhton/Entrada.py) - Os grafos estão definidos aqui. É utilizada a estrutura de dicionário (dict).
+* [Main.py](https://gitlab.com/SousaPedro11/projeto-grafos/blob/master/pyhton/Main.py) - Arquivo de execução personalizada. Os métodos podem ser chamados de acordo com a necessidade.
+* [Utilitario.py](https://gitlab.com/SousaPedro11/projeto-grafos/blob/master/pyhton/Utilitario.py) - São definidos métodos auxiliares para a execução do projeto. É utilizado por Teste.py.
+* [Grafo.py](https://gitlab.com/SousaPedro11/projeto-grafos/blob/master/pyhton/Grafo.py) - É onde se encontram todos os métodos para manipular os grafos de acordo com o esboço do projeto.
+* [Teste.py](https://gitlab.com/SousaPedro11/projeto-grafos/blob/master/pyhton/Teste.py) - É um suite de teste que executa o método teste_grafo do Utilitario.py para todos os grafos 
 definidos em Entrada.py. Nesta classe está a ordem dos problemas propostos e suas soluções.
 
 ## Grupo
