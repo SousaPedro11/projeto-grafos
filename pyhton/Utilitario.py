@@ -20,15 +20,15 @@ def teste_grafo(grafo):
     grafo.verificar_adjacencia(__random_vertices(grafo))  # OK
     print("q4.", end=' ')
     grafo.verificar_ciclico()  # FIXME
-    print("q5.", end=' ')
-    grafo.verificar_conexo()  # FIXME
-    print("q6.", end=' ')
-    grafo.verificar_fortemente_conexos()  # FIXME
-    print("q7.", end=' ')
-    grafo.verificar_eureliano()  # FIXME verificar
-    print("q8.", end=' ')
-    grafo.imprime_caminho(a, b)  # FIXME
-    print("q9.", end=' ')
-    grafo.encontrar_agm(__random_vertices(grafo))  # FIXME
+    # print("q5.", end=' ')
+    # grafo.verificar_conexo()  # FIXME
+    # print("q6.", end=' ')
+    # grafo.verificar_fortemente_conexos()  # FIXME
+    # print("q7.", end=' ')
+    # grafo.verificar_eureliano()  # FIXME verificar
+    # print("q8.", end=' ')
+    # grafo.imprime_caminho(a, b)  # FIXME
+    # print("q9.", end=' ')
+    # grafo.encontrar_agm(__random_vertices(grafo))  # FIXME
     # grafo.plotar()
     print()

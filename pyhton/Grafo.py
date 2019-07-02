@@ -267,6 +267,26 @@ class Grafo(object):
             result += "O vértice não existe no grafo"
         print(result)
 
+    def calcula_grau(self, vertice):
+        if self.vertice_existe(vertice):
+            if direcionado_global:
+                ocorrencias = []
+                arestas = self.__gerar_arestas()
+                for v in arestas:
+                    if len(v) > 1:
+                        v1, v2 = tuple(v)
+                    else:
+                        element = next(iter(v))
+                        v1, v2 = element, element
+                    ocorrencias.append(v1)
+                    ocorrencias.append(v2)
+                grau = ocorrencias.count(vertice)
+                return grau
+            else:
+                return len(self.adjacentes(vertice))
+        else:
+            print("Vértice não existe")
+
     def grau_vertice(self, vertice):
         """
         Descrição
@@ -462,22 +482,28 @@ class Grafo(object):
         vertices_encountered.add(start_vertex)
         if len(vertices_encountered) != len(vertices):
             for vertex in self.adjacentes(start_vertex):
-                if vertex not in vertices_encountered:
-                    if self.is_connected(vertices_encountered, vertex):
-                        return True
+                if vertex not in vertices_encountered and self.is_connected(vertices_encountered, vertex):
+                    return True
         else:
             return True
         return False
 
-    # def testeConexo(self):
-    #     M = len(vertices_global)
-    #     N = len(self.imprime_arestas())
-    #     verificador = (N-1)*(N-2)/2
-    #     print(M, verificador)
-    #     if M > verificador:
-    #         print('Grafo conexo')
-    #     else:
-    #         print("Grafo desconexo")
+    def testeConexo(self):
+        if not direcionado_global:
+            Deg = 0
+            N = len(vertices_global)
+            M = len(self.imprime_arestas())
+            verificador = N*(N-1)/2
+            print('arestas: ', M, '\tverificador: ', verificador)
+            if M <= verificador:
+                print('Grafo conexo')
+            else:
+                print("Grafo desconexo")
+
+            for x in vertices_global:
+                Deg += self.calcula_grau(x)
+            print(Deg)
+
 
     @staticmethod
     def verificar_conexo():

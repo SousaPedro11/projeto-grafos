@@ -24,11 +24,13 @@ grafo03 = {"São Paulo": {"Curitiba": 20, "Porto Alegre": 60},
 #            "Porto Alegre": [("São Paulo", 60), ("Curitiba", 50), ("Florianópolis", 45)]
 #            }
 #
-# grafo04 = {"a": ["b", "d"],
-#            "b": ["a", "c"],
-#            "c": ["b", "d"],
-#            "d": ["a", "c"]
-#            }
+grafo04 = {"x1": ["x2", "x4"],
+           "x2": ["x1", "x3"],
+           "x3": ["x2"],
+           "x4": ["x1"],
+           "x5": ["x6"],
+           "x6": ["x5"]
+           }
 #
 # grafo05 = {"a": ["c"],
 #            "b": ["c"],
