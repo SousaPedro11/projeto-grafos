@@ -12,10 +12,10 @@ grafo02 = {"Isadora": ["Emerson"],
            "Renata": []
            }
 
-grafo03 = {"São Paulo": {"Curitiba": 20, "Porto Alegre": 60},
-           "Florianópolis": {"Curitiba": 30, "Porto Alegre": 45},
-           "Curitiba": {"São Paulo": 20, "Porto Alegre": 50, "Florianópolis": 30},
-           "Porto Alegre": {"São Paulo": 60, "Curitiba": 50, "Florianópolis": 45}
+grafo03 = {"São_Paulo": {"Curitiba": 20, "Porto_Alegre": 60},
+           "Florianópolis": {"Curitiba": 30, "Porto_Alegre": 45},
+           "Curitiba": {"São_Paulo": 20, "Porto_Alegre": 50, "Florianópolis": 30},
+           "Porto_Alegre": {"São_Paulo": 60, "Curitiba": 50, "Florianópolis": 45}
            }
 
 grafo04 = {"x1": ["x2", "x4"],

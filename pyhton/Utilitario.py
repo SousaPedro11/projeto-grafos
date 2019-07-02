@@ -25,9 +25,9 @@ def teste_grafo(grafo):
     # print("q6.", end=' ')
     # grafo.verificar_fortemente_conexos()  # FIXME
     print("q7.", end=' ')
-    grafo.verificar_eureliano()  # FIXME verificar
-    # print("q8.", end=' ')
-    # grafo.imprime_caminho(a, b)  # FIXME
+    grafo.verificar_eureliano()  # OK
+    print("q8.", end=' ')
+    grafo.imprime_caminho(a, b)  # OK
     # print("q9.", end=' ')
     # grafo.encontrar_agm(__random_vertices(grafo))  # FIXME
     # grafo.plotar()
