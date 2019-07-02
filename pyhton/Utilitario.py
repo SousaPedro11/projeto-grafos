@@ -22,10 +22,10 @@ def teste_grafo(grafo):
     grafo.is_cyclic()  # OK
     print("q5.", end=' ')
     grafo.verificar_conexo()  # OK
-    print("q6.", end=' ')
-    grafo.verificar_fortemente_conexos()  # FIXME
-    # print("q7.", end=' ')
-    # grafo.verificar_eureliano()  # FIXME verificar
+    # print("q6.", end=' ')
+    # grafo.verificar_fortemente_conexos()  # FIXME
+    print("q7.", end=' ')
+    grafo.verificar_eureliano()  # FIXME verificar
     # print("q8.", end=' ')
     # grafo.imprime_caminho(a, b)  # FIXME
     # print("q9.", end=' ')
