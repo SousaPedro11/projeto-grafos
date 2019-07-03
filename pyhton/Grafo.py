@@ -574,7 +574,7 @@ class Grafo(object):
         if self.is_directed():
             tam_arestas = len(arestas)
         else:
-            tam_arestas = len(arestas)/2
+            tam_arestas = len(arestas) / 2
 
         if (tam_arestas > len(vertices_global) - 1):
             # print("Grafo Cíclico por Nº Aresta : %i >= Nº Vértices: %i" % (
@@ -716,9 +716,10 @@ class Grafo(object):
         aresta_peso : set
         """
         aresta_peso = {}
-        if ponderado_global:
+        ponderado = self.is_weighted()
+        if ponderado:
             for k, v in self.__grafo_dicionario.items():
-                for k2, v2 in v:
+                for k2, v2 in v.items():
                     if (k2, k, v2) not in aresta_peso:
                         aresta_peso[k, k2] = v2
         return aresta_peso
@@ -761,14 +762,15 @@ class Grafo(object):
         # fig = plt.figure()
         # fig.suptitle(str(self), fontsize=20)
         graph.add_nodes_from(vertices_global)
-        graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado_global else graph.add_edges_from(
-            arestas_global)
+        ponderado = self.is_weighted()
+        graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado else graph.add_edges_from(
+            self.arestas())
         pos = nx.spring_layout(graph)
         # nx.draw(graph, pos, with_labels=True)
         nx.draw_networkx_nodes(graph, pos)
         nx.draw_networkx_labels(graph, pos)
         nx.draw_networkx_edges(graph, pos)
-        if ponderado_global:
+        if ponderado:
             nx.draw_networkx_edge_labels(graph, pos, edge_labels=self.aresta_peso())
         plt.axis('off')
         plt.show()
@@ -868,16 +870,6 @@ class Grafo(object):
         -------
         : bool
         """
-        # FIXME ajustar para dict
-        # for k, v in self.__grafo_dicionario.items():
-        #     for vi in v:
-        #         if len(vi) < 1:
-        #             continue
-        #         # if isinstance(vi, tuple):
-        #         if isinstance(vi, dict):
-        #             return True
-        #         else:
-        #             return False
         for k, v in self.__grafo_dicionario.items():
             if isinstance(v, dict):
                 return True
@@ -978,7 +970,6 @@ class Grafo(object):
                     if key == vertex2:
                         custo = value
         return custo
-
 
     def caminho_ponderado_peso(self, caminho):
         """

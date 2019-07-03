@@ -96,5 +96,5 @@ print("q9.", end=' ')
 graph06.encontrar_agm("a")  # OK
 graph06.encontrar_agm("g")  # OK
 graph06.encontrar_agm("c")  # OK
-# grafo.plotar()
+# graph06.plotar()
 print()

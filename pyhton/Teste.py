@@ -3,12 +3,12 @@ import Utilitario
 from Grafo import Grafo
 
 __excluidos = [
-    'grafo01',
-    'grafo02',
-    'grafo04',
-    'grafo03',
-    'grafo05',
-    'grafo06'
+    # 'grafo01',
+    # 'grafo02',
+    # 'grafo04',
+    # 'grafo03',
+    # 'grafo05',
+    # 'grafo06'
 ]
 
 
