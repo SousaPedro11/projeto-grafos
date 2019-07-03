@@ -3,7 +3,7 @@ import heapq
 
 import math
 # import matplotlib.pyplot as plt
-import networkx as nx
+#import networkx as nx
 
 
 class HeapEntry:
@@ -169,15 +169,15 @@ class Grafo(object):
             Retorna True se a aresta existir ou False caso não exista
         """
         # if {vertice1, vertice2} in arestas:
-        direcionado = self.is_directed()
-        for v1, v2 in arestas_global:
+        #direcionado = self.is_directed()
+        for v1, v2 in self.arestas():
             ver1 = vertice1 == v1
             ver2 = vertice2 == v2
             ver3 = vertice1 == v2
             ver4 = vertice2 == v1
             verif1 = ver1 and ver2
             verif2 = ver3 and ver4
-            if direcionado:
+            if self.is_directed():
                 if verif1:
                     return True
             else:
@@ -220,9 +220,9 @@ class Grafo(object):
         vertice2 : str
             Representa o vértice de destino da aresta
         """
-        result = ["Verificar existencia da aresta ('%s', '%s'): " % (vertice1, vertice2)]
-        result.append("A aresta existe") if self.aresta_existe(vertice1, vertice2) else result.append(
-            "A aresta não existe")
+        result = ["Verificar existencia do arco ('%s', '%s'): " % (vertice1, vertice2)]
+        result.append("O arco existe") if self.aresta_existe(vertice1, vertice2) else result.append(
+            "O arco não existe")
         print(''.join(result))
 
     def adjacentes(self, vertice):
@@ -419,6 +419,18 @@ class Grafo(object):
                 result.append(" não presentes no grafo.")
         print(''.join(result))
 
+    def encontrar_caminho_minimo(self, inicio, fim):
+        teste = self.encontrar_todos_caminhos(inicio,fim)
+        #print(teste)
+        tam = math.inf
+        for x in teste:
+            if len(x) < tam:
+                tam = len(x)
+                #print(len(x))
+                result = x
+        print(result)
+        #return result
+
     def encontrar_todos_caminhos(self, vertice_inicio, vertice_fim, caminho=None):
         """
         Descrição
@@ -517,7 +529,7 @@ class Grafo(object):
         result = ["Verificar se o grafo é conexo: "]
         # if not direcionado_global:
         result.append("O grafo é conexo.") if conectado_global else result.append("O grafo não é conexo.")
-        result.append(" É fortemente conexo.") if self.scg() else ""
+        # result.append(" É fortemente conexo.") if self.scg() else ""
         # else:
         #     graph = Grafo(self.to_undirected())
         #     # conectado_global = graph.is_connected()
@@ -747,24 +759,24 @@ class Grafo(object):
             aresta_peso.append((k, v, peso))
         return aresta_peso
 
-    def scg(self):
-        resultado = False
-        if self.is_directed():
-            graph = nx.MultiDiGraph()
-            graph.add_nodes_from(self.vertices())
-            graph.add_edges_from(self.arestas())
-            # graph.add_edge("a", "d")
-            # graph.add_edge("a", "b")
-            # graph.add_edge("d", "c")
-            # graph.add_edge("b", "d")
-            # graph.add_edge("c", "a")
-            # graph.add_edge("c", "b")
-            resultado = nx.is_strongly_connected(graph)
-            # print(graph.nodes)
-            # print(graph.edges)
+    # def scg(self):
+    #     resultado = False
+    #     if self.is_directed():
+    #         graph = nx.MultiDiGraph()
+    #         graph.add_nodes_from(self.vertices())
+    #         graph.add_edges_from(self.arestas())
+    #         # graph.add_edge("a", "d")
+    #         # graph.add_edge("a", "b")
+    #         # graph.add_edge("d", "c")
+    #         # graph.add_edge("b", "d")
+    #         # graph.add_edge("c", "a")
+    #         # graph.add_edge("c", "b")
+    #         resultado = nx.is_strongly_connected(graph)
+    #         # print(graph.nodes)
+    #         # print(graph.edges)
 
-        print(resultado)
-        return resultado
+    #     print(resultado)
+    #     return resultado
 
     # def scc(self):
     #     resultado = ''

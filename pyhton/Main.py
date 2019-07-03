@@ -14,124 +14,97 @@ from Grafo import Grafo
     9. Encontrar a árvore geradora mínima (AGM) do grafo.
 """
 
-# print("GRAFO 1")
-# graph1 = Grafo(Entrada.grafo01)
-# graph1.__str__()
-# print("q1.", end=' ')
-# graph1.verificar_aresta("a", "b")  # OK
-# graph1.verificar_aresta("b", "a")  # OK
-# graph1.verificar_aresta("a", "i")  # OK
-# print("q2.", end=' ')
+print("GRAFO 1")
+graph1 = Grafo(Entrada.grafo01)
+graph1.__str__()
+print("q1.")
+print("a.", end=' ')
+graph1.verificar_aresta("1", "2")  # OK
+graph1.verificar_aresta("4", "3")  # OK
+graph1.verificar_aresta("1", "3")  # OK
+graph1.verificar_aresta("0", "4")
+# print("q.", end=' ')
 # graph1.grau_vertice("i")  # OK
 # print("q3.", end=' ')
 # graph1.verificar_adjacencia("h")  # OK
-# print("q4.", end=' ')
-# graph1.is_cyclic()  # OK
-# print("q5.", end=' ')
-# graph1.verificar_conexo()  # OK
-# # print("q6.", end=' ')
-# # grafo.verificar_fortemente_conexos()  # FIXME
+# print("q6.", end=' ')
+# grafo.verificar_fortemente_conexos()  # FIXME
 # print("q7.", end=' ')
 # graph1.verificar_eureliano()  # OK
-# print("q8.", end=' ')
-# graph1.imprime_caminho("a", "e")  # FIXME
-# print("q9.", end=' ')
-# graph1.encontrar_agm("a")  # OK
-# # grafo.plotar()
-# print()
-
-# print("GRAFO 2")
-# graph02 = Grafo(Entrada.grafo02)
-# graph02.__str__()
-# print("q1.", end=' ')
-# graph1.verificar_aresta("a", "b")  # OK
-# graph1.verificar_aresta("b", "a")  # OK
-# graph1.verificar_aresta("a", "i")  # OK
-# print("q2.", end=' ')
-# graph1.grau_vertice("i")  # OK
-# graph02.grau_vertice("Antônio")  # OK
-# print("q3.", end=' ')
-# graph1.verificar_adjacencia("h")  # OK
-# print("q4.", end=' ')
-# graph1.is_cyclic()  # OK
-# print("q5.", end=' ')
-# graph1.verificar_conexo()  # OK
-# # print("q6.", end=' ')
-# # grafo.verificar_fortemente_conexos()  # FIXME
-# print("q7.", end=' ')
-# graph1.verificar_eureliano()  # OK
-# print("q8.", end=' ')
-# graph02.imprime_caminho("Cecília", "Antônio")  # OK
-# graph02.imprime_caminho("Alfredo", "Renata")  # OK
+print("\nb.", end=' ')
+graph1.encontrar_caminho_minimo("2", "1")
+#print(graph1.encontrar_todos_caminhos("2", "1"))
+print("\nc.", end=' ')
+graph1.verificar_conexo()  # OK
+graph1.verificar_fortemente_conexos()
+print("\nd.", end=' ')
+#graph1.is_cyclic()  # OK
+graph1.verificar_ciclico()
+#print(graph1.encontrar_caminho("2", "1"))
 # print("q9.", end=' ')
 # graph1.encontrar_agm("a")  # OK
 # grafo.plotar()
-# print()
+print()
 
-# print("GRAFO 3")
-# graph03 = Grafo(Entrada.grafo03)
-# graph03.__str__()
-# print("q1.", end=' ')
-# graph03.verificar_aresta("Curitiba", "SaoPaulo")  # OK
-# graph03.verificar_aresta("Curitiba", "Florianopolis")  # OK
-# graph03.verificar_aresta("Curitiba", "PortoAlegre")  # OK
-# print("q2.", end=' ')
-# graph03.grau_vertice("PortoAlegre")  # OK
+#print("GRAFO 2")
+graph3 = Grafo(Entrada.grafo03)
+#graph1.__str__()
+print("q2.")
+print("a.", end=' ')
+graph3.verificar_adjacencia("1")  # OK
+#graph1.verificar_aresta("4", "3")  # OK
+#graph1.verificar_aresta("1", "3")  # OK
+print("\nb.", end=' ')
+graph3.grau_vertice("3")  # OK
 # print("q3.", end=' ')
-# graph03.verificar_adjacencia("SaoPaulo")  # OK
-# print("q4.", end=' ')
-# graph03.is_cyclic()  # OK
-# print("q5.", end=' ')
-# graph03.verificar_conexo()  # OK
-# # print("q6.", end=' ')
-# # grafo.verificar_fortemente_conexos()  # FIXME
+# graph1.verificar_adjacencia("h")  # OK
+# print("q6.", end=' ')
+# grafo.verificar_fortemente_conexos()  # FIXME
 # print("q7.", end=' ')
-# graph03.verificar_eureliano()  # OK
-# print("q8.", end=' ')
-# graph03.imprime_caminho("Florianopolis", "SaoPaulo")  # FIXME
+#print("\nb.", end=' ')
+#graph1.encontrar_caminho_minimo("2", "1")
+#print(graph1.encontrar_todos_caminhos("2", "1"))
+print("\nc.", end=' ')
+graph3.verificar_conexo()  # OK
+print("\nd.", end=' ')
+graph3.verificar_eureliano()  # OK
+#graph1.is_cyclic()  # OK
+#graph1.verificar_ciclico()
+#print(graph1.encontrar_caminho("2", "1"))
 # print("q9.", end=' ')
-# graph03.encontrar_agm("PortoAlegre")  # OK
-# # grafo.plotar()
-# print()
-#
-# print("GRAFO 6")
-# graph06 = Grafo(Entrada.grafo06)
-# graph06.__str__()
-# print("q1.", end=' ')
-# graph06.verificar_aresta("a", "b")  # OK
-# graph06.verificar_aresta("b", "a")  # OK
-# graph06.verificar_aresta("a", "i")  # OK
-# print("q2.", end=' ')
-# graph06.grau_vertice("i")  # OK
+# graph1.encontrar_agm("a")  # OK
+# grafo.plotar()
+print()
+
+print("GRAFO 2")
+graph2 = Grafo(Entrada.grafo02)
+graph2.__str__()
+print("q3.")
+print("a.", end=' ')
+graph2.imprime_caminho("A", "D")
+#graph1.verificar_aresta("1", "2")  # OK
+#graph1.verificar_aresta("4", "3")  # OK
+#graph1.verificar_aresta("1", "3")  # OK
+print("\nb.", end=' ')
+# graph1.grau_vertice("i")  # OK
 # print("q3.", end=' ')
-# graph06.verificar_adjacencia("h")  # OK
-# print("q4.", end=' ')
-# graph06.is_cyclic()  # OK
-# print("q5.", end=' ')
-# graph06.verificar_conexo()  # OK
-# # print("q6.", end=' ')
-# # grafo.verificar_fortemente_conexos()  # FIXME
+# graph1.verificar_adjacencia("h")  # OK
+# print("q6.", end=' ')
+# grafo.verificar_fortemente_conexos()  # FIXME
 # print("q7.", end=' ')
-# graph06.verificar_eureliano()  # OK
-# print("q8.", end=' ')
-# graph06.imprime_caminho("a", "e")  # FIXME
-# graph06.imprime_caminho("a", "d")  # FIXME
-# graph06.imprime_caminho("i", "e")  # FIXME
-# graph06.imprime_caminho("h", "e")  # FIXME
-# graph06.imprime_caminho("a", "a")  # FIXME
-# graph06.imprime_caminho("a", "b")  # FIXME
+# graph1.verificar_eureliano()  # OK
+#print("\nb.", end=' ')
+#graph1.encontrar_caminho_minimo("2", "1")
+#print(graph1.encontrar_todos_caminhos("2", "1"))
+#print("\nc.", end=' ')
+#graph1.verificar_conexo()  # OK
+#print("\nd.", end=' ')
+#graph1.is_cyclic()  # OK
+#graph1.verificar_ciclico()
+#print(graph1.encontrar_caminho("2", "1"))
 # print("q9.", end=' ')
-# graph06.encontrar_agm("a")  # OK
-# graph06.encontrar_agm("g")  # OK
-# graph06.encontrar_agm("c")  # OK
-# # graph06.plotar()
-# print()
-#
-# print("GRAFO 8")
-# graph08 = Grafo(Entrada.grafo08)
-# graph08.__str__()
-# graph08.imprime_caminho("0", "4")
-# graph09 = Grafo(Entrada.grafo09)
-# graph09.verificar_fortemente_conexos()
-# graph09.scg()
-# graph09.scc()
+graph4 = Grafo(Entrada.grafo04)
+graph2.__str__()
+graph4.encontrar_agm("A")  # OK
+# grafo.plotar()
+#print()
