@@ -169,6 +169,7 @@ class Grafo(object):
             Retorna True se a aresta existir ou False caso não exista
         """
         # if {vertice1, vertice2} in arestas:
+        direcionado = self.is_directed()
         for v1, v2 in arestas_global:
             ver1 = vertice1 == v1
             ver2 = vertice2 == v2
@@ -176,7 +177,7 @@ class Grafo(object):
             ver4 = vertice2 == v1
             verif1 = ver1 and ver2
             verif2 = ver3 and ver4
-            if self.is_directed():
+            if direcionado:
                 if verif1:
                     return True
             else:
@@ -683,17 +684,18 @@ class Grafo(object):
         vertice_existe = self.vertice_existe(vertice_inicial)
 
         condicao = []
+        direcionado = self.is_directed()
         if vertice_existe:
             if not conectado_global:
                 condicao.append("deve ser conectado")
             if not ponderado_global:
                 condicao.append("deve ser ponderado")
-            if self.is_directed():
+            if direcionado:
                 condicao.append("não deve ser direcionado")
         else:
             condicao.append("não apresenta o vértice '%s'" % vertice_inicial)
 
-        if conectado_global and ponderado_global and not self.is_directed() and vertice_existe:
+        if conectado_global and ponderado_global and not direcionado and vertice_existe:
             # lista = self.dijkstra(vertice_inicial)
             lista, peso_total = self.prim(vertice_inicial)
             result.append(', '.join(str(x) for x in lista))
@@ -968,16 +970,15 @@ class Grafo(object):
         valor : int
         """
         list_v1 = self.__grafo_dicionario.items()
-        custo = []
+        custo = math.inf
         for v, cost in list_v1:
-            if v is vertex1:
-                custo = [value for (key, value) in cost.items() if key is vertex2]
-        valor = custo[0]
-        return valor
-        # if v is vertex1 and v2 is vertex2:
-        #     return cost
-        # else:
-        #     return math.inf
+            if v == vertex1:
+                # custo = [value for (key, value) in cost.items() if key == vertex2]
+                for key, value in cost.items():
+                    if key == vertex2:
+                        custo = value
+        return custo
+
 
     def caminho_ponderado_peso(self, caminho):
         """
@@ -1018,34 +1019,35 @@ class Grafo(object):
         weight : int
         """
         # Grafo conectado, ponderado e não direcionado
-        if not self.is_directed() and conectado_global and ponderado_global:
-            vertex = [root]  # Lista dos vertices a partir do qual buscamos as arestas
-            selected_edges = []  # Lista com as arestas selecionadas
+        vertex = [root]  # Lista dos vertices a partir do qual buscamos as arestas
+        selected_edges = []  # Lista com as arestas selecionadas
 
-            weight = 0  # Peso do minimum spanning tree
+        weight = 0  # Peso do minimum spanning tree
 
-            remaing_vertices = list(vertices_global)  # Lista com os vertices destinos da busca
-            remaing_vertices.remove(root)  # O root eh ponto de partida, entao sai da lista
+        remaing_vertices = list(vertices_global)  # Lista com os vertices destinos da busca
+        remaing_vertices.remove(root)  # O root eh ponto de partida, entao sai da lista
 
-            for i in range(len(remaing_vertices)):  # Devemos buscar |V| - 1 vertices
-                min_cost = math.inf  # Inicializamos o custo minimo como infinito
-                va, vb = None, None  # Vertices candidatos para a aresta selecionada
-                for v1 in vertex:  # Para cada vertice na lista de busca origem
-                    for v2 in remaing_vertices:  # Buscamos os vertices que ainda nao estao no grafo final
-                        if not self.aresta_existe(v1, v2):
-                            cost = math.inf
-                        else:
-                            cost = self.direct_cost(v1, v2)  # Calcula o custo da aresta
-                        if cost < min_cost:  # Se for menor que o minimo ate entao, atualizamos os dados
-                            va = v1
-                            vb = v2
-                            min_cost = cost
+        tam_rem_vert = len(remaing_vertices)
+        for i in range(tam_rem_vert):  # Devemos buscar |V| - 1 vertices
+            min_cost = math.inf  # Inicializamos o custo minimo como infinito
+            va, vb = None, None  # Vertices candidatos para a aresta selecionada
+            for v1 in vertex:  # Para cada vertice na lista de busca origem
+                for v2 in remaing_vertices:  # Buscamos os vertices que ainda nao estao no grafo final
+                    aresta_existe = self.aresta_existe(v1, v2)
+                    if not aresta_existe:
+                        cost = math.inf
+                    else:
+                        cost = self.direct_cost(v1, v2)  # Calcula o custo da aresta
+                    if cost < min_cost:  # Se for menor que o minimo ate entao, atualizamos os dados
+                        va = v1
+                        vb = v2
+                        min_cost = cost
 
-                if min_cost < math.inf:  # Depois de todas as buscas, se o custo eh finito:
-                    # selected_edges.append((va, vb, min_cost))  # Adicionamos a aresta de va a vb na solucao
-                    selected_edges.append((va, vb))  # Adicionamos a aresta de va a vb na solucao
-                    vertex.append(vb)  # vb agora sera nova origem de busca
-                    remaing_vertices.remove(vb)  # vb nao mais sera destino de busca, pois ja consta na solucao
-                    weight += min_cost  # Atualiza o peso
+            if min_cost < math.inf:  # Depois de todas as buscas, se o custo eh finito:
+                # selected_edges.append((va, vb, min_cost))  # Adicionamos a aresta de va a vb na solucao
+                selected_edges.append((va, vb))  # Adicionamos a aresta de va a vb na solucao
+                vertex.append(vb)  # vb agora sera nova origem de busca
+                remaing_vertices.remove(vb)  # vb nao mais sera destino de busca, pois ja consta na solucao
+                weight += min_cost  # Atualiza o peso
 
-            return selected_edges, weight  # Retorna a lista de arestas selecionadas com o peso total
+        return selected_edges, weight  # Retorna a lista de arestas selecionadas com o peso total
