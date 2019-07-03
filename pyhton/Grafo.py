@@ -34,9 +34,9 @@ class Grafo(object):
         global vertices_global
         global arestas_global
         global conectado_global
-        global ponderado_global
+        global ponderado
         vertices_global = self.vertices()
-        ponderado_global = self.is_weighted()
+        ponderado = self.is_weighted()
         arestas_global = self.arestas()
         if not self.is_directed():
             conectado_global = self.is_connected()
@@ -358,7 +358,7 @@ class Grafo(object):
             caminho = []
         grafo = self.__grafo_dicionario
         caminho = caminho + [vertice_inicio]
-        if vertice_inicio is vertice_fim:
+        if vertice_inicio == vertice_fim:
             return caminho
         if vertice_inicio not in grafo:
             return None
@@ -389,13 +389,14 @@ class Grafo(object):
         inexistente = []
         inicio_existe = self.vertice_existe(vertice_inicio)
         fim_existe = self.vertice_existe(vertice_fim)
+        ponderado = self.is_weighted()
         if not inicio_existe:
             inexistente.append("'" + vertice_inicio + "'")
         if not fim_existe:
             inexistente.append("'" + vertice_fim + "'")
 
         if inicio_existe and fim_existe:
-            if ponderado_global:
+            if ponderado:
                 caminho = self.encontrar_caminho_ponderado(vertice_inicio, vertice_fim)
                 if 'None' not in str(caminho):
                     peso = self.caminho_ponderado_peso(caminho)
@@ -406,7 +407,7 @@ class Grafo(object):
                 result.append("Caminho não existe")
             else:
                 result.append(str(caminho))
-                if ponderado_global:
+                if ponderado:
                     result.append("\n\tCusto do caminho: ")
                     result.append(str(peso))
         else:
@@ -441,7 +442,7 @@ class Grafo(object):
             caminho = []
         grafo = self.__grafo_dicionario
         caminho = caminho + [vertice_inicio]
-        if vertice_inicio is vertice_fim:
+        if vertice_inicio == vertice_fim:
             return [caminho]
         if vertice_inicio not in grafo:
             return []
@@ -617,9 +618,10 @@ class Grafo(object):
             odd = 0
             for vertice in vertices_global:
                 a = self.adjacentes(vertice)
-                if len(a) % 2 is not 0:
+                # if len(a) % 2 is not 0:
+                if len(a) % 2 != 0:
                     odd += 1
-            result.append("É Euleriano") if odd is 0 else result.append("Não é Euleriano")
+            result.append("É Euleriano") if odd == 0 else result.append("Não é Euleriano")
         print(''.join(result))
 
     def diameter(self):
@@ -688,14 +690,14 @@ class Grafo(object):
         if vertice_existe:
             if not conectado_global:
                 condicao.append("deve ser conectado")
-            if not ponderado_global:
+            if not ponderado:
                 condicao.append("deve ser ponderado")
             if direcionado:
                 condicao.append("não deve ser direcionado")
         else:
             condicao.append("não apresenta o vértice '%s'" % vertice_inicial)
 
-        if conectado_global and ponderado_global and not direcionado and vertice_existe:
+        if conectado_global and ponderado and not direcionado and vertice_existe:
             # lista = self.dijkstra(vertice_inicial)
             lista, peso_total = self.prim(vertice_inicial)
             result.append(', '.join(str(x) for x in lista))
@@ -812,7 +814,7 @@ class Grafo(object):
 
             # Consider successors (edges) of v
 
-            if ponderado_global:
+            if ponderado:
                 # for vert in self.__grafo_dicionario[vertex]:
                 for vert in self.adjacentes(vertex):
                     edges.append(vert)
@@ -925,7 +927,7 @@ class Grafo(object):
         while aberto:
             current = heapq.heappop(aberto).node
 
-            if current is finish:
+            if current == finish:
                 return self.traceback_path(finish, parents)
 
             if current in closed:

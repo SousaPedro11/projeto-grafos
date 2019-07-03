@@ -8,7 +8,8 @@ __excluidos = [
     # 'grafo04',
     # 'grafo03',
     # 'grafo05',
-    # 'grafo06'
+    # 'grafo06',
+    # 'grafo07'
 ]
 
 
