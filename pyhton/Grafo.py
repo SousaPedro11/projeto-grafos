@@ -2,7 +2,7 @@
 import heapq
 
 import math
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import networkx as nx
 
 
@@ -516,7 +516,8 @@ class Grafo(object):
         """
         result = ["Verificar se o grafo é conexo: "]
         # if not direcionado_global:
-        result.append("O grafo é conexo") if conectado_global else result.append("O grafo não é conexo")
+        result.append("O grafo é conexo.") if conectado_global else result.append("O grafo não é conexo.")
+        result.append(" É fortemente conexo.") if self.scg() else ""
         # else:
         #     graph = Grafo(self.to_undirected())
         #     # conectado_global = graph.is_connected()
@@ -788,37 +789,37 @@ class Grafo(object):
     #         print(x)
     #     return resultado
 
-    def plotar(self):
-        """
-        Descrição
-        ---------
-        Plota o grafo
-        """
-        # graph = nx.Graph(self.__grafo_dicionario)
-        if self.is_directed():
-            graph = nx.MultiDiGraph()
-            # graph = nx.MultiDiGraph(self.__grafo_dicionario)
-            # g = graphviz.Digraph(self.__grafo_dicionario)
-        else:
-            # graph = nx.MultiGraph(self.__grafo_dicionario)
-            graph = nx.MultiGraph()
-            # g = graphviz.Digraph(self.__grafo_dicionario)
-        # fig = plt.figure()
-        # fig.suptitle(str(self), fontsize=20)
-        graph.add_nodes_from(vertices_global)
-        ponderado = self.is_weighted()
-        graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado else graph.add_edges_from(
-            self.arestas())
-        pos = nx.spring_layout(graph)
-        # nx.draw(graph, pos, with_labels=True)
-        nx.draw_networkx_nodes(graph, pos)
-        nx.draw_networkx_labels(graph, pos)
-        nx.draw_networkx_edges(graph, pos)
-        if ponderado:
-            nx.draw_networkx_edge_labels(graph, pos, edge_labels=self.aresta_peso())
-        plt.axis('off')
-        plt.show()
-        # g.view()
+    # def plotar(self):
+    #     """
+    #     Descrição
+    #     ---------
+    #     Plota o grafo
+    #     """
+    #     # graph = nx.Graph(self.__grafo_dicionario)
+    #     if self.is_directed():
+    #         graph = nx.MultiDiGraph()
+    #         # graph = nx.MultiDiGraph(self.__grafo_dicionario)
+    #         # g = graphviz.Digraph(self.__grafo_dicionario)
+    #     else:
+    #         # graph = nx.MultiGraph(self.__grafo_dicionario)
+    #         graph = nx.MultiGraph()
+    #         # g = graphviz.Digraph(self.__grafo_dicionario)
+    #     # fig = plt.figure()
+    #     # fig.suptitle(str(self), fontsize=20)
+    #     graph.add_nodes_from(vertices_global)
+    #     ponderado = self.is_weighted()
+    #     graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado else graph.add_edges_from(
+    #         self.arestas())
+    #     pos = nx.spring_layout(graph)
+    #     # nx.draw(graph, pos, with_labels=True)
+    #     nx.draw_networkx_nodes(graph, pos)
+    #     nx.draw_networkx_labels(graph, pos)
+    #     nx.draw_networkx_edges(graph, pos)
+    #     if ponderado:
+    #         nx.draw_networkx_edge_labels(graph, pos, edge_labels=self.aresta_peso())
+    #     plt.axis('off')
+    #     plt.show()
+    #     # g.view()
 
     def tarjan(self):
         """

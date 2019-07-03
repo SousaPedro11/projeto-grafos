@@ -30,7 +30,7 @@ def teste_grafo(grafo):
     grafo.imprime_caminho(a, b)  # FIXME ajustar direcionado
     print("q9.", end=' ')
     grafo.encontrar_agm(__random_vertices(grafo))  # OK
-    grafo.plotar()
-    grafo.scg()
+    # grafo.plotar()
+    # grafo.scg()
     # grafo.scc()
     print()
