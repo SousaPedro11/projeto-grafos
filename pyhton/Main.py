@@ -14,204 +14,87 @@ from Grafo import Grafo
     9. Encontrar a árvore geradora mínima (AGM) do grafo.
 """
 
-# FIXME o grafo 12 é um multigrafo com self loop, a implementação atual não enxerga ambos
-
-""" Como o dicionario baseia-se em Set, ele não aceita chaves repetidas, logo ('a', 'c', 7) e ('a', 'c', 4) nao
-        conseguem coexistir ficando apenas o último ('a', 'c', 4), assim como ('c', 'c', 0) é reconhecido como ('c',0).
-"""
-# grafo12 = {"a": {"b": 4, "c": 7, "c": 4},
-#            "b": {"c": 5},
-#            "c": {"c": 0, "b": 2}
-#            }
-
-# Possivel solucao
-# grafo12 = {'A': [('B', 1), ('B', 4)],
-#            'B': [('C', 1), ('A', 4)],
-#            }
-
-
-print("GRAFO 1")
-graph1 = Grafo(Entrada.grafo01)
-graph1.__str__()
-# graph1.testeConexo()
-# graph1.verificar_aresta("f", "d")
-# graph1.verificar_aresta("e", "d")
-# graph1.grau_vertice("d")
-# graph1.verificar_adjacencia("b")
-# graph1.verificar_ciclico()
-graph1.verificar_conexo()
-graph1.is_cyclic()
-# graph1.verificar_fortemente_conexos()
-# graph1.verificar_eureliano()
-# graph1.imprime_caminho("a", "d")
-# graph1.encontrar_agm("a")
-# graph1.plotar()
+# print("GRAFO 1")
+# graph1 = Grafo(Entrada.grafo01)
+# graph1.__str__()
+# print("q1.", end=' ')
+# graph1.verificar_aresta("a", "b")  # OK
+# graph1.verificar_aresta("b", "a")  # OK
+# graph1.verificar_aresta("a", "i")  # OK
+# print("q2.", end=' ')
+# graph1.grau_vertice("i")  # OK
+# print("q3.", end=' ')
+# graph1.verificar_adjacencia("h")  # OK
+# print("q4.", end=' ')
+# graph1.is_cyclic()  # OK
+# print("q5.", end=' ')
+# graph1.verificar_conexo()  # OK
+# # print("q6.", end=' ')
+# # grafo.verificar_fortemente_conexos()  # FIXME
+# print("q7.", end=' ')
+# graph1.verificar_eureliano()  # OK
+# print("q8.", end=' ')
+# graph1.imprime_caminho("a", "e")  # FIXME
+# print("q9.", end=' ')
+# graph1.encontrar_agm("a")  # OK
+# # grafo.plotar()
 # print()
-print("GRAFO 2")
-graph2 = Grafo(Entrada.grafo02)
-graph2.__str__()
-# graph2.testeConexo()
-# graph2.verificar_aresta("c", "b")
-# graph2.verificar_aresta("b", "c")
-# graph2.grau_vertice("b")
-# graph2.verificar_adjacencia("b")
-# graph2.verificar_ciclico()
-graph2.verificar_conexo()
-graph2.is_cyclic()
-# graph2.to_undirected()
-# graph2.verificar_fortemente_conexos()
-# graph2.verificar_eureliano()
-# graph2.imprime_caminho("a", "d")
-# graph2.encontrar_agm("a")
-# graph2.plotar()
-# print()
+
 print("GRAFO 3")
-graph3 = Grafo(Entrada.grafo03)
-graph3.__str__()
-# graph3.testeConexo()
-# graph3.verificar_aresta("c", "b")
-# graph3.verificar_aresta("b", "c")
-# graph3.grau_vertice("b")
-# graph3.verificar_adjacencia("b")
-# graph3.verificar_ciclico()
-graph3.verificar_conexo()
-graph3.is_cyclic()
-# graph3.verificar_fortemente_conexos()
-# graph3.verificar_eureliano()
-# graph3.imprime_caminho("a", "d")
-# graph3.encontrar_agm("a")
-# graph3.plotar()
-# print()
-print("GRAFO 4")
-graph4 = Grafo(Entrada.grafo04)
-graph4.__str__()
-# graph4.testeConexo()
-# graph4.verificar_aresta("c", "b")
-# graph4.verificar_aresta("b", "c")
-# graph4.grau_vertice("b")
-# graph4.verificar_adjacencia("b")
-# graph4.verificar_ciclico()
-graph4.verificar_conexo()
-graph4.is_cyclic()
-# graph4.verificar_fortemente_conexos()
-# graph4.verificar_eureliano()
-# graph4.imprime_caminho("a", "d")
-# graph4.encontrar_agm("a")
-# graph4.plotar()
-# print()
-# print("Grafo 5")
-# graph5 = Grafo(Entrada.grafo05)
-# graph5.__str__()
-# graph5.verificar_aresta("c", "f")
-# graph5.grau_vertice("c")
-# graph5.verificar_adjacencia("b")
-# graph5.verificar_ciclico()
-# graph5.verificar_conexo()
-# graph5.verificar_fortemente_conexos()
-# graph5.verificar_eureliano()
-# graph5.imprime_caminho("a", "d")
-# graph5.encontrar_agm("a")
-# graph5.plotar()
-# print()
-# print("Grafo 6")
-# graph6 = Grafo(Entrada.grafo06)
-# graph6.__str__()
-# graph6.verificar_aresta("c", "b")
-# graph6.verificar_aresta("b", "c")
-# graph6.grau_vertice("c")
-# graph6.verificar_adjacencia("c")
-# graph6.verificar_ciclico()
-# graph6.verificar_conexo()
-# graph6.verificar_fortemente_conexos()
-# graph6.verificar_eureliano()
-# graph6.imprime_caminho("b", "d")
-# graph6.encontrar_agm("a")
-# graph6.plotar()
-# print()
-# print("Grafo 7")
-# graph7 = Grafo(Entrada.grafo07)
-# graph7.__str__()
-# graph7.verificar_aresta("1", "0")
-# graph7.verificar_aresta("0", "1")
-# graph7.grau_vertice("3")
-# graph7.verificar_adjacencia("3")
-# graph7.verificar_ciclico()
-# graph7.verificar_conexo()
-# graph7.verificar_fortemente_conexos()
-# graph7.verificar_eureliano()
-# graph7.imprime_caminho("1", "4")
-# graph7.encontrar_agm("1")
-# graph7.plotar()
-# print()
-# print("Grafo 8")
-# graph8 = Grafo(Entrada.grafo08)
-# graph8.__str__()
-# graph8.verificar_aresta("c", "f")
-# graph8.grau_vertice("d")
-# graph8.verificar_adjacencia("d")
-# graph8.verificar_ciclico()
-# graph8.verificar_conexo()
-# graph8.verificar_fortemente_conexos()
-# graph8.verificar_eureliano()
-# graph8.imprime_caminho("a", "d")
-# graph8.encontrar_agm("a")
-# # print(graph8.prim("a"))
-# graph8.plotar()
-# print()
-# print("Grafo 9")
-# graph9 = Grafo(Entrada.grafo09)
-# graph9.__str__()
-# graph9.verificar_aresta("c", "f")
-# graph9.grau_vertice("5")
-# graph9.verificar_adjacencia("5")
-# graph9.verificar_ciclico()
-# graph9.verificar_conexo()
-# graph9.verificar_fortemente_conexos()
-# graph9.verificar_eureliano()
-# graph9.imprime_caminho("2", "6")
-# graph9.encontrar_agm("1")
-# graph9.plotar()
-# graph9.aresta_peso()
-# print()
-# print("Grafo 10")
-# graph10 = Grafo(Entrada.grafo10)
-# graph10.__str__()
-# graph10.verificar_aresta("c", "f")
-# graph10.grau_vertice("d")
-# graph10.verificar_adjacencia("d")
-# graph10.verificar_ciclico()
-# graph10.verificar_conexo()
-# graph10.verificar_fortemente_conexos()
-# graph10.verificar_eureliano()
-# graph10.imprime_caminho("b", "f")
-# graph10.encontrar_agm("a")
-# graph10.plotar()
-# graph10.aresta_peso()
-# print()
-# print("Grafo 11")
-# graph11 = Grafo(Entrada.grafo11)
-# graph11.__str__()
-# graph11.verificar_aresta("C", "B")
-# graph11.grau_vertice("D")
-# graph11.verificar_adjacencia("D")
-# graph11.verificar_ciclico()
-# graph11.verificar_conexo()
-# graph11.verificar_fortemente_conexos()
-# graph11.verificar_eureliano()
-# graph11.imprime_caminho("O", "T")
-# graph11.encontrar_agm("A")
-# graph11.plotar()
-# graph11.aresta_peso()
-# print()
-# FIXME o grafo 12 é um multigrafo com self loop, a implementação atual não enxerga ambos
-# print("Grafo 12")
-# graph12 = Grafo(Entrada.grafo12)
-# graph12.__str__()
-# print(graph12.vertices())
-# print(graph12.arestas())
-# graph12.verificar_direcionado()
-# print(Utilitario.random_vertices(graph12))
-# print(Utilitario.random_vertices(graph12))
-# print("Grafo 13")
-# graph13 = Grafo(Entrada.grafo13)
-# graph13.__str__()
+graph03 = Grafo(Entrada.grafo03)
+graph03.__str__()
+print("q1.", end=' ')
+graph03.verificar_aresta("Curitiba", "SaoPaulo")  # OK
+graph03.verificar_aresta("Curitiba", "Florianopolis")  # OK
+graph03.verificar_aresta("Curitiba", "PortoAlegre")  # OK
+print("q2.", end=' ')
+graph03.grau_vertice("PortoAlegre")  # OK
+print("q3.", end=' ')
+graph03.verificar_adjacencia("SaoPaulo")  # OK
+print("q4.", end=' ')
+graph03.is_cyclic()  # OK
+print("q5.", end=' ')
+graph03.verificar_conexo()  # OK
+# print("q6.", end=' ')
+# grafo.verificar_fortemente_conexos()  # FIXME
+print("q7.", end=' ')
+graph03.verificar_eureliano()  # OK
+print("q8.", end=' ')
+graph03.imprime_caminho("Florianopolis", "SaoPaulo")  # FIXME
+print("q9.", end=' ')
+graph03.encontrar_agm("PortoAlegre")  # OK
+# grafo.plotar()
+print()
+
+print("GRAFO 6")
+graph06 = Grafo(Entrada.grafo06)
+graph06.__str__()
+print("q1.", end=' ')
+graph06.verificar_aresta("a", "b")  # OK
+graph06.verificar_aresta("b", "a")  # OK
+graph06.verificar_aresta("a", "i")  # OK
+print("q2.", end=' ')
+graph06.grau_vertice("i")  # OK
+print("q3.", end=' ')
+graph06.verificar_adjacencia("h")  # OK
+print("q4.", end=' ')
+graph06.is_cyclic()  # OK
+print("q5.", end=' ')
+graph06.verificar_conexo()  # OK
+# print("q6.", end=' ')
+# grafo.verificar_fortemente_conexos()  # FIXME
+print("q7.", end=' ')
+graph06.verificar_eureliano()  # OK
+print("q8.", end=' ')
+graph06.imprime_caminho("a", "e")  # FIXME
+graph06.imprime_caminho("a", "d")  # FIXME
+graph06.imprime_caminho("i", "e")  # FIXME
+graph06.imprime_caminho("h", "e")  # FIXME
+graph06.imprime_caminho("a", "a")  # FIXME
+graph06.imprime_caminho("a", "b")  # FIXME
+print("q9.", end=' ')
+graph06.encontrar_agm("a")  # OK
+graph06.encontrar_agm("g")  # OK
+graph06.encontrar_agm("c")  # OK
+# grafo.plotar()
+print()
