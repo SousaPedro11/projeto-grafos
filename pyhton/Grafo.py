@@ -602,7 +602,7 @@ class Grafo(object):
             print("\tComponentes fortemente conexos: ", end='')
             print(tarjan_graph)
         else:
-            print('O grafo não é fortemente conexo')
+            print('O grafo não é direcionado, logo não possui componentes fortemente conexos.')
 
     def verificar_eureliano(self):
         """
@@ -746,6 +746,48 @@ class Grafo(object):
             aresta_peso.append((k, v, peso))
         return aresta_peso
 
+    def scg(self):
+        resultado = False
+        if self.is_directed():
+            graph = nx.MultiDiGraph()
+            graph.add_nodes_from(self.vertices())
+            graph.add_edges_from(self.arestas())
+            # graph.add_edge("a", "d")
+            # graph.add_edge("a", "b")
+            # graph.add_edge("d", "c")
+            # graph.add_edge("b", "d")
+            # graph.add_edge("c", "a")
+            # graph.add_edge("c", "b")
+            resultado = nx.is_strongly_connected(graph)
+            # print(graph.nodes)
+            # print(graph.edges)
+
+        print(resultado)
+        return resultado
+
+    # def scc(self):
+    #     resultado = ''
+    #     if self.is_directed():
+    #         graph = nx.MultiDiGraph()
+    #         graph.add_nodes_from(vertices_global)
+    #         graph.add_node("e")
+    #         graph.add_node("f")
+    #         # ponderado = self.is_weighted()
+    #         # graph.add_weighted_edges_from(self.aresta_ponderada()) if ponderado else graph.add_edges_from(
+    #         #     self.arestas())
+    #         print(self.arestas())
+    #         graph.add_edge("a", "d")
+    #         graph.add_edge("a", "b")
+    #         graph.add_edge("d", "c")
+    #         graph.add_edge("b", "d")
+    #         graph.add_edge("c", "a")
+    #         graph.add_edge("c", "b")
+    #         resultado = nx.strongly_connected_components(graph)
+    #     # print(resultado)
+    #     for x in resultado:
+    #         print(x)
+    #     return resultado
+
     def plotar(self):
         """
         Descrição
@@ -851,7 +893,8 @@ class Grafo(object):
                         break
                 # Output the current strongly connected component
                 # Store in tuple, immutable
-                result.append(tuple(scc))
+                if scc not in result:
+                    result.append(scc)
 
         vertices = self.__grafo_dicionario
         for v in vertices:
@@ -860,7 +903,7 @@ class Grafo(object):
                 strong_connect(v)
 
         # Return list of edges (tuples)
-        return tuple(result)
+        return result
 
     def is_weighted(self):
         """

@@ -40,15 +40,16 @@ from Grafo import Grafo
 # # grafo.plotar()
 # print()
 
-print("GRAFO 2")
-graph02 = Grafo(Entrada.grafo02)
-graph02.__str__()
+# print("GRAFO 2")
+# graph02 = Grafo(Entrada.grafo02)
+# graph02.__str__()
 # print("q1.", end=' ')
 # graph1.verificar_aresta("a", "b")  # OK
 # graph1.verificar_aresta("b", "a")  # OK
 # graph1.verificar_aresta("a", "i")  # OK
 # print("q2.", end=' ')
 # graph1.grau_vertice("i")  # OK
+# graph02.grau_vertice("Antônio")  # OK
 # print("q3.", end=' ')
 # graph1.verificar_adjacencia("h")  # OK
 # print("q4.", end=' ')
@@ -59,12 +60,13 @@ graph02.__str__()
 # # grafo.verificar_fortemente_conexos()  # FIXME
 # print("q7.", end=' ')
 # graph1.verificar_eureliano()  # OK
-print("q8.", end=' ')
-graph02.imprime_caminho("Cecília", "Antônio")  # FIXME
+# print("q8.", end=' ')
+# graph02.imprime_caminho("Cecília", "Antônio")  # OK
+# graph02.imprime_caminho("Alfredo", "Renata")  # OK
 # print("q9.", end=' ')
 # graph1.encontrar_agm("a")  # OK
 # grafo.plotar()
-print()
+# print()
 
 # print("GRAFO 3")
 # graph03 = Grafo(Entrada.grafo03)
@@ -124,3 +126,12 @@ print()
 # graph06.encontrar_agm("c")  # OK
 # # graph06.plotar()
 # print()
+#
+# print("GRAFO 8")
+# graph08 = Grafo(Entrada.grafo08)
+# graph08.__str__()
+# graph08.imprime_caminho("0", "4")
+graph09 = Grafo(Entrada.grafo09)
+graph09.verificar_fortemente_conexos()
+# graph09.scg()
+graph09.scc()
