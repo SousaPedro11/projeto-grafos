@@ -2,7 +2,7 @@ import Entrada
 import Utilitario
 from Grafo import Grafo
 
-__excluidos = ['grafo01', 'grafo02', 'grafo03', 'grafo04']
+__excluidos = ['grafo01', 'grafo02', 'grafo04']
 
 
 def executar():
